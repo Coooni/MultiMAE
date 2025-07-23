@@ -24,7 +24,7 @@ SEG_IGNORE_INDEX = 255
 PAD_MASK_VALUE = 254
 COCO_SEMSEG_NUM_CLASSES = 133
 
-IMAGE_TASKS = ['rgb', 'depth', 'semseg', 'semseg_coco']
+IMAGE_TASKS = ['modis', 's2']  # 모달리티 목록을 MODIS와 S2로 변경
 
 NYU_MEAN = 2070.7764
 NYU_STD = 777.5723

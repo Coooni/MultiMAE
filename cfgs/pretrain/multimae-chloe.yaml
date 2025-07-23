@@ -1,0 +1,38 @@
+# Input and output tasks
+in_domains: modis-s2
+out_domains: modis-s2  # Reconstruction task for MODIS and S2
+standardize_depth: False  # Satellite data, no need for depth standardization
+extra_norm_pix_loss: False  # Optional, no RGB norm needed
+
+# Architecture
+model: pretrain_multimae_base
+decoder_dim: 256
+input_size: 224
+patch_size: 16
+alphas: 1.0  # Dirichlet concentration parameter
+num_encoded_tokens: 98  # Adjust if needed; total patches 196 per modality * 2 = 392, 1/4 = 98
+num_global_tokens: 1
+decoder_use_task_queries: True
+decoder_depth: 2
+
+# Train
+epochs: 1600
+opt: adamw
+blr: 0.0001  # base_lr = 1e-4, lr = base_lr * batch_size / 256
+warmup_lr: 0.000001  # 1e-6
+min_lr: 0.
+warmup_epochs: 40
+batch_size: 256
+hflip: 0.5
+loss_on_unmasked: False
+fp32_output_adapters: modis-s2  # If needed for stability
+
+# Data
+data_path: '/work/mech-ai-scratch/bgekim/project/imputation/IA_dataset/patches'  # Root path for MODIS and S2 folders
+
+# Wandb logging
+log_wandb: False  # Set to True if you want Weights & Biases logging
+wandb_project: 'multimae-pretrain'
+wandb_entity: null  # Change if needed
+wandb_run_name: multimae-modis-s2
+output_dir: 'output/pretrain/multimae-modis-s2'  # Change directory if needed
