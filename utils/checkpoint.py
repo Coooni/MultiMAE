@@ -121,16 +121,52 @@ def auto_load_model(args, model, model_without_ddp, optimizer, loss_scaler, mode
                 checkpoint = torch.hub.load_state_dict_from_url(
                     args.resume, map_location='cpu')
             else:
-                checkpoint = torch.load(args.resume, map_location='cpu')
-            model_without_ddp.load_state_dict(checkpoint['model'])
+                checkpoint = torch.load(args.resume, map_location='cpu', weights_only=False) # 수정 - chloe
+            # model_without_ddp.load_state_dict(checkpoint['model'])
+
+            # 현재 모델에 존재하고 shape이 일치하는 키만 로드
+            state = checkpoint.get('model', checkpoint)
+            model_state = model_without_ddp.state_dict()
+            filtered = {k: v for k, v in state.items()
+                        if k in model_state and model_state[k].shape == v.shape}
+            missing   = sorted(set(model_state.keys()) - set(filtered.keys()))
+            skipped   = sorted(set(state.keys())       - set(filtered.keys()))
+            model_without_ddp.load_state_dict(filtered, strict=False)
+            print(f"[load] loaded {len(filtered)}/{len(model_state)} keys | missing={len(missing)} | skipped={len(skipped)}")
+
+
             print("Resume checkpoint %s" % args.resume)
-            if 'optimizer' in checkpoint and 'epoch' in checkpoint:
-                optimizer.load_state_dict(checkpoint['optimizer'])
-                args.start_epoch = checkpoint['epoch'] + 1
+            # if 'optimizer' in checkpoint and 'epoch' in checkpoint:
+                # optimizer.load_state_dict(checkpoint['optimizer']) # 수정 - chloe
+            if optimizer is not None and 'optimizer' in checkpoint:
+                try:
+                    ckpt_opt = checkpoint['optimizer']
+                    if isinstance(ckpt_opt, dict) and 'param_groups' in ckpt_opt \
+                       and len(ckpt_opt['param_groups']) == len(optimizer.param_groups):
+                        optimizer.load_state_dict(ckpt_opt)
+                        print("[load] optimizer loaded")
+                    else:
+                        print("[load] skip optimizer: param_groups mismatch or bad format")
+                except Exception as e:
+                    print(f"[load] skip optimizer: {e}")
+
+
+
+                # args.start_epoch = checkpoint['epoch'] + 1 # 수정 - chloe
+                args.start_epoch = 0  # FT는 새 스케줄/에폭 카운트로 시작
                 if hasattr(args, 'model_ema') and args.model_ema:
                     _load_checkpoint_for_ema(model_ema, checkpoint['model_ema'])
-                if 'scaler' in checkpoint:
-                    loss_scaler.load_state_dict(checkpoint['scaler'])
+                # if 'scaler' in checkpoint: # 수정 - chloe
+                #     loss_scaler.load_state_dict(checkpoint['scaler'])
+                for k in ('scaler', 'loss_scaler'):
+                    if k in checkpoint:
+                        try:
+                            loss_scaler.load_state_dict(checkpoint[k])
+                            print("[load] scaler loaded")
+                        except Exception as e:
+                            print(f"[load] skip scaler: {e}")
+                        break
+
                 print("With optim & sched!")
     else:
         # deepspeed, only support '--auto_resume'.

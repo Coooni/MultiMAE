@@ -9,6 +9,7 @@ from torchvision import transforms
 
 from .data_constants_chloe import (
     S2_DEFAULT_MEAN, S2_DEFAULT_STD,
+    S1_DEFAULT_MEAN, S1_DEFAULT_STD,
     MODIS_DEFAULT_MEAN, MODIS_DEFAULT_STD
 )
 from .dataset_folder_chloe import MultiTaskImageFolder
@@ -25,8 +26,8 @@ class DataAugmentationForMultiMAE:
     task_dict: {task_name: Tensor[C,H,W]}
     """
     def __init__(self, args):
-        self.mean = {'modis': MODIS_DEFAULT_MEAN, 's2': S2_DEFAULT_MEAN}
-        self.std  = {'modis': MODIS_DEFAULT_STD,  's2': S2_DEFAULT_STD}
+        self.mean = {'modis': MODIS_DEFAULT_MEAN, 's1': S1_DEFAULT_MEAN, 's2': S2_DEFAULT_MEAN}
+        self.std  = {'modis': MODIS_DEFAULT_STD, 's1': S1_DEFAULT_STD, 's2': S2_DEFAULT_STD}
         self.input_size = args.input_size
         self.hflip = args.hflip
         self.all_domains = args.all_domains

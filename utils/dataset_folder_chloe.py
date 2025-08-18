@@ -12,6 +12,8 @@ import rasterio
 import torch
 from torchvision.datasets.vision import VisionDataset
 
+import pdb
+
 # --------------------------------------------------------
 # Basic utilities
 # --------------------------------------------------------
@@ -23,14 +25,27 @@ def is_image_file(filename: str) -> bool:
     return filename.lower().endswith(IMG_EXTENSIONS)
 
 
+
 def rasterio_loader(path: str) -> torch.Tensor:
-    """Return tensor as [C, H, W] float32."""
-    with rasterio.open(path) as src:
-        arr = src.read()  # (bands, H, W)
-        # Optional: nodata handling
-        # if src.nodata is not None:
-        #     arr[arr == src.nodata] = 0
-    return torch.from_numpy(arr).float()
+    if "S1" in path:
+        """S1 로더"""
+        with rasterio.open(path) as src:
+            img = src.read(out_dtype='float32')         
+            # ---- nodata 처리 ----
+            img[img == -32768] = 0.0                      # 또는 np.nan
+            # ---------------------
+            img = img
+    else:
+        """MODIS/S2 공용 로더: [C, H, W] float32, reflectance 0–1 스케일"""
+        with rasterio.open(path) as src:
+            img = src.read(out_dtype='float32')          # (C, H, W) 0‑10000 DN
+            # ---- nodata 처리 ----
+            img[img == 32767] = 0.0                      # 또는 np.nan
+            # ---------------------
+            img = img / 10000.0                          # reflectance 0‑1
+    return torch.from_numpy(img).float()             # torch.Tensor
+    
+
 
 
 # --------------------------------------------------------
