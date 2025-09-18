@@ -25,24 +25,49 @@ def is_image_file(filename: str) -> bool:
     return filename.lower().endswith(IMG_EXTENSIONS)
 
 
+# *** 125m resolution
+# def rasterio_loader(path: str) -> torch.Tensor:
+#     if "MODIS" in path:
+#         """MODIS 로더"""
+#         with rasterio.open(path) as src:
+#             img = src.read(out_dtype='float32')          # (C, H, W) 0‑10000 DN
+#             # ---- nodata 처리 ----
+#             img[img == 32767] = 0.0                      # 또는 np.nan
+#             rgb = img[[0, 3, 2], ...]
+        
+#     else:
+#         """S2 로더: [C, H, W] float32, reflectance 0–1 스케일"""
+#         with rasterio.open(path) as src:
+#             img = src.read(out_dtype='float32')          # (C, H, W) 0‑10000 DN
+#             rgb = img[[3, 2, 1], ...]
+    
+#     rgb = rgb / 10000.0                          # reflectance 0‑1
 
+#     return torch.from_numpy(rgb.copy()).float()
+
+# *** 30m resolution
 def rasterio_loader(path: str) -> torch.Tensor:
     if "S1" in path:
         """S1 로더"""
         with rasterio.open(path) as src:
             img = src.read(out_dtype='float32')         
             # ---- nodata 처리 ----
-            img[img == -32768] = 0.0                      # 또는 np.nan
+            img[img == -9999] = np.nan                      # 또는 np.nan
             # ---------------------
             img = img
-    else:
-        """MODIS/S2 공용 로더: [C, H, W] float32, reflectance 0–1 스케일"""
+    elif "S2" in path:
+        """S2 로더: [C, H, W] float32, reflectance 0–1 스케일"""
         with rasterio.open(path) as src:
             img = src.read(out_dtype='float32')          # (C, H, W) 0‑10000 DN
             # ---- nodata 처리 ----
-            img[img == 32767] = 0.0                      # 또는 np.nan
+            img[img == -9999] = np.nan                      # 또는 np.nan
             # ---------------------
             img = img / 10000.0                          # reflectance 0‑1
+    else:
+        # CDL
+        with rasterio.open(path) as src:
+            img = src.read(out_dtype='float32')         
+            img = img
     return torch.from_numpy(img).float()             # torch.Tensor
     
 

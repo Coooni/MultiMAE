@@ -45,24 +45,24 @@ import pdb
 
 DOMAIN_CONF = {
     'modis': {
-        'channels': 7,
+        'channels': 3,
         'stride_level': 1,
-        'input_adapter': partial(PatchedInputAdapter, num_channels=7),
-        'output_adapter': partial(SpatialOutputAdapter, num_channels=7),
+        'input_adapter': partial(PatchedInputAdapter, num_channels=3),
+        'output_adapter': partial(SpatialOutputAdapter, num_channels=3),
         'loss': MaskedMSELoss, 
     },
-    's1': {
-        'channels': 2,
-        'stride_level': 1,
-        'input_adapter': partial(PatchedInputAdapter, num_channels=2),
-        'output_adapter': partial(SpatialOutputAdapter, num_channels=2),
-        'loss': MaskedMSELoss,  
-    },
+    # 's1': {
+    #     'channels': 2,
+    #     'stride_level': 1,
+    #     'input_adapter': partial(PatchedInputAdapter, num_channels=2),
+    #     'output_adapter': partial(SpatialOutputAdapter, num_channels=2),
+    #     'loss': MaskedMSELoss,  
+    # },
     's2': {
-        'channels': 12,
+        'channels': 3,
         'stride_level': 1,
-        'input_adapter': partial(PatchedInputAdapter, num_channels=12),
-        'output_adapter': partial(SpatialOutputAdapter, num_channels=12),
+        'input_adapter': partial(PatchedInputAdapter, num_channels=3),
+        'output_adapter': partial(SpatialOutputAdapter, num_channels=3),
         'loss': MaskedMSELoss,  
     },
 }
@@ -70,9 +70,9 @@ DOMAIN_CONF = {
 
 
 def get_args():
-    config_parser = parser = argparse.ArgumentParser(description='Training Config', add_help=False)
-    parser.add_argument('-c', '--config', default='', type=str, metavar='FILE',
-                        help='YAML config file specifying default arguments')
+    # config_parser = parser = argparse.ArgumentParser(description='Training Config', add_help=False)
+    # parser.add_argument('-c', '--config', default='', type=str, metavar='FILE',
+    #                     help='YAML config file specifying default arguments')
 
     parser = argparse.ArgumentParser('MultiMAE pre-training script', add_help=False)
 
@@ -84,9 +84,9 @@ def get_args():
                         help='Checkpoint saving frequency in epochs (default: %(default)s)')
 
     # Task parameters
-    parser.add_argument('--in_domains', default='modis-s1-s2', type=str,
+    parser.add_argument('--in_domains', default='modis-s2', type=str,
                         help='Input domain names, separated by hyphen (default: %(default)s)')
-    parser.add_argument('--out_domains', default='modis-s1-s2', type=str,
+    parser.add_argument('--out_domains', default='modis-s2', type=str,
                         help='Output domain names, separated by hyphen (default: %(default)s)')
    
 
@@ -94,7 +94,7 @@ def get_args():
     # Model parameters
     parser.add_argument('--model', default='pretrain_multimae_base', type=str, metavar='MODEL',
                         help='Name of model to train (default: %(default)s)')
-    parser.add_argument('--num_encoded_tokens', default=1024, type=int,
+    parser.add_argument('--num_encoded_tokens', default=1568, type=int,
                         help='Number of tokens to randomly choose for encoder (default: %(default)s)')
     parser.add_argument('--num_global_tokens', default=1, type=int,
                         help='Number of global tokens to add to encoder (default: %(default)s)')
@@ -102,9 +102,9 @@ def get_args():
                         help='Base patch size for image-like modalities (default: %(default)s)')
     parser.add_argument('--input_size', default=224, type=int,
                         help='Images input size for backbone (default: %(default)s)')
-    parser.add_argument('--alphas', type=float, default=1.0, 
+    parser.add_argument('--alphas', type=float, default=0.3, 
                         help='Dirichlet alphas concentration parameter (default: %(default)s)')
-    parser.add_argument('--sample_tasks_uniformly', default=False, action='store_true',
+    parser.add_argument('--sample_tasks_uniformly', default=True, action='store_true',
                         help='Set to True/False to enable/disable uniform sampling over tasks to sample masks for.')
 
     parser.add_argument('--decoder_use_task_queries', default=True, action='store_true',
@@ -179,7 +179,7 @@ def get_args():
     #     parser.add_argument(f'--{d}_txt', type=str, required=True,
     #                         help=f'Path to {d} txt file (abs or relative to data_path)')
     # 수정
-    for d in ['modis','s1', 's2']:
+    for d in ['modis','s2']:
         parser.add_argument(f'--{d}_txt', type=str, default=None,
                             help=f'Path to {d} txt file (abs or relative to data_path)')
 
@@ -231,17 +231,18 @@ def get_args():
     parser.add_argument('--dist_on_itp', action='store_true')
     parser.add_argument('--dist_url', default='env://', help='url used to set up distributed training')
 
-    # Do we have a config file to parse?
-    args_config, remaining = config_parser.parse_known_args()
-    if args_config.config:
-        with open(args_config.config, 'r') as f:
-            cfg = yaml.safe_load(f)
-            parser.set_defaults(**cfg)
+    # # Do we have a config file to parse?
+    # args_config, remaining = config_parser.parse_known_args()
+    # if args_config.config:
+    #     with open(args_config.config, 'r') as f:
+    #         cfg = yaml.safe_load(f)
+    #         parser.set_defaults(**cfg)
 
     # The main arg parser parses the rest of the args, the usual
     # defaults will have been overridden if config file specified.
-    args = parser.parse_args(remaining)
+    # args = parser.parse_args(remaining)
 
+    args = parser.parse_args()
     return args
 
 
@@ -347,8 +348,8 @@ def main(args):
     )
 
     sample = next(iter(data_loader_train))
-    s1 = sample["s1"]               # B, C, H, W  ?
-    print(s1.min(), s1.max())  # 값이 1보다 훨씬 크면 스케일링 미적용
+    s2 = sample["s2"]               # B, C, H, W  ?
+    print(s2.shape)  # 값이 1보다 훨씬 크면 스케일링 미적용
 
     # pdb.set_trace()
 

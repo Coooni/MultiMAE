@@ -86,6 +86,12 @@ class MaskedMSELoss(nn.Module):
         H, W = input.shape[-2:]
         nh, nw = H // self.scale_factor, W // self.scale_factor
 
+        # --- nodata pixel ---
+        valid_mask = ~torch.isnan(target)   # 유효 픽셀만 True
+        valid_mask = valid_mask.all(dim=1)       # [B,H,W]  (한 픽셀이라도 nan이면 False)
+        target = torch.nan_to_num(target, nan=0.0)
+        # --------------------------------
+
         if self.norm_pix:
             target = self.patchify(target, nh, nw)
             mean = target.mean(dim=-1, keepdim=True)
@@ -96,22 +102,55 @@ class MaskedMSELoss(nn.Module):
 
         loss = F.mse_loss(input, target, reduction='none')
 
-        if mask is not None:
-            if mask.sum() == 0:
-                return torch.tensor(0).to(loss.device)
 
-            # Resize mask and upsample
+        # --- 기존 mask와 결합 ---
+        if mask is not None:
             mask = rearrange(mask, "b (nh nw) -> b nh nw", nh=nh, nw=nw)
             mask = F.interpolate(mask.unsqueeze(1).float(), size=(H, W), mode='nearest').squeeze(1)
-            loss = loss.mean(dim=1)  # B, C, H, W -> B, H, W
-            loss = loss * mask
-            # Compute mean per sample
-            loss = loss.flatten(start_dim=1).sum(dim=1) / mask.flatten(start_dim=1).sum(dim=1)
-            loss = loss.nanmean() # Account for zero masks
+            mask = mask.bool()
+            final_mask = mask & valid_mask
         else:
-            loss = loss.mean() # If this is ever nan, we want it to stop training
+            final_mask = valid_mask
+        # -------------------------
+
+        if final_mask.sum() == 0:
+            return torch.tensor(0.0, device=loss.device)
+
+        # # 채널 평균
+        # loss = loss.mean(dim=1)  # B,C,H,W -> B,H,W
+        # loss = loss * final_mask
+        final_mask = final_mask.unsqueeze(1)
+        final_mask = final_mask.expand_as(loss)
+
+        loss = loss * final_mask
+
+        # 샘플별 평균 → 배치 평균
+        denorm = final_mask.flatten(start_dim=1).sum(dim=1) + 1e-6
+        loss = loss.flatten(start_dim=1).sum(dim=1) / denorm
+        loss = loss.nanmean()
+
+        print("loss contains NaN:", torch.isnan(loss).any().item())
+
 
         return loss
+
+        # original
+        # if mask is not None:
+        #     if mask.sum() == 0:
+        #         return torch.tensor(0).to(loss.device)
+
+        #     # Resize mask and upsample
+        #     mask = rearrange(mask, "b (nh nw) -> b nh nw", nh=nh, nw=nw)
+        #     mask = F.interpolate(mask.unsqueeze(1).float(), size=(H, W), mode='nearest').squeeze(1)
+        #     loss = loss.mean(dim=1)  # B, C, H, W -> B, H, W
+        #     loss = loss * mask
+        #     # Compute mean per sample
+        #     loss = loss.flatten(start_dim=1).sum(dim=1) / mask.flatten(start_dim=1).sum(dim=1)
+        #     loss = loss.nanmean() # Account for zero masks
+        # else:
+        #     loss = loss.mean() # If this is ever nan, we want it to stop training
+
+        # return loss
 
 
 class MaskedL1Loss(nn.Module):

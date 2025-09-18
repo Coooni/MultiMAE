@@ -1,6 +1,7 @@
 # datasets_chloe.py
 # --------------------------------------------------------
 import random
+import numpy as np
 from typing import Dict
 
 import torch
@@ -9,8 +10,7 @@ from torchvision import transforms
 
 from .data_constants_chloe import (
     S2_DEFAULT_MEAN, S2_DEFAULT_STD,
-    S1_DEFAULT_MEAN, S1_DEFAULT_STD,
-    MODIS_DEFAULT_MEAN, MODIS_DEFAULT_STD
+    S1_DEFAULT_MEAN, S1_DEFAULT_STD
 )
 from .dataset_folder_chloe import MultiTaskImageFolder
 
@@ -26,13 +26,13 @@ class DataAugmentationForMultiMAE:
     task_dict: {task_name: Tensor[C,H,W]}
     """
     def __init__(self, args):
-        self.mean = {'modis': MODIS_DEFAULT_MEAN, 's1': S1_DEFAULT_MEAN, 's2': S2_DEFAULT_MEAN}
-        self.std  = {'modis': MODIS_DEFAULT_STD, 's1': S1_DEFAULT_STD, 's2': S2_DEFAULT_STD}
+        self.mean = {'s1': S1_DEFAULT_MEAN, 's2': S2_DEFAULT_MEAN}
+        self.std  = {'s1': S1_DEFAULT_STD, 's2': S2_DEFAULT_STD}
         self.input_size = args.input_size
         self.hflip = args.hflip
         self.all_domains = args.all_domains
         # Crop params
-        self.scale = (0.2, 1.0)
+        self.scale = (0.5, 1.0)
         self.ratio = (0.75, 1.3333)
 
     def __call__(self, task_dict: Dict[str, torch.Tensor]):
@@ -59,8 +59,16 @@ class DataAugmentationForMultiMAE:
             mean = torch.tensor(self.mean[task]).view(-1, 1, 1)
             std  = torch.tensor(self.std[task]).view(-1, 1, 1)
             x = (x - mean) / std
+            x = np.clip(x, -3, 3) # 튀는값 제거 추가 *chloe*
 
             out[task] = x
+
+            # if task == 's2':
+            #     print("s2 raw min/max:", task_dict['s2'].min().item(), task_dict['s2'].max().item())
+            #     print("s2 norm min/max:", x.min().item(), x.max().item())
+            # else:
+            #     print("s1 raw min/max:", task_dict['s1'].min().item(), task_dict['s1'].max().item())
+            #     print("s1 norm min/max:", x.min().item(), x.max().item())
 
         return out
 

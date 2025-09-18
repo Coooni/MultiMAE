@@ -1,18 +1,16 @@
 # training
 torchrun --nproc_per_node=1 --master_port=29501 run_pretraining_multimae_chloe.py \
-  --in_domains modis-s1-s2 --out_domains modis-s1-s2 \
-  --modis_txt /scratch/bepk/bkim2/MultiMAE/valid_list/delta/triplet_MODIS_paths.txt \
-  --s2_txt   /scratch/bepk/bkim2/MultiMAE/valid_list/delta/triplet_S2_paths.txt \
-  --s1_txt   /scratch/bepk/bkim2/MultiMAE/valid_list/delta/triplet_S1_paths.txt \
+  --in_domains modis-s2 --out_domains modis-s2 \
+  --modis_txt /scratch/bepk/bkim2/MultiMAE_RGB/MultiMAE/valid_list/delta/triplet_MODIS_paths.txt\
+  --s2_txt  /scratch/bepk/bkim2/MultiMAE_RGB/MultiMAE/valid_list/delta/triplet_S2_paths.txt \
   --batch_size 16 --epochs 100 \
   --warmup_epochs 0 --warmup_steps 0 \
   --output_dir /scratch/bepk/bkim2/MultiMAE/result/modis-s1-s2/4 \
   --num_workers 8
   --log_wandb \
-  --wandb_project MultiMAE-Pretrain \
+  --wandb_project MultiMAE-RGB \
   --wandb_entity goeulkim \
-  --wandb_run_name multimae-modis-s1-s2
-
+  --wandb_run_name multimae-modis-s2
 
 
 

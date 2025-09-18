@@ -267,7 +267,7 @@ class MultiMAE(nn.Module):
         input_info['num_global_tokens'] = self.num_global_tokens
 
         return input_info
-
+# original
     def forward(self, 
                 x: Union[Dict[str, torch.Tensor], torch.Tensor], 
                 mask_inputs: bool = True,
@@ -377,6 +377,137 @@ class MultiMAE(nn.Module):
                 )
         
         return preds, task_masks
+
+
+    # # original + contrastive learning
+    # def forward(self, 
+    #             x: Union[Dict[str, torch.Tensor], torch.Tensor], 
+    #             mask_inputs: bool = True,
+    #             task_masks: Dict[str, torch.Tensor] = None,
+    #             num_encoded_tokens: int = 128,
+    #             alphas: Union[float, List[float]] = 1.0,
+    #             sample_tasks_uniformly: bool = False,
+    #             fp32_output_adapters: List[str] = [],
+    #             return_encoded: bool = False):
+    #     """
+    #     Forward pass through input adapters, transformer encoder and output adapters.
+    #     If specified, will randomly drop input tokens.
+
+    #     :param x: Input tensor or dictionary of tensors
+    #     :param mask_inputs: Set to True to enable random masking of input patches
+    #     :param task_masks: Optional dictionary of task->mask pairs.
+    #     :param num_encoded_tokens: Number of tokens to randomly select for encoder.
+    #         Only used if mask_inputs is True.
+    #     :param alphas: Dirichlet distribution parameter alpha for task sampling.
+    #         Higher alpha = harder, less uniform sampling. Can be float or list of floats.
+    #     :param sample_tasks_uniformly: Set to True if tasks should be uniformly presampled,
+    #         before Dirichlet sampling decides share of masked tokens between them.
+    #     :param fp32_output_adapters: List of task identifiers to force output adapters to
+    #         run with mixed precision turned off for stability reasons.
+    #     """
+
+    #     ## Processing input modalities
+    #     # If input x is a Tensor, assume it's RGB
+    #     x = {'rgb': x} if isinstance(x, torch.Tensor) else x
+
+    #     # Need image size for tokens->image reconstruction
+    #     # We assume that at least one of rgb or semseg is given as input before masking
+    #     if 'rgb' in x:
+    #         B, C, H, W = x['rgb'].shape
+    #     elif 'semseg' in x:
+    #         B, H, W = x['semseg'].shape
+    #         H *= self.input_adapters['semseg'].stride_level
+    #         W *= self.input_adapters['semseg'].stride_level
+    #     else:
+    #         B, C, H, W = list(x.values())[0].shape  # TODO: Deal with case where not all have same shape
+
+    #     # Encode selected inputs to tokens
+    #     input_task_tokens = {
+    #         domain: self.input_adapters[domain](tensor)
+    #         for domain, tensor in x.items()
+    #         if domain in self.input_adapters
+    #     }
+
+    #     input_info = self.generate_input_info(input_task_tokens=input_task_tokens, image_size=(H, W))
+
+    #     # Select random subset of tokens from the chosen input tasks and concatenate them
+    #     if mask_inputs:
+    #         num_encoded_tokens = num_encoded_tokens if num_encoded_tokens is not None else self.num_encoded_tokens
+    #     else:
+    #         num_encoded_tokens = sum([tensor.shape[1] for tensor in input_task_tokens.values()])
+
+    #     ## Generating masks
+    #     if task_masks is None:
+    #         task_masks, ids_keep, ids_restore = self.generate_random_masks(
+    #             input_task_tokens,
+    #             num_encoded_tokens,
+    #             alphas=alphas,
+    #             sample_tasks_uniformly=sample_tasks_uniformly
+    #         )
+    #     else:
+    #         mask_all = torch.cat([task_masks[task] for task in input_task_tokens.keys()], dim=1)
+    #         ids_shuffle = torch.argsort(mask_all, dim=1)
+    #         ids_restore = torch.argsort(ids_shuffle, dim=1)
+    #         ids_keep = ids_shuffle[:, :(mask_all == 0).sum()]
+
+    #     input_tokens = torch.cat([task_tokens for task_tokens in input_task_tokens.values()], dim=1)
+
+    #     # Apply mask
+    #     input_tokens = torch.gather(input_tokens, dim=1, index=ids_keep.unsqueeze(-1).repeat(1, 1, input_tokens.shape[2]))
+
+    #     # Add global tokens to input tokens
+    #     global_tokens = repeat(self.global_tokens, '() n d -> b n d', b=B)
+    #     input_tokens = torch.cat([input_tokens, global_tokens], dim=1)
+
+    #     ## Transformer forward pass
+    #     encoder_tokens = self.encoder(input_tokens)
+
+
+    #     ## Output decoders - 추가
+    #     if self.output_adapters is None:
+    #         if return_encoded:
+    #             # 모달리티별 latent 저장
+    #             modality_latents = {}
+    #             for domain, info in input_info['tasks'].items():
+    #                 start, end = info['start_idx'], info['end_idx']
+    #                 modality_latents[domain] = encoder_tokens[:, start:end, :]
+    #             return encoder_tokens, task_masks, modality_latents
+    #         return encoder_tokens, task_masks
+
+    #     # Decode tokens for each task using task-specific output adapters
+    #     preds = {
+    #         domain: self.output_adapters[domain](
+    #             encoder_tokens=encoder_tokens,
+    #             input_info=input_info,
+    #             ids_keep=ids_keep,
+    #             ids_restore=ids_restore,
+    #         )
+    #         for domain in self.output_adapters
+    #         if domain not in fp32_output_adapters
+    #     }
+    #     # Force running selected output adapters in fp32 mode
+    #     with torch.cuda.amp.autocast(enabled=False):
+    #         for domain in fp32_output_adapters:
+    #             if domain not in self.output_adapters:
+    #                 continue
+    #             preds[domain] = self.output_adapters[domain](
+    #                 encoder_tokens=encoder_tokens.float(),
+    #                 input_info=input_info,
+    #                 ids_keep=ids_keep,
+    #                 ids_restore=ids_restore,
+    #             )
+        
+
+    #     if return_encoded:
+    #         modality_latents = {}
+    #         for domain, info in input_info['tasks'].items():
+    #             start, end = info['start_idx'], info['end_idx']
+    #             modality_latents[domain] = encoder_tokens[:, start:end, :]
+    #         return preds, task_masks, modality_latents
+
+    #     return preds, task_masks
+
+
 
 
 @register_model
