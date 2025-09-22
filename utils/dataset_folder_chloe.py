@@ -32,7 +32,7 @@ def rasterio_loader(path: str) -> torch.Tensor:
         with rasterio.open(path) as src:
             img = src.read(out_dtype='float32')         
             # ---- nodata 처리 ----
-            img[img == -32768] = 0.0                      # 또는 np.nan
+            img[img == -9999] = np.nan                      # 또는 np.nan
             # ---------------------
             img = img
     else:
@@ -40,7 +40,7 @@ def rasterio_loader(path: str) -> torch.Tensor:
         with rasterio.open(path) as src:
             img = src.read(out_dtype='float32')          # (C, H, W) 0‑10000 DN
             # ---- nodata 처리 ----
-            img[img == 32767] = 0.0                      # 또는 np.nan
+            img[img == -9999] = np.nan                      # 또는 np.nan
             # ---------------------
             img = img / 10000.0                          # reflectance 0‑1
     return torch.from_numpy(img).float()             # torch.Tensor

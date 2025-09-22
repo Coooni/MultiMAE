@@ -1,17 +1,16 @@
 # training
 torchrun --nproc_per_node=1 --master_port=29501 run_pretraining_multimae_chloe.py \
-  --in_domains modis-s1-s2 --out_domains modis-s1-s2 \
-  --modis_txt /scratch/bepk/bkim2/MultiMAE/valid_list/delta/triplet_MODIS_paths.txt \
-  --s2_txt   /scratch/bepk/bkim2/MultiMAE/valid_list/delta/triplet_S2_paths.txt \
-  --s1_txt   /scratch/bepk/bkim2/MultiMAE/valid_list/delta/triplet_S1_paths.txt \
-  --batch_size 16 --epochs 100 \
+  --in_domains s1-s2 --out_domains s1-s2 \
+  --s2_txt /scratch/bepk/bkim2/MultiMAE/valid_list/delta/30m/pair_S2.txt \
+  --s1_txt /scratch/bepk/bkim2/MultiMAE/valid_list/delta/30m/pair_S1.txt \
+  --batch_size 32 --epochs 100 \
   --warmup_epochs 0 --warmup_steps 0 \
-  --output_dir /scratch/bepk/bkim2/MultiMAE/result/modis-s1-s2/4 \
-  --num_workers 8
+  --output_dir /scratch/bepk/bkim2/MultiMAE/result/30m_new-s1-s2 \
+  --num_workers 8 \
   --log_wandb \
-  --wandb_project MultiMAE-Pretrain \
+  --wandb_project MultiMAE-NEW \
   --wandb_entity goeulkim \
-  --wandb_run_name multimae-modis-s1-s2
+  --wandb_run_name multimae-s1-s2
 
 
 
@@ -33,12 +32,11 @@ torchrun run_inference_chloe.py \
   --patch_size 4
 
 
-torchrun run_inference_chloe.py \
-  --resume /scratch/bepk/bkim2/MultiMAE/result/modis-s1-s2/2/checkpoint-99.pth \
-  --in_domains s1-s2 \
-  --out_domains modis \
-  --modis_txt /scratch/bepk/bkim2/MultiMAE/valid_list/delta/valid_MODIS.txt \
-  --s1_txt /scratch/bepk/bkim2/MultiMAE/valid_list/delta/valid_S1.txt \
-  --s2_txt /scratch/bepk/bkim2/MultiMAE/valid_list/delta/valid_S2.txt \
+torchrun run_inference_chloe_30m.py \
+  --resume /scratch/bepk/bkim2/MultiMAE/result/30m-s1-s2/2nd/checkpoint-99.pth \
+  --in_domains s1 \
+  --out_domains s2 \
+  --s1_txt /scratch/bepk/bkim2/MultiMAE/valid_list/delta/30m/pair_S1_paths.txt \
+  --s2_txt /scratch/bepk/bkim2/MultiMAE/valid_list/delta/30m/pair_S2_paths.txt \
   --save_dir ./inference_result \
   --patch_size 4

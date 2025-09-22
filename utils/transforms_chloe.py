@@ -172,7 +172,7 @@ def build_transform(is_train, args):
         dict: Transform pipeline for each domain (e.g., {'modis': transform, 's2': transform}).
     """
     if args.imagenet_default_mean_and_std:
-        mean = data_constants.IMAGENET_DEFAULT_MEAN
+        mean = ㅊ.IMAGENET_DEFAULT_MEAN
         std = data_constants.IMAGENET_DEFAULT_STD
     else:
         mean = {'modis': data_constants.MODIS_DEFAULT_MEAN, 's2': data_constants.S2_DEFAULT_MEAN}

@@ -44,13 +44,13 @@ from utils.task_balancing import (NoWeightingStrategy,
 import pdb
 
 DOMAIN_CONF = {
-    'modis': {
-        'channels': 7,
-        'stride_level': 1,
-        'input_adapter': partial(PatchedInputAdapter, num_channels=7),
-        'output_adapter': partial(SpatialOutputAdapter, num_channels=7),
-        'loss': MaskedMSELoss, 
-    },
+    # 'modis': {
+    #     'channels': 3,
+    #     'stride_level': 1,
+    #     'input_adapter': partial(PatchedInputAdapter, num_channels=7),
+    #     'output_adapter': partial(SpatialOutputAdapter, num_channels=7),
+    #     'loss': MaskedMSELoss, 
+    # },
     's1': {
         'channels': 2,
         'stride_level': 1,
@@ -59,7 +59,7 @@ DOMAIN_CONF = {
         'loss': MaskedMSELoss,  
     },
     's2': {
-        'channels': 12,
+        'channels': 3,
         'stride_level': 1,
         'input_adapter': partial(PatchedInputAdapter, num_channels=12),
         'output_adapter': partial(SpatialOutputAdapter, num_channels=12),
@@ -84,9 +84,9 @@ def get_args():
                         help='Checkpoint saving frequency in epochs (default: %(default)s)')
 
     # Task parameters
-    parser.add_argument('--in_domains', default='modis-s1-s2', type=str,
+    parser.add_argument('--in_domains', default='modis-s2', type=str,
                         help='Input domain names, separated by hyphen (default: %(default)s)')
-    parser.add_argument('--out_domains', default='modis-s1-s2', type=str,
+    parser.add_argument('--out_domains', default='modis-s2', type=str,
                         help='Output domain names, separated by hyphen (default: %(default)s)')
    
 
@@ -179,7 +179,7 @@ def get_args():
     #     parser.add_argument(f'--{d}_txt', type=str, required=True,
     #                         help=f'Path to {d} txt file (abs or relative to data_path)')
     # 수정
-    for d in ['modis','s1', 's2']:
+    for d in ['s1', 's2']:
         parser.add_argument(f'--{d}_txt', type=str, default=None,
                             help=f'Path to {d} txt file (abs or relative to data_path)')
 
@@ -347,8 +347,10 @@ def main(args):
     )
 
     sample = next(iter(data_loader_train))
-    s1 = sample["s1"]               # B, C, H, W  ?
-    print(s1.min(), s1.max())  # 값이 1보다 훨씬 크면 스케일링 미적용
+    print("*************")
+    print(sample.keys())
+    # s1 = sample["s1"]               # B, C, H, W  ?
+    # print(s1.min(), s1.max())  # 값이 1보다 훨씬 크면 스케일링 미적용
 
     # pdb.set_trace()
 
@@ -493,6 +495,7 @@ def train_one_epoch(
         tasks_dict = {t: ten.to(device, non_blocking=True) for t, ten in x.items()}
         input_dict = {t: ten for t, ten in tasks_dict.items() if t in in_domains}
 
+        ## ** Chloe original
         with torch.cuda.amp.autocast():
             preds, masks = model(
                 input_dict,
@@ -512,6 +515,7 @@ def train_one_epoch(
 
             weighted_task_losses = loss_balancer(task_losses)
             loss = sum(weighted_task_losses.values())
+
 
         loss_value = sum(task_losses.values()).item()
         if not math.isfinite(loss_value):

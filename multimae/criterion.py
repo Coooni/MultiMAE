@@ -56,7 +56,7 @@ class MaskedCrossEntropyLoss(nn.Module):
 
         return loss
 
-
+# original
 class MaskedMSELoss(nn.Module):
     """L1 loss with masking
     :param patch_size: Patch size
@@ -112,6 +112,7 @@ class MaskedMSELoss(nn.Module):
             loss = loss.mean() # If this is ever nan, we want it to stop training
 
         return loss
+
 
 
 class MaskedL1Loss(nn.Module):

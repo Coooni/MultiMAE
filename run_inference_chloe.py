@@ -12,14 +12,14 @@ from utils.datasets_chloe import build_multimae_pretraining_dataset
 import argparse
 
 DOMAIN_CONF = {
-    'modis': {
-        'channels': 7, 'stride_level': 1,
-        'input_adapter': lambda patch: PatchedInputAdapter(num_channels=7, stride_level=1, patch_size_full=patch),
-        'output_adapter': lambda patch, dec_dim, dec_depth, dec_heads, use_tq, ctx, use_xattn:
-            SpatialOutputAdapter(num_channels=7, stride_level=1, patch_size_full=patch,
-                                 dim_tokens=dec_dim, depth=dec_depth, num_heads=dec_heads,
-                                 use_task_queries=use_tq, task='modis', context_tasks=ctx, use_xattn=use_xattn)
-    },
+    # 'modis': {
+    #     'channels': 7, 'stride_level': 1,
+    #     'input_adapter': lambda patch: PatchedInputAdapter(num_channels=7, stride_level=1, patch_size_full=patch),
+    #     'output_adapter': lambda patch, dec_dim, dec_depth, dec_heads, use_tq, ctx, use_xattn:
+    #         SpatialOutputAdapter(num_channels=7, stride_level=1, patch_size_full=patch,
+    #                              dim_tokens=dec_dim, depth=dec_depth, num_heads=dec_heads,
+    #                              use_task_queries=use_tq, task='modis', context_tasks=ctx, use_xattn=use_xattn)
+    # },
     's1': {
         'channels': 2, 'stride_level': 1,
         'input_adapter': lambda patch: PatchedInputAdapter(num_channels=2, stride_level=1, patch_size_full=patch),
@@ -67,7 +67,7 @@ def build_model(args):
 def main():
     p = argparse.ArgumentParser()
     p.add_argument('--resume', required=True)
-    p.add_argument('--modis_txt', required=True)
+    # p.add_argument('--modis_txt', required=True)
     p.add_argument('--s2_txt', required=True, help='있으면 GT로 MSE 평가')
     p.add_argument('--s1_txt', required=True, help='있으면 GT 로딩 & 평가')
     p.add_argument('--data_path', default=None)
@@ -75,7 +75,7 @@ def main():
     p.add_argument('--batch_size', type=int, default=1)
     p.add_argument('--num_workers', type=int, default=4)
 
-    p.add_argument('--in_domains',  default='modis', type=str, help='입력 도메인들(하이픈 구분)')
+    p.add_argument('--in_domains',  default='s1', type=str, help='입력 도메인들(하이픈 구분)')
     p.add_argument('--out_domains', default='s2',   type=str, help='출력 도메인들(하이픈 구분)')
 
 
@@ -110,7 +110,7 @@ def main():
     class DummyArgs: pass
     dargs = DummyArgs()
     dargs.data_path = args.data_path
-    dargs.modis_txt = args.modis_txt
+    # dargs.modis_txt = args.modis_txt
     dargs.s2_txt = args.s2_txt if args.s2_txt else args.modis_txt  # placeholder to satisfy builder
     dargs.s1_txt = args.s1_txt if args.s1_txt else args.modis_txt
     dargs.input_size = args.input_size
@@ -165,20 +165,20 @@ def main():
                             alphas=1.0,
                             sample_tasks_uniformly=False,
                             fp32_output_adapters=[])
-        pred_s2 = preds['modis'].float().cpu()
-        gt_s2   = batch['modis'].float().cpu()  
+        pred_s2 = preds['s2'].float().cpu()
+        gt_s2   = batch['s2'].float().cpu()  
 
         # save .npy per item (간단)
         for b in range(pred_s2.size(0)):
             out = pred_s2[b].numpy()
-            np.save(os.path.join(args.save_dir, f"pred_modis_new_{idx0+b:06d}.npy"), out)
+            np.save(os.path.join(args.save_dir, f"pred_s2_new_{idx0+b:06d}.npy"), out)
             out = gt_s2[b].numpy()
-            np.save(os.path.join(args.save_dir, f"gt_modis_new_{idx0+b:06d}.npy"), out)
+            np.save(os.path.join(args.save_dir, f"gt_s2_new_{idx0+b:06d}.npy"), out)
 
 
         # optional: GT가 있으면 평가
-        if 'modis' in batch:
-            gt = batch['modis'].float()
+        if 's2' in batch:
+            gt = batch['s2'].float()
             mse = F.mse_loss(pred_s2, gt, reduction='sum').item()
             mse_sum += mse
             n_pix += np.prod(pred_s2.shape)
