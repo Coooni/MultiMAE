@@ -59,6 +59,11 @@ class DataAugmentationForMultiMAE:
             mean = torch.tensor(self.mean[task]).view(-1, 1, 1)
             std  = torch.tensor(self.std[task]).view(-1, 1, 1)
             x = (x - mean) / std
+
+            if not torch.isfinite(x).all():
+                print(f"[NaN after normalization in {task}] min={x.min().item()} max={x.max().item()} mean={x.mean().item()}")
+
+
             x = np.clip(x, -3, 3) # 튀는값 제거 추가 *chloe*
 
             out[task] = x

@@ -308,12 +308,22 @@ class MultiMAE(nn.Module):
         else:
             B, C, H, W = list(x.values())[0].shape  # TODO: Deal with case where not all have same shape
 
-        # Encode selected inputs to tokens
-        input_task_tokens = {
-            domain: self.input_adapters[domain](tensor)
-            for domain, tensor in x.items()
-            if domain in self.input_adapters
-        }
+        # # Encode selected inputs to tokens - original
+        # input_task_tokens = {
+        #     domain: self.input_adapters[domain](tensor)
+        #     for domain, tensor in x.items()
+        #     if domain in self.input_adapters
+        # }
+        input_task_tokens = {}
+        for domain, tensor in x.items():
+            if domain in self.input_adapters:
+                out = self.input_adapters[domain](tensor)
+                if not torch.isfinite(out).all():
+                    print(f"[NaN in input adapter {domain}] "
+                        f"min={out.min().item()} max={out.max().item()} mean={out.mean().item()}")
+                input_task_tokens[domain] = out
+
+
 
         input_info = self.generate_input_info(input_task_tokens=input_task_tokens, image_size=(H, W))
 
@@ -346,8 +356,15 @@ class MultiMAE(nn.Module):
         global_tokens = repeat(self.global_tokens, '() n d -> b n d', b=B)
         input_tokens = torch.cat([input_tokens, global_tokens], dim=1)
 
+        if not torch.isfinite(input_tokens).all():
+            print(f"[NaN before encoder] min={input_tokens.min().item()} max={input_tokens.max().item()}")
+
+
         ## Transformer forward pass
         encoder_tokens = self.encoder(input_tokens)
+        if not torch.isfinite(encoder_tokens).all():
+            print(f"[NaN after encoder] min={encoder_tokens.min().item()} max={encoder_tokens.max().item()}")
+
 
         ## Output decoders
         if self.output_adapters is None:

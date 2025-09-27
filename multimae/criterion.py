@@ -83,6 +83,16 @@ class MaskedMSELoss(nn.Module):
 
     def forward(self, input, target, mask=None):
 
+        # add - chloe
+        if not torch.isfinite(input).all():
+            print("NaN in pred before loss")
+            input = torch.nan_to_num(input, nan=0.0, posinf=1e4, neginf=-1e4)
+        if not torch.isfinite(target).all():
+            print("NaN in target before loss")
+            target = torch.nan_to_num(target, nan=0.0, posinf=1e4, neginf=-1e4)
+        loss = F.mse_loss(input, target, reduction="none")
+
+
         H, W = input.shape[-2:]
         nh, nw = H // self.scale_factor, W // self.scale_factor
 
