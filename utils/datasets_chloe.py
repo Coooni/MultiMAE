@@ -34,47 +34,62 @@ class DataAugmentationForMultiMAE:
         # Crop params
         self.scale = (0.5, 1.0)
         self.ratio = (0.75, 1.3333)
+    
+    # # original for S1, S2
+    # def __call__(self, task_dict: Dict[str, torch.Tensor]):
+    #     # 1) 하나의 랜덤 크롭 파라미터 생성 (첫 도메인 기준)
+    #     first = self.all_domains[0]
+    #     _, H, W = task_dict[first].shape
+    #     i, j, h, w = transforms.RandomResizedCrop.get_params(
+    #         torch.empty(1, H, W), scale=self.scale, ratio=self.ratio
+    #     )
+    #     do_flip = random.random() < self.hflip
 
+    #     # 2) 모든 도메인 동일하게 crop/resize/flip + normalize
+    #     out = {}
+    #     for task in self.all_domains:
+    #         x = task_dict[task]  # [C,H,W]
+    #         x = x[:, i:i+h, j:j+w]
+    #         x = F.interpolate(
+    #             x.unsqueeze(0), size=(self.input_size, self.input_size),
+    #             mode='bilinear', align_corners=False
+    #         ).squeeze(0)
+    #         if do_flip:
+    #             x = torch.flip(x, dims=[2])  # horizontal flip (W dim)
+
+    #         mean = torch.tensor(self.mean[task]).view(-1, 1, 1)
+    #         std  = torch.tensor(self.std[task]).view(-1, 1, 1)
+    #         x = (x - mean) / std
+
+    #         if not torch.isfinite(x).all():
+    #             print(f"[NaN after normalization in {task}] min={x.min().item()} max={x.max().item()} mean={x.mean().item()}")
+
+
+    #         x = np.clip(x, -3, 3) # 튀는값 제거 추가 *chloe*
+
+    #         out[task] = x
+
+    #     return out
+
+    # downstream for CDL prediction - no augmentation
     def __call__(self, task_dict: Dict[str, torch.Tensor]):
-        # 1) 하나의 랜덤 크롭 파라미터 생성 (첫 도메인 기준)
-        first = self.all_domains[0]
-        _, H, W = task_dict[first].shape
-        i, j, h, w = transforms.RandomResizedCrop.get_params(
-            torch.empty(1, H, W), scale=self.scale, ratio=self.ratio
-        )
-        do_flip = random.random() < self.hflip
-
-        # 2) 모든 도메인 동일하게 crop/resize/flip + normalize
         out = {}
         for task in self.all_domains:
             x = task_dict[task]  # [C,H,W]
-            x = x[:, i:i+h, j:j+w]
-            x = F.interpolate(
-                x.unsqueeze(0), size=(self.input_size, self.input_size),
-                mode='bilinear', align_corners=False
-            ).squeeze(0)
-            if do_flip:
-                x = torch.flip(x, dims=[2])  # horizontal flip (W dim)
 
-            mean = torch.tensor(self.mean[task]).view(-1, 1, 1)
-            std  = torch.tensor(self.std[task]).view(-1, 1, 1)
-            x = (x - mean) / std
+            if task == "cdl":
+                # CDL은 그대로 long tensor
+                x = x.long()
+            else:
+                # normalization만 적용
+                mean = torch.tensor(self.mean[task]).view(-1, 1, 1)
+                std  = torch.tensor(self.std[task]).view(-1, 1, 1)
+                x = (x - mean) / std
 
-            if not torch.isfinite(x).all():
-                print(f"[NaN after normalization in {task}] min={x.min().item()} max={x.max().item()} mean={x.mean().item()}")
-
-
-            x = np.clip(x, -3, 3) # 튀는값 제거 추가 *chloe*
+                # 값 클램핑
+                x = torch.clamp(x, -3, 3)
 
             out[task] = x
-
-            # if task == 's2':
-            #     print("s2 raw min/max:", task_dict['s2'].min().item(), task_dict['s2'].max().item())
-            #     print("s2 norm min/max:", x.min().item(), x.max().item())
-            # else:
-            #     print("s1 raw min/max:", task_dict['s1'].min().item(), task_dict['s1'].max().item())
-            #     print("s1 norm min/max:", x.min().item(), x.max().item())
-
         return out
 
     def __repr__(self):

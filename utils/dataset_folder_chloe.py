@@ -51,26 +51,28 @@ def rasterio_loader(path: str) -> torch.Tensor:
         """S1 로더"""
         with rasterio.open(path) as src:
             img = src.read(out_dtype='float32')         
-            # ---- nodata 처리 ----
             img[img == -9999] = 0                      # 또는 np.nan
-            # ---------------------
-            img = img
+        return torch.from_numpy(img).float()             # torch.Tensor
+
     elif "S2" in path:
         """S2 로더: [C, H, W] float32, reflectance 0–1 스케일"""
         with rasterio.open(path) as src:
             img = src.read(out_dtype='float32')          # (C, H, W) 0‑10000 DN
-            # ---- nodata 처리 ----
             img[img == -9999] = 0                  # 또는 np.nan
-            # ---------------------
             img = img / 10000.0                          # reflectance 0‑1
+        return torch.from_numpy(img).float()             # torch.Tensor
+    
     else:
         # CDL
         with rasterio.open(path) as src:
-            img = src.read(out_dtype='float32')         
-            img = img
-    return torch.from_numpy(img).float()             # torch.Tensor
-    
+            img = src.read(1, out_dtype='int32')  # 첫 채널만 읽기
+        img = torch.from_numpy(img).long()
 
+        # 리맵핑: Corn=1, Soybean=5 → 1/2, 나머지=0
+        img = torch.where(img == 1, torch.tensor(1, device=img.device), img)  # Corn=1 유지
+        img = torch.where(img == 5, torch.tensor(2, device=img.device), img)  # Soybean=5 → 2
+        img = torch.where((img != 1) & (img != 2), torch.tensor(0, device=img.device), img)  # 나머지=0
+        return img
 
 
 # --------------------------------------------------------
@@ -127,20 +129,30 @@ class MultiTaskImageFolder(VisionDataset):
                 self.samples[t] = [self.samples[t][i] for i in idx]
             self.num_samples = max_images
 
-        self._cache: Dict[int, Dict[str, torch.Tensor]] = {}
+        # self._cache: Dict[int, Dict[str, torch.Tensor]] = {}
 
     def __len__(self) -> int:
         return self.num_samples
 
+    # def __getitem__(self, index: int) -> Dict[str, torch.Tensor]:
+    #     if index not in self._cache:
+    #         d: Dict[str, torch.Tensor] = {}
+    #         for t in self.tasks:
+    #             d[t] = self.loader(self.samples[t][index])
+    #         self._cache[index] = d
+    #     sample = self._cache[index].copy()
+
+    #     if self.transform is not None:
+    #         sample = self.transform(sample)
+
+    #     return sample
+
     def __getitem__(self, index: int) -> Dict[str, torch.Tensor]:
-        if index not in self._cache:
-            d: Dict[str, torch.Tensor] = {}
-            for t in self.tasks:
-                d[t] = self.loader(self.samples[t][index])
-            self._cache[index] = d
-        sample = self._cache[index].copy()
+        d: Dict[str, torch.Tensor] = {}
+        for t in self.tasks:
+            d[t] = self.loader(self.samples[t][index])
 
         if self.transform is not None:
-            sample = self.transform(sample)
+            d = self.transform(d)
 
-        return sample
+        return d
