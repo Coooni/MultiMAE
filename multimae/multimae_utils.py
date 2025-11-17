@@ -167,19 +167,50 @@ class Attention(nn.Module):
         self.proj = nn.Linear(dim, dim)
         self.proj_drop = nn.Dropout(proj_drop)
 
+    # original
+    # def forward(self, x):
+    #     B, N, C = x.shape
+    #     qkv = self.qkv(x).reshape(B, N, 3, self.num_heads, C // self.num_heads).permute(2, 0, 3, 1, 4)
+    #     q, k, v = qkv.unbind(0)   # make torchscript happy (cannot use tensor as tuple)
+
+    #     attn = (q @ k.transpose(-2, -1)) * self.scale
+    #     attn = attn.softmax(dim=-1)
+    #     attn = self.attn_drop(attn)
+
+    #     x = (attn @ v).transpose(1, 2).reshape(B, N, C)
+    #     x = self.proj(x)
+    #     x = self.proj_drop(x)
+    #     return x
+
+    # new for 5 modalities
     def forward(self, x):
         B, N, C = x.shape
-        qkv = self.qkv(x).reshape(B, N, 3, self.num_heads, C // self.num_heads).permute(2, 0, 3, 1, 4)
-        q, k, v = qkv.unbind(0)   # make torchscript happy (cannot use tensor as tuple)
+
+        # (1) float32로 강제 변환
+        x = x.to(torch.float32)
+
+        qkv = self.qkv(x).reshape(B, N, 3, self.num_heads, C // self.num_heads)
+        qkv = qkv.permute(2, 0, 3, 1, 4)  # (3, B, heads, N, dim_head)
+        q, k, v = qkv.unbind(0)
 
         attn = (q @ k.transpose(-2, -1)) * self.scale
-        attn = attn.softmax(dim=-1)
-        attn = self.attn_drop(attn)
 
+        # (2) overflow 방지용 최대값 빼기
+        attn = attn - attn.amax(dim=-1, keepdim=True)
+
+        # (3) softmax 안정화 전 clamp
+        attn = torch.clamp(attn, min=-100.0, max=100.0)
+
+        # (4) softmax 후 NaN 방지
+        attn = attn.softmax(dim=-1)
+        attn = torch.nan_to_num(attn, nan=0.0, posinf=0.0, neginf=0.0)
+
+        attn = self.attn_drop(attn)
         x = (attn @ v).transpose(1, 2).reshape(B, N, C)
         x = self.proj(x)
         x = self.proj_drop(x)
         return x
+
 
 
 class CrossAttention(nn.Module):

@@ -370,6 +370,7 @@ class MultiMAE(nn.Module):
         if self.output_adapters is None:
             return encoder_tokens, task_masks
 
+
         # Decode tokens for each task using task-specific output adapters
         preds = {
             domain: self.output_adapters[domain](

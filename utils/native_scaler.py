@@ -14,8 +14,17 @@ from math import inf
 class NativeScalerWithGradNormCount:
     state_dict_key = "amp_scaler"
 
+    # def __init__(self, enabled=True):
+    #     self._scaler = torch.cuda.amp.GradScaler(enabled=enabled)
+
     def __init__(self, enabled=True):
-        self._scaler = torch.cuda.amp.GradScaler(enabled=enabled)
+        self._scaler = torch.cuda.amp.GradScaler(
+            enabled=enabled,
+            init_scale=2.**8,          # 기본값(2**16)보다 낮게 시작해서 안정화
+            growth_factor=2.0,         # scale 배수 (기본은 2.0)
+            growth_interval=2000,      # scale을 천천히 키움 (기본은 200)
+            backoff_factor=0.5,        # NaN 생기면 절반으로 줄임
+        )
 
     def __call__(self, loss, optimizer, clip_grad=None, skip_grad=None, parameters=None, create_graph=False, update_grad=True):
         self._scaler.scale(loss).backward(create_graph=create_graph)

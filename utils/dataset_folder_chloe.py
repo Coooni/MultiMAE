@@ -58,9 +58,29 @@ def rasterio_loader(path: str) -> torch.Tensor:
         """S2 로더: [C, H, W] float32, reflectance 0–1 스케일"""
         with rasterio.open(path) as src:
             img = src.read(out_dtype='float32')          # (C, H, W) 0‑10000 DN
-            img[img == -9999] = 0                  # 또는 np.nan
-            img = img / 10000.0                          # reflectance 0‑1
+            img[img == -9999] = 0                  # 또는 np.nan                        
         return torch.from_numpy(img).float()             # torch.Tensor
+
+    elif "Soil" in path or "soil" in path:
+        """Soil 로더: [10, H, W] float32, 원본 물리 단위"""
+        with rasterio.open(path) as src:
+            img = src.read(out_dtype='float32')          # (10, H, W)
+            img[img == -9999] = 0                        # NoData 처리
+        return torch.from_numpy(img).float()
+    
+    elif "Elevation" in path or "elevation" in path:
+        """Elevation 로더: [1, H, W] float32, 미터 단위"""
+        with rasterio.open(path) as src:
+            img = src.read(out_dtype='float32')          # (1, H, W)
+            img[img == -9999] = 0                        # NoData 처리
+        return torch.from_numpy(img).float()
+    
+    elif "Weather" in path or "weather" in path:
+        """Weather 로더: [1, H, W] float32, 미터 단위"""
+        with rasterio.open(path) as src:
+            img = src.read(out_dtype='float32')          # (1, H, W)
+            img[img == -9999] = 0                        # NoData 처리
+        return torch.from_numpy(img).float()
     
     else:
         # CDL

@@ -139,7 +139,7 @@ class MaskedMSELoss(nn.Module):
         loss = loss.flatten(start_dim=1).sum(dim=1) / denorm
         loss = loss.nanmean()
 
-        print("loss contains NaN:", torch.isnan(loss).any().item())
+        # print("loss contains NaN:", torch.isnan(loss).any().item())
 
 
         return loss
