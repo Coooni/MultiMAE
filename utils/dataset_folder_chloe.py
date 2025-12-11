@@ -20,6 +20,63 @@ import pdb
 
 IMG_EXTENSIONS: Tuple[str, ...] = (".tif", )
 
+# corn_soy_classes = [
+#     1,   # Corn
+#     12,  # Sweet Corn
+#     13,  # Pop/Orn Corn
+#     225, 226, 228, 237, 241,  # Double crop with corn
+#     5, 26,   # Soybeans
+#     239, 240,           # Double crop soybeans
+# ]
+
+# -----------------------------
+# 3-class mapping for CDL
+# Classes:
+#   0 = non-vegetation
+#   1 = natural vegetation
+#   2 = crops
+# -----------------------------
+crop_classes = [
+    1, 2, 3, 4, 5, 6,
+    10, 11, 12, 13, 14,
+    21, 22, 23, 24, 25, 26, 27, 28, 29, 30,
+    31, 32, 33, 34, 35,
+    36, 37, 38, 39,
+    41, 42, 43, 44, 45, 46,
+    47, 48, 49, 50,
+    51, 52, 53, 54, 55, 56, 57,
+    66, 67, 68, 69, 70, 71, 72, 74, 75, 76, 77,
+    204, 205,
+    206, 207, 208, 209, 210, 211, 212, 213,
+    214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224,
+    225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238,
+    239, 240, 241,
+    242, 243, 244, 245, 246, 247, 248, 249, 250,
+    254,
+]
+
+natural_veg_classes = [
+    63, 64, 141, 142, 143,         # Forest + shrub
+    152,                           # Shrub
+    176,                           # Grass/Pasture
+    190, 195,                      # Wetlands
+    58, 59, 60,                    # Wildflowers / Grass seed / Switchgrass
+]
+
+nonveg_classes = [
+    0, 65, 131,                    # Barren + background
+    81, 83, 111, 112,              # Cloud, Water, Ice/Snow
+    82, 121, 122, 123, 124,        # Developed
+    88, 92,                        # Non-ag / Aquaculture
+    61,                            # Fallow / Idle cropland -> bare soil
+]
+
+# tensor로 미리 변환 (성능 향상)
+crop_classes = torch.tensor(crop_classes)
+natural_veg_classes = torch.tensor(natural_veg_classes)
+nonveg_classes = torch.tensor(nonveg_classes)
+
+
 
 def is_image_file(filename: str) -> bool:
     return filename.lower().endswith(IMG_EXTENSIONS)
@@ -88,11 +145,33 @@ def rasterio_loader(path: str) -> torch.Tensor:
             img = src.read(1, out_dtype='int32')  # 첫 채널만 읽기
         img = torch.from_numpy(img).long()
 
-        # 리맵핑: Corn=1, Soybean=5 → 1/2, 나머지=0
-        img = torch.where(img == 1, torch.tensor(1, device=img.device), img)  # Corn=1 유지
-        img = torch.where(img == 5, torch.tensor(2, device=img.device), img)  # Soybean=5 → 2
-        img = torch.where((img != 1) & (img != 2), torch.tensor(0, device=img.device), img)  # 나머지=0
-        return img
+        # # ** 3 classes for corn, soybean, others **
+        # others = (img != 1) & (img != 5)
+        # # 0: others
+        # img = torch.where(others, torch.tensor(0, device=img.device), img)
+        # # 1: corn (already 1)
+        # img = torch.where(img == 1, torch.tensor(1, device=img.device), img)
+        # # 2: soybean
+        # img = torch.where(img == 5, torch.tensor(2, device=img.device), img)
+
+
+        # # ** 2 classes for corn & soybean and others **
+        # img = torch.where((img == 1) | (img == 5), 1, 0)
+
+        # # 2 classes for every corn & every soybean (not only for class 1,class 5)
+        # img = torch.where(torch.isin(img, torch.tensor(corn_soy_classes, device=img.device)), 1, 0)
+
+        # default = non-veg (0)
+        new = torch.zeros_like(img)
+
+        # natural vegetation → 1
+        new[torch.isin(img, natural_veg_classes)] = 1
+
+        # crops → 2
+        new[torch.isin(img, crop_classes)] = 2
+
+        return new
+        # return img
 
 
 # --------------------------------------------------------

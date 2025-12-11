@@ -7,46 +7,92 @@ from collections import defaultdict
 import torch
 from torch.utils.data import Dataset
 import rasterio
-from torchvision import transforms
-
-# --------------------------------------------------------
-# Default Mean / Std (30m Resolution)
-# --------------------------------------------------------
-S2_DEFAULT_MEAN = (0.056615, 0.06887008, 0.09391985, 0.10163148, 0.14381698, 0.25419976,
-                   0.30873655, 0.32210684, 0.33362151, 0.34459104, 0.27966201, 0.19123411)
-S2_DEFAULT_STD = (0.06765407, 0.06848592, 0.06620852, 0.08064312, 0.0791716, 0.08433618,
-                  0.1150472, 0.11199426, 0.11933007, 0.13678636, 0.09880431, 0.10527262)
+from .data_constants_chloe import (
+    S2_DEFAULT_MEAN, S2_DEFAULT_STD,
+    S1_DEFAULT_MEAN, S1_DEFAULT_STD,
+    SOIL_DEFAULT_MEAN, SOIL_DEFAULT_STD,
+    ELEVATION_DEFAULT_MEAN, ELEVATION_DEFAULT_STD,
+    WEATHER_DEFAULT_MEAN, WEATHER_DEFAULT_STD
+)
 
 
-S1_DEFAULT_MEAN = (0.12419162, 0.02826689)
-S1_DEFAULT_STD = (0.41080412, 0.04929494)
+
+corn_soy_classes = [
+    1,   # Corn
+    12,  # Sweet Corn
+    13,  # Pop/Orn Corn
+    225, 226, 228, 237, 241,  # Double crop with corn
+    5, 26,   # Soybeans
+    239, 240,           # Double crop soybeans
+]
+
 
 # --------------------------------------------------------
 # Loader
 # --------------------------------------------------------
 def rasterio_loader(path: str) -> torch.Tensor:
     if "S1" in path:
+        """S1 로더"""
         with rasterio.open(path) as src:
-            img = src.read(out_dtype='float32')
-            img[img == -9999] = 0
-        return torch.from_numpy(img).float()
+            img = src.read(out_dtype='float32')         
+            img[img == -9999] = 0                      # 또는 np.nan
+        return torch.from_numpy(img).float()             # torch.Tensor
 
     elif "S2" in path:
+        """S2 로더: [C, H, W] float32, reflectance 0–1 스케일"""
         with rasterio.open(path) as src:
-            img = src.read(out_dtype='float32')
-            img[img == -9999] = 0
-            img = img / 10000.0
-        return torch.from_numpy(img).float()
+            img = src.read(out_dtype='float32')          # (C, H, W) 0‑10000 DN
+            img[img == -9999] = 0                  # 또는 np.nan                        
+        return torch.from_numpy(img).float()             # torch.Tensor
 
-    else:  # CDL
+    elif "Soil" in path or "soil" in path:
+        """Soil 로더: [10, H, W] float32, 원본 물리 단위"""
         with rasterio.open(path) as src:
-            img = src.read(1, out_dtype='int32')
+            img = src.read(out_dtype='float32')          # (10, H, W)
+            img[img == -9999] = 0                        # NoData 처리
+        return torch.from_numpy(img).float()
+    
+    elif "Elevation" in path or "elevation" in path:
+        """Elevation 로더: [1, H, W] float32, 미터 단위"""
+        with rasterio.open(path) as src:
+            img = src.read(out_dtype='float32')          # (1, H, W)
+            img[img == -9999] = 0                        # NoData 처리
+        return torch.from_numpy(img).float()
+    
+    elif "Weather" in path or "weather" in path:
+        """Weather 로더: [1, H, W] float32, 미터 단위"""
+        with rasterio.open(path) as src:
+            img = src.read(out_dtype='float32')          # (1, H, W)
+            img[img == -9999] = 0                        # NoData 처리
+        return torch.from_numpy(img).float()
+    
+    else:
+        # CDL
+        with rasterio.open(path) as src:
+            img = src.read(1, out_dtype='int32')  # 첫 채널만 읽기
         img = torch.from_numpy(img).long()
-        # Label remapping: Corn=1, Soybean=5 → 1/2, Others=0
-        img = torch.where(img == 1, torch.tensor(1, device=img.device), img)
-        img = torch.where(img == 5, torch.tensor(2, device=img.device), img)
-        img = torch.where((img != 1) & (img != 2),
-                          torch.tensor(0, device=img.device), img)
+
+        # # ** 3 classes for corn, soybean, others **
+        # # img ∈ [0..254]
+        # others = (img != 1) & (img != 5)
+
+        # # 0: others
+        # img = torch.where(others, torch.tensor(0, device=img.device), img)
+
+        # # 1: corn (already 1)
+        # img = torch.where(img == 1, torch.tensor(1, device=img.device), img)
+
+        # # 2: soybean
+        # img = torch.where(img == 5, torch.tensor(2, device=img.device), img)
+
+
+        # # ** 2 classes for corn & soybean and others **
+        # img = torch.where((img == 1) | (img == 5), 1, 0)
+
+
+        # 2 classes for every corn & every soybean (not only for class 1,class 5)
+        img = torch.where(torch.isin(img, torch.tensor(corn_soy_classes, device=img.device)), 1, 0)
+
         return img
 
 # --------------------------------------------------------
@@ -57,9 +103,9 @@ class DataAugmentationForMultiMAE:
     Simple normalization for downstream tasks (CDL prediction).
     No random augmentations are applied.
     """
-    def __init__(self, input_size=224, hflip=False, all_domains=["s1", "s2", "cdl"]):
-        self.mean = {'s1': S1_DEFAULT_MEAN, 's2': S2_DEFAULT_MEAN}
-        self.std = {'s1': S1_DEFAULT_STD, 's2': S2_DEFAULT_STD}
+    def __init__(self, input_size=224, hflip=False, all_domains=["s1", "s2", "cdl", "soil", "elevation", "weather"]):
+        self.mean = {'s1': S1_DEFAULT_MEAN, 's2': S2_DEFAULT_MEAN, 'soil': SOIL_DEFAULT_MEAN, 'elevation': ELEVATION_DEFAULT_MEAN, 'weather': WEATHER_DEFAULT_MEAN}
+        self.std = {'s1': S1_DEFAULT_STD, 's2': S2_DEFAULT_STD, "soil": SOIL_DEFAULT_STD, "elevation": ELEVATION_DEFAULT_STD, "weather": WEATHER_DEFAULT_STD}
         self.input_size = input_size
         self.hflip = hflip
         self.all_domains = all_domains
@@ -102,7 +148,7 @@ class MultiTaskTemporalImageFolder(Dataset):
         txt_paths: Dict[str, str],
         transform: Optional[Callable] = None,
         loader: Callable[[str], torch.Tensor] = rasterio_loader,
-        T: int = 5,
+        T: int = 2,
         root: Optional[str] = None,
     ):
         super().__init__()
@@ -153,7 +199,7 @@ class MultiTaskTemporalImageFolder(Dataset):
             data_dict[task] = stack
 
         # CDL은 시간축 제거
-        if data_dict["cdl"].dim() == 4:
+        if data_dict["cdl"].dim() == 3:
             data_dict["cdl"] = data_dict["cdl"][0]  # [H, W]
 
         if self.transform is not None:
@@ -166,21 +212,24 @@ class MultiTaskTemporalImageFolder(Dataset):
 # --------------------------------------------------------
 if __name__ == "__main__":
     args = type("Args", (), {})()
-    args.all_domains = ["s1", "s2", "cdl"]
+    args.all_domains = ["s1", "s2", "cdl", "soil", "elevation", "weather"]
     args.input_size = 224
     args.hflip = False
 
     txt_paths = {
-        "s1": "/work/mech-ai-scratch/bgekim/project/imputation/MultiMAE_NEW/MultiMAE/valid_list/nova/30m/pair_temporal_S1_NEW.txt",
-        "s2": "/work/mech-ai-scratch/bgekim/project/imputation/MultiMAE_NEW/MultiMAE/valid_list/nova/30m/pair_temporal_S2_NEW.txt",
-        "cdl": "/work/mech-ai-scratch/bgekim/project/imputation/MultiMAE_NEW/MultiMAE/valid_list/nova/30m/pair_temporal_CDL_NEW.txt",
-    }
+        "s1": "/work/mech-ai-scratch/bgekim/project/imputation/MultiMAE_NEW/MultiMAE/valid_list/nova/30m/pair_0708_S1.txt",
+        "s2": "/work/mech-ai-scratch/bgekim/project/imputation/MultiMAE_NEW/MultiMAE/valid_list/nova/30m/pair_0708_S2.txt",
+        "cdl": "/work/mech-ai-scratch/bgekim/project/imputation/MultiMAE_NEW/MultiMAE/valid_list/nova/30m/pair_0708_CDL.txt",
+        "soil": "/work/mech-ai-scratch/bgekim/project/imputation/MultiMAE_NEW/MultiMAE/valid_list/nova/30m/pair_0708_Soil.txt",
+        "elevation": "/work/mech-ai-scratch/bgekim/project/imputation/MultiMAE_NEW/MultiMAE/valid_list/nova/30m/pair_0708_Elevation.txt",
+        "weather": "/work/mech-ai-scratch/bgekim/project/imputation/MultiMAE_NEW/MultiMAE/valid_list/nova/30m/pair_0708_Weather.txt"
+        }
 
     dataset = MultiTaskTemporalImageFolder(
         tasks=args.all_domains,
         txt_paths=txt_paths,
         transform=DataAugmentationForMultiMAE(args.input_size, args.hflip, args.all_domains),
-        T=5,
+        T=2,
     )
 
     sample = dataset[0]

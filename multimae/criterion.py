@@ -218,3 +218,76 @@ class MaskedL1Loss(nn.Module):
             loss = loss.mean()  # If this is ever nan, we want it to stop training
 
         return loss
+
+
+class MaskedBinaryFocalLossWithLogits(nn.Module):
+    """
+    Binary focal loss with optional MAE-style mask.
+
+    logits: [B, 1, H, W] or [B, 2, H, W]  (2채널이면 class 1을 "crop" 로 간주)
+    target: [B, H, W] or [B, 1, H, W]     (0/1)
+    """
+    def __init__(
+        self,
+        patch_size: int = 16,
+        stride: int = 1,
+        alpha: float = 0.45,
+        gamma: float = 4.0,
+        reduction: str = "mean",
+    ):
+        super().__init__()
+        self.patch_size = patch_size
+        self.stride = stride
+        self.scale_factor = patch_size // stride
+        self.alpha = alpha
+        self.gamma = gamma
+        self.reduction = reduction
+
+    def forward(self, logits, targets, mask=None):
+        # 2채널이면 class 1 채널을 양성(crop)으로 사용
+        if logits.dim() == 4 and logits.size(1) == 2:
+            logits = logits[:, 1:2, ...]   # [B,1,H,W]
+
+        if targets.dim() == 3:
+            targets = targets.unsqueeze(1)  # [B,1,H,W]
+        targets = targets.float()
+
+        # p = sigmoid(logit)
+        probs = torch.sigmoid(logits)
+        eps = 1e-6
+
+        # pt = p if y=1 else 1-p
+        pt = probs * targets + (1 - probs) * (1 - targets)
+        pt = pt.clamp(min=eps, max=1.0 - eps)
+
+        # alpha balance
+        #  - 현재 alpha=0.25 → class 0(others) 쪽 weight=0.75 로 더 크게 줌
+        alpha_factor = self.alpha * targets + (1 - self.alpha) * (1 - targets)
+        focal_weight = alpha_factor * ((1 - pt) ** self.gamma)
+
+        # BCE with logits (logits 그대로 사용)
+        bce = F.binary_cross_entropy_with_logits(logits, targets, reduction="none")
+        loss = focal_weight * bce  # [B,1,H,W]
+
+        # ----- MAE-style mask 처리 -----
+        if mask is not None:
+            B, _, H, W = loss.shape
+            nh, nw = H // self.scale_factor, W // self.scale_factor
+
+            # [B, L] → [B, nh, nw] → [B,1,H,W]
+            mask = rearrange(mask, "b (nh nw) -> b nh nw", nh=nh, nw=nw)
+            mask = F.interpolate(mask.unsqueeze(1).float(), size=(H, W), mode="nearest")
+
+            loss = loss * mask  # [B,1,H,W]
+
+            # sample별 평균 → batch 평균
+            loss = loss.flatten(start_dim=1).sum(dim=1) / (mask.flatten(start_dim=1).sum(dim=1) + 1e-6)
+            return loss.mean()
+
+        # mask 없는 downstream이면 여기로 옴
+        if self.reduction == "mean":
+            return loss.mean()
+        elif self.reduction == "sum":
+            return loss.sum()
+        else:
+            return loss  # [B,1,H,W]
