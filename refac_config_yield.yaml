@@ -1,0 +1,71 @@
+# ------------------------------------------------------------------ #
+# MultiMAE Yield Prediction Finetuning Config
+# task: pixel-level regression (corn yield)
+# temporal_steps: 15 (backward selection round 5: rm W11,W14,W2,W10,W9)
+# ------------------------------------------------------------------ #
+
+# Task
+task_type: regression
+in_domains: s1-s2-elevation-weather-cdl
+out_domains: yield
+all_domains: s1-s2-elevation-weather-cdl-yield
+num_classes: 1
+temporal_steps: 15
+
+# Yield dataset
+yield_data_root: /work/mech-ai-scratch/bgekim/project/ISA_Yield_Anirudha/ISA_Yield/conf_M5/conf_Backward_Selection/processed_data_bs20_rm_11_14_2_10_9
+
+# Model
+model: pretrain_multimae_base
+patch_size: 16
+input_size: 224
+num_encoded_tokens: 784
+num_global_tokens: 1
+decoder_dim: 256
+decoder_depth: 2
+decoder_num_heads: 8
+drop_path: 0.05
+
+# Pretrained weights
+pretrained_weights: /work/mech-ai-scratch/bgekim/project/MultiMAE_NEW/MultiMAE/output/pretrain/pretrain_best_epoch99.pth
+load_input_adapters: false
+
+# Stats
+stats_dir: /work/mech-ai-scratch/bgekim/project/MultiMAE_NEW/MultiMAE/valid_list/stats
+
+# Training
+epochs: 100
+accum_iter: 1
+patience: 75
+min_delta: 0.0001
+batch_size: 16
+start_epoch: 0
+use_lr_schedule: false   
+
+# Optimizer
+blr: 5.0e-05
+weight_decay: 0.1
+clip_grad: 1.0
+opt_eps: 1.0e-8
+opt_betas: [0.9, 0.95]
+warmup_epochs: 5
+warmup_lr: 1.0e-6
+min_lr: 0.0
+
+# Augmentation
+hflip: 0.0
+train_interpolation: bicubic
+
+# Output
+output_dir: /work/mech-ai-scratch/bgekim/project/MultiMAE_NEW/MultiMAE/output/finetune/yield_maskedloss_cdlfix
+
+# Misc
+seed: 0
+num_workers: 16
+pin_mem: true
+find_unused_params: false
+
+# W&B
+wandb_project: MultiMAE-finetune
+wandb_entity: goeulkim
+wandb_run_name: finetune-yield-corn-masked-cdlfix

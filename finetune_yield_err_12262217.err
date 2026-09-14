@@ -1,0 +1,62 @@
+/work/mech-ai-scratch/bgekim/miniconda3-arm/envs/multimae_env_arm/lib/python3.10/site-packages/torch/functional.py:505: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at /pytorch/aten/src/ATen/native/TensorShape.cpp:4381.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+/work/mech-ai-scratch/bgekim/project/MultiMAE_NEW/MultiMAE/utils/native_scaler.py:21: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  self._scaler = torch.cuda.amp.GradScaler(
+wandb: [wandb.login()] Loaded credentials for https://api.wandb.ai from /home/bgekim/.netrc.
+wandb: Currently logged in as: goeul8604 (goeulkim) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: setting up run qzxycvs7
+wandb: Tracking run with wandb version 0.25.1
+wandb: Run data is saved locally in /work/mech-ai-scratch/bgekim/project/MultiMAE_NEW/MultiMAE/wandb/run-20260912_094340-qzxycvs7
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run finetune-yield-corn-masked-cdlfix
+wandb: ⭐️ View project at https://wandb.ai/goeulkim/MultiMAE-finetune
+wandb: 🚀 View run at https://wandb.ai/goeulkim/MultiMAE-finetune/runs/qzxycvs7
+/work/mech-ai-scratch/bgekim/project/MultiMAE_NEW/MultiMAE/refac_finetune_engine.py:513: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+/work/mech-ai-scratch/bgekim/project/MultiMAE_NEW/MultiMAE/multimae/multimae.py:386: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=False):
+wandb: WARNING Saving files without folders. If you want to preserve subdirectories pass base_path to wandb.save, i.e. wandb.save("/mnt/folder/file.h5", base_path="/mnt")
+wandb: WARNING Symlinked 1 file into the W&B run directory; call wandb.save again to sync new files.
+wandb: WARNING Symlinked 1 file into the W&B run directory; call wandb.save again to sync new files.
+wandb: WARNING Symlinked 1 file into the W&B run directory; call wandb.save again to sync new files.
+wandb: WARNING Symlinked 1 file into the W&B run directory; call wandb.save again to sync new files.
+wandb: WARNING Symlinked 1 file into the W&B run directory; call wandb.save again to sync new files.
+wandb: WARNING Symlinked 1 file into the W&B run directory; call wandb.save again to sync new files.
+wandb: WARNING Symlinked 1 file into the W&B run directory; call wandb.save again to sync new files.
+wandb: WARNING Symlinked 1 file into the W&B run directory; call wandb.save again to sync new files.
+/work/mech-ai-scratch/bgekim/project/MultiMAE_NEW/MultiMAE/refac_finetune_engine.py:842: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  amp = torch.cuda.amp.autocast() if torch.device(device).type == 'cuda' else nullcontext()
+wandb: updating run metadata
+wandb: uploading wandb-summary.json
+wandb: uploading history steps 2820-2820, summary, console lines 1155-1159
+wandb: 
+wandb: Run history:
+wandb:                                        epoch ▁▁▂▂▂▂▂▂▃▃▃▄▄▄▄▄▄▄▄▅▅▅▅▅▅▆▆▆▆▆▇▇▇▇▇█████
+wandb:                                         step ▂█▁▁▂▁▄▅▂▄▅▆▂▄▇▂▂▅▅▁▄▅▆▆▇▄▅▃▂▇▇▆▂▁▅▁▃▄▆▃
+wandb:          test_terramind_style/test_field_mae ▁
+wandb:  test_terramind_style/test_field_mae_bu_acre ▁
+wandb:           test_terramind_style/test_field_r2 ▁
+wandb:         test_terramind_style/test_field_rmse ▁
+wandb: test_terramind_style/test_field_rmse_bu_acre ▁
+wandb:                test_terramind_style/test_mae ▁
+wandb:        test_terramind_style/test_mae_bu_acre ▁
+wandb:    test_terramind_style/test_n_empty_samples ▁
+wandb:                                          +30 ...
+wandb: 
+wandb: Run summary:
+wandb:                                        epoch 95
+wandb:                                         step 1
+wandb:          test_terramind_style/test_field_mae 0.06128
+wandb:  test_terramind_style/test_field_mae_bu_acre 19.60925
+wandb:           test_terramind_style/test_field_r2 0.36904
+wandb:         test_terramind_style/test_field_rmse 0.07313
+wandb: test_terramind_style/test_field_rmse_bu_acre 23.40106
+wandb:                test_terramind_style/test_mae 0.12297
+wandb:        test_terramind_style/test_mae_bu_acre 39.34984
+wandb:    test_terramind_style/test_n_empty_samples 0
+wandb:                                          +30 ...
+wandb: 
+wandb: 🚀 View run finetune-yield-corn-masked-cdlfix at: https://wandb.ai/goeulkim/MultiMAE-finetune/runs/qzxycvs7
+wandb: ⭐️ View project at: https://wandb.ai/goeulkim/MultiMAE-finetune
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 8 other file(s)
+wandb: Find logs at: ./wandb/run-20260912_094340-qzxycvs7/logs

@@ -1,0 +1,52 @@
+# config_pretrain.yaml
+# --------------------------------------------------------
+# MultiMAE Pretraining Config
+# --------------------------------------------------------
+
+# States to train on
+stats_dir: /work/mech-ai-scratch/bgekim/project/imputation/MultiMAE_NEW/MultiMAE/valid_list/stats
+states: IA-IL
+
+# IA txt paths
+s1_txt_IA:        /work/mech-ai-scratch/bgekim/project/imputation/MultiMAE_NEW/MultiMAE/valid_list/nova/IA/pair_S1.txt
+s2_txt_IA:        /work/mech-ai-scratch/bgekim/project/imputation/MultiMAE_NEW/MultiMAE/valid_list/nova/IA/pair_S2.txt
+cdl_txt_IA:       /work/mech-ai-scratch/bgekim/project/imputation/MultiMAE_NEW/MultiMAE/valid_list/nova/IA/pair_CDL.txt
+elevation_txt_IA: /work/mech-ai-scratch/bgekim/project/imputation/MultiMAE_NEW/MultiMAE/valid_list/nova/IA/pair_Elevation.txt
+soil_txt_IA:      /work/mech-ai-scratch/bgekim/project/imputation/MultiMAE_NEW/MultiMAE/valid_list/nova/IA/pair_Soil.txt
+weather_txt_IA:   /work/mech-ai-scratch/bgekim/project/imputation/MultiMAE_NEW/MultiMAE/valid_list/nova/IA/pair_Weather.txt
+
+# IL txt paths
+s1_txt_IL:        /work/mech-ai-scratch/bgekim/project/imputation/MultiMAE_NEW/MultiMAE/valid_list/nova/IL/pair_S1.txt
+s2_txt_IL:        /work/mech-ai-scratch/bgekim/project/imputation/MultiMAE_NEW/MultiMAE/valid_list/nova/IL/pair_S2.txt
+cdl_txt_IL:       /work/mech-ai-scratch/bgekim/project/imputation/MultiMAE_NEW/MultiMAE/valid_list/nova/IL/pair_CDL.txt
+elevation_txt_IL: /work/mech-ai-scratch/bgekim/project/imputation/MultiMAE_NEW/MultiMAE/valid_list/nova/IL/pair_Elevation.txt
+soil_txt_IL:      /work/mech-ai-scratch/bgekim/project/imputation/MultiMAE_NEW/MultiMAE/valid_list/nova/IL/pair_Soil.txt
+weather_txt_IL:   /work/mech-ai-scratch/bgekim/project/imputation/MultiMAE_NEW/MultiMAE/valid_list/nova/IL/pair_Weather.txt
+
+# Training
+epochs: 100
+batch_size: 64
+num_workers: 72
+
+# Model
+patch_size: 16
+decoder_dim: 256
+num_encoded_tokens: 784
+
+# Optimizer
+blr: 1.0e-4
+weight_decay: 0.01
+clip_grad: 1.0
+
+# Domains
+in_domains: s1-s2-elevation-weather-soil
+out_domains: s1-s2-elevation-weather-soil
+all_domains: s1-s2-elevation-weather-soil-cdl
+
+# Output
+output_dir: /work/mech-ai-scratch/bgekim/project/imputation/MultiMAE_NEW/MultiMAE/output/pretrain
+
+# W&B
+wandb_project: MultiMAE-pretrain
+wandb_entity: goeulkim
+wandb_run_name: pretrain-IA-IL-new

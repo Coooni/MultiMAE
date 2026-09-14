@@ -81,66 +81,67 @@ class DataAugmentationForMultiMAE:
         # return out
 
         # For S1, S2, Soil, Elevetaion, Weather because of different scale
-        # for task in self.all_domains:
-        #     x = task_dict[task]  # [C,H,W]
-
-        #     # 동일 crop 적용
-        #     x = x[:, i:i+h, j:j+w]
-        #     x = F.interpolate(
-        #         x.unsqueeze(0), size=(self.input_size, self.input_size),
-        #         mode='bilinear', align_corners=False
-        #     ).squeeze(0)
-        #     if do_flip:
-        #         x = torch.flip(x, dims=[2])  # horizontal flip (W dim)
-
-        #     # === 안정적인 정규화 ===
-        #     mean = torch.tensor(self.mean[task]).view(-1, 1, 1)
-        #     std  = torch.tensor(self.std[task]).view(-1, 1, 1)
-        #     x = (x - mean) / (std + 1e-6)
-
-        #     # === 모달리티별 안정화 ===
-        #     if task in ["soil", "elevation", "weather"]:
-        #         # NaN/Inf 미리 제거
-        #         x = torch.nan_to_num(x, nan=0.0, posinf=3.0, neginf=-3.0)
-
-        #         # 분포 과도한 값 보정
-        #         x = torch.clamp(x, -5, 5)
-
-        #         # Weather 값 스케일 다운 (FP16 underflow 방지)
-        #         if task == "weather":
-        #             x = x / 10.0
-
-        #     # === 최종 안정화 ===
-        #     if not torch.isfinite(x).all():
-        #         print(f"[NaN after normalization in {task}] "
-        #             f"min={x.min().item()} max={x.max().item()} mean={x.mean().item()}")
-
-        #     out[task] = x
-
-        # return out
-
-
-
-    # downstream for CDL prediction - no augmentation
-    def __call__(self, task_dict: Dict[str, torch.Tensor]):
-        out = {}
         for task in self.all_domains:
             x = task_dict[task]  # [C,H,W]
 
-            if task == "cdl":
-                # CDL은 그대로 long tensor
-                x = x.long()
-            else:
-                # normalization만 적용
+            # 동일 crop 적용
+            x = x[:, i:i+h, j:j+w]
+            x = F.interpolate(
+                x.unsqueeze(0), size=(self.input_size, self.input_size),
+                mode='bilinear', align_corners=False
+            ).squeeze(0)
+            if do_flip:
+                x = torch.flip(x, dims=[2])  # horizontal flip (W dim)
+            
+            if task != "cdl":
+                # === 안정적인 정규화 ===
                 mean = torch.tensor(self.mean[task]).view(-1, 1, 1)
                 std  = torch.tensor(self.std[task]).view(-1, 1, 1)
-                x = (x - mean) / std
+                x = (x - mean) / (std + 1e-6)
 
-                # 값 클램핑
-                x = torch.clamp(x, -3, 3)
+                # === 모달리티별 안정화 ===
+                if task in ["soil", "elevation", "weather"]:
+                    # NaN/Inf 미리 제거
+                    x = torch.nan_to_num(x, nan=0.0, posinf=3.0, neginf=-3.0)
+
+                    # 분포 과도한 값 보정
+                    x = torch.clamp(x, -5, 5)
+
+                    # Weather 값 스케일 다운 (FP16 underflow 방지)
+                    if task == "weather":
+                        x = x / 10.0
+
+                # === 최종 안정화 ===
+                if not torch.isfinite(x).all():
+                    print(f"[NaN after normalization in {task}] "
+                        f"min={x.min().item()} max={x.max().item()} mean={x.mean().item()}")
 
             out[task] = x
+
         return out
+
+
+
+    # # downstream for CDL prediction - no augmentation
+    # def __call__(self, task_dict: Dict[str, torch.Tensor]):
+    #     out = {}
+    #     for task in self.all_domains:
+    #         x = task_dict[task]  # [C,H,W]
+
+    #         if task == "cdl":
+    #             # CDL은 그대로 long tensor
+    #             x = x.long()
+    #         else:
+    #             # normalization만 적용
+    #             mean = torch.tensor(self.mean[task]).view(-1, 1, 1)
+    #             std  = torch.tensor(self.std[task]).view(-1, 1, 1)
+    #             x = (x - mean) / std
+
+    #             # 값 클램핑
+    #             x = torch.clamp(x, -3, 3)
+
+    #         out[task] = x
+    #     return out
 
     def __repr__(self):
         return f"(DataAugmentationForMultiMAE input_size={self.input_size}, hflip={self.hflip})"

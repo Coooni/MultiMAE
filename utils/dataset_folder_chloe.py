@@ -82,25 +82,6 @@ def is_image_file(filename: str) -> bool:
     return filename.lower().endswith(IMG_EXTENSIONS)
 
 
-# *** 125m resolution
-# def rasterio_loader(path: str) -> torch.Tensor:
-#     if "MODIS" in path:
-#         """MODIS 로더"""
-#         with rasterio.open(path) as src:
-#             img = src.read(out_dtype='float32')          # (C, H, W) 0‑10000 DN
-#             # ---- nodata 처리 ----
-#             img[img == 32767] = 0.0                      # 또는 np.nan
-#             rgb = img[[0, 3, 2], ...]
-        
-#     else:
-#         """S2 로더: [C, H, W] float32, reflectance 0–1 스케일"""
-#         with rasterio.open(path) as src:
-#             img = src.read(out_dtype='float32')          # (C, H, W) 0‑10000 DN
-#             rgb = img[[3, 2, 1], ...]
-    
-#     rgb = rgb / 10000.0                          # reflectance 0‑1
-
-#     return torch.from_numpy(rgb.copy()).float()
 
 # *** 30m resolution
 def rasterio_loader(path: str) -> torch.Tensor:
@@ -142,8 +123,13 @@ def rasterio_loader(path: str) -> torch.Tensor:
     else:
         # CDL
         with rasterio.open(path) as src:
-            img = src.read(1, out_dtype='int32')  # 첫 채널만 읽기
-        img = torch.from_numpy(img).long()
+            img = src.read(1, out_dtype='uint8')
+            # img = src.read(1, out_dtype='int32')  # 첫 채널만 읽기
+
+        img = torch.from_numpy(img).float()  # MSE loss용
+        img = img.unsqueeze(0)  # [1, 224, 224]
+        return img
+        # img = torch.from_numpy(img).long() # for downstream
 
         # # ** 3 classes for corn, soybean, others **
         # others = (img != 1) & (img != 5)
@@ -161,17 +147,15 @@ def rasterio_loader(path: str) -> torch.Tensor:
         # # 2 classes for every corn & every soybean (not only for class 1,class 5)
         # img = torch.where(torch.isin(img, torch.tensor(corn_soy_classes, device=img.device)), 1, 0)
 
-        # default = non-veg (0)
-        new = torch.zeros_like(img)
+        # # default = non-veg (0)
+        # new = torch.zeros_like(img)
+        # # natural vegetation → 1
+        # new[torch.isin(img, natural_veg_classes)] = 1
+        # # crops → 2
+        # new[torch.isin(img, crop_classes)] = 2
 
-        # natural vegetation → 1
-        new[torch.isin(img, natural_veg_classes)] = 1
+        # return new
 
-        # crops → 2
-        new[torch.isin(img, crop_classes)] = 2
-
-        return new
-        # return img
 
 
 # --------------------------------------------------------

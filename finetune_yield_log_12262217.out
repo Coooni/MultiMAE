@@ -1,0 +1,1160 @@
+Single GPU mode — DDP disabled.
+Task type  : regression
+in_domains : ['s1', 's2', 'elevation', 'weather', 'cdl']
+out_domains: ['yield']
+✅ Yield normalization stats loaded from pretrain (IA): ['s1', 's2', 'elevation', 'soil', 'weather', 'cdl']
+✅ YieldDataset loaded: 401 samples from /work/mech-ai-scratch/bgekim/project/ISA_Yield_Anirudha/ISA_Yield/conf_M5/conf_Backward_Selection/processed_data_bs20_rm_11_14_2_10_9/train_corn.txt
+✅ YieldDataset loaded: 31 samples from /work/mech-ai-scratch/bgekim/project/ISA_Yield_Anirudha/ISA_Yield/conf_M5/conf_Backward_Selection/processed_data_bs20_rm_11_14_2_10_9/val_corn.txt
+✅ YieldDataset loaded: 31 samples from /work/mech-ai-scratch/bgekim/project/ISA_Yield_Anirudha/ISA_Yield/conf_M5/conf_Backward_Selection/processed_data_bs20_rm_11_14_2_10_9/test_corn.txt
+Train: 401 | Val: 31 | Test: 31
+Train: 401 | Val: 31 | Test: 31
+[load_pretrained_weights] Missing keys : 62
+[load_pretrained_weights] Unexpected keys: 256
+Loaded pretrained weights from /work/mech-ai-scratch/bgekim/project/MultiMAE_NEW/MultiMAE/output/pretrain/pretrain_best_epoch99.pth
+[LR schedule] DISABLED (legacy) — fixed lr=5.00e-05
+Resumed from /work/mech-ai-scratch/bgekim/project/MultiMAE_NEW/MultiMAE/output/finetune/yield_maskedloss_cdlfix/finetune_latest.pth (epoch 2, best_val_loss=0.152339)
+[LR] epoch 3 | lr=5.00e-05
+[TRAIN] Epoch [2]  [ 0/25]  eta: 0:19:16  loss: 0.0416 (0.0416)  grad_norm: 1.6065 (1.6065)  train_yield_loss: 0.0416 (0.0416)  time: 46.2611  data: 24.9127  max mem: 31976
+[TRAIN] Epoch [2]  [10/25]  eta: 0:01:06  loss: 0.0370 (0.0366)  grad_norm: 1.5038 (1.5062)  train_yield_loss: 0.0370 (0.0366)  time: 4.4106  data: 2.2649  max mem: 31983
+[TRAIN] Epoch [2]  [20/25]  eta: 0:00:12  loss: 0.0330 (0.0337)  grad_norm: 1.3540 (1.3601)  train_yield_loss: 0.0330 (0.0337)  time: 0.2214  data: 0.0001  max mem: 31983
+[TRAIN] Epoch [2]  [24/25]  eta: 0:00:02  loss: 0.0315 (0.0330)  grad_norm: 1.2049 (1.3225)  train_yield_loss: 0.0315 (0.0330)  time: 0.2164  data: 0.0001  max mem: 31983
+[TRAIN] Epoch [2] Total time: 0:00:51 (2.0637 s / it)
+[TRAIN] Epoch 2 averaged stats: loss: 0.0315 (0.0330)  grad_norm: 1.2049 (1.3225)  train_yield_loss: 0.0315 (0.0330)
+[VAL] Epoch [2]  [0/2]  eta: 0:00:27  loss: 0.0283 (0.0283)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0283 (0.0283)  time: 13.8898  data: 13.6698  max mem: 31983
+[VAL] Epoch [2]  [1/2]  eta: 0:00:07  loss: 0.0283 (0.0336)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0283 (0.0336)  time: 7.3134  data: 6.8350  max mem: 31983
+[VAL] Epoch [2] Total time: 0:00:14 (7.3303 s / it)
+[VAL] Epoch 2 averaged stats: loss: 0.0283 (0.0336)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0283 (0.0336)
+Best model saved: /work/mech-ai-scratch/bgekim/project/MultiMAE_NEW/MultiMAE/output/finetune/yield_maskedloss_cdlfix/finetune_best_epoch3_valloss0.0336.pth (val_loss=0.0336)
+[EarlyStopping] epoch 3 | val_loss=0.033592 | best=0.033592 (epoch 3) | no_improve=0/75
+[LR] epoch 4 | lr=5.00e-05
+[TRAIN] Epoch [3]  [ 0/25]  eta: 0:02:19  loss: 0.0403 (0.0403)  grad_norm: 1.1375 (1.1375)  train_yield_loss: 0.0403 (0.0403)  time: 5.5773  data: 4.7516  max mem: 32575
+[TRAIN] Epoch [3]  [10/25]  eta: 0:00:11  loss: 0.0272 (0.0287)  grad_norm: 1.0800 (1.0282)  train_yield_loss: 0.0272 (0.0287)  time: 0.7451  data: 0.4321  max mem: 32580
+[TRAIN] Epoch [3]  [20/25]  eta: 0:00:02  loss: 0.0272 (0.0274)  grad_norm: 0.9539 (0.9963)  train_yield_loss: 0.0272 (0.0274)  time: 0.2418  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [3]  [24/25]  eta: 0:00:00  loss: 0.0263 (0.0273)  grad_norm: 0.8846 (0.9609)  train_yield_loss: 0.0263 (0.0273)  time: 0.2191  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [3] Total time: 0:00:11 (0.4535 s / it)
+[TRAIN] Epoch 3 averaged stats: loss: 0.0263 (0.0273)  grad_norm: 0.8846 (0.9609)  train_yield_loss: 0.0263 (0.0273)
+[VAL] Epoch [3]  [0/2]  eta: 0:00:03  loss: 0.0264 (0.0264)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0264 (0.0264)  time: 1.9167  data: 1.5763  max mem: 32580
+[VAL] Epoch [3]  [1/2]  eta: 0:00:01  loss: 0.0264 (0.0322)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0264 (0.0322)  time: 1.0003  data: 0.7882  max mem: 32580
+[VAL] Epoch [3] Total time: 0:00:02 (1.0179 s / it)
+[VAL] Epoch 3 averaged stats: loss: 0.0264 (0.0322)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0264 (0.0322)
+Best model saved: /work/mech-ai-scratch/bgekim/project/MultiMAE_NEW/MultiMAE/output/finetune/yield_maskedloss_cdlfix/finetune_best_epoch4_valloss0.0322.pth (val_loss=0.0322)
+[EarlyStopping] epoch 4 | val_loss=0.032204 | best=0.032204 (epoch 4) | no_improve=0/75
+[LR] epoch 5 | lr=5.00e-05
+[TRAIN] Epoch [4]  [ 0/25]  eta: 0:02:27  loss: 0.0281 (0.0281)  grad_norm: 1.1574 (1.1574)  train_yield_loss: 0.0281 (0.0281)  time: 5.8822  data: 5.0495  max mem: 32580
+[TRAIN] Epoch [4]  [10/25]  eta: 0:00:11  loss: 0.0259 (0.0256)  grad_norm: 0.9715 (1.0086)  train_yield_loss: 0.0259 (0.0256)  time: 0.7605  data: 0.4591  max mem: 32580
+[TRAIN] Epoch [4]  [20/25]  eta: 0:00:02  loss: 0.0259 (0.0265)  grad_norm: 1.0241 (1.0427)  train_yield_loss: 0.0259 (0.0265)  time: 0.2360  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [4]  [24/25]  eta: 0:00:00  loss: 0.0263 (0.0262)  grad_norm: 1.0463 (1.0243)  train_yield_loss: 0.0263 (0.0262)  time: 0.2208  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [4] Total time: 0:00:11 (0.4611 s / it)
+[TRAIN] Epoch 4 averaged stats: loss: 0.0263 (0.0262)  grad_norm: 1.0463 (1.0243)  train_yield_loss: 0.0263 (0.0262)
+[VAL] Epoch [4]  [0/2]  eta: 0:00:03  loss: 0.0251 (0.0251)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0251 (0.0251)  time: 1.9607  data: 1.6269  max mem: 32580
+[VAL] Epoch [4]  [1/2]  eta: 0:00:01  loss: 0.0251 (0.0293)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0251 (0.0293)  time: 1.0283  data: 0.8136  max mem: 32580
+[VAL] Epoch [4] Total time: 0:00:02 (1.0463 s / it)
+[VAL] Epoch 4 averaged stats: loss: 0.0251 (0.0293)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0251 (0.0293)
+Best model saved: /work/mech-ai-scratch/bgekim/project/MultiMAE_NEW/MultiMAE/output/finetune/yield_maskedloss_cdlfix/finetune_best_epoch5_valloss0.0293.pth (val_loss=0.0293)
+[EarlyStopping] epoch 5 | val_loss=0.029300 | best=0.029300 (epoch 5) | no_improve=0/75
+[LR] epoch 6 | lr=5.00e-05
+[TRAIN] Epoch [5]  [ 0/25]  eta: 0:02:28  loss: 0.0243 (0.0243)  grad_norm: 1.0290 (1.0290)  train_yield_loss: 0.0243 (0.0243)  time: 5.9584  data: 5.0864  max mem: 32580
+[TRAIN] Epoch [5]  [10/25]  eta: 0:00:11  loss: 0.0243 (0.0236)  grad_norm: 0.7801 (0.7828)  train_yield_loss: 0.0243 (0.0236)  time: 0.7735  data: 0.4625  max mem: 32580
+[TRAIN] Epoch [5]  [20/25]  eta: 0:00:02  loss: 0.0225 (0.0239)  grad_norm: 0.7179 (0.7401)  train_yield_loss: 0.0225 (0.0239)  time: 0.2367  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [5]  [24/25]  eta: 0:00:00  loss: 0.0230 (0.0238)  grad_norm: 0.7179 (0.7490)  train_yield_loss: 0.0230 (0.0238)  time: 0.2177  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [5] Total time: 0:00:11 (0.4646 s / it)
+[TRAIN] Epoch 5 averaged stats: loss: 0.0230 (0.0238)  grad_norm: 0.7179 (0.7490)  train_yield_loss: 0.0230 (0.0238)
+[VAL] Epoch [5]  [0/2]  eta: 0:00:03  loss: 0.0253 (0.0253)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0253 (0.0253)  time: 1.9705  data: 1.6556  max mem: 32580
+[VAL] Epoch [5]  [1/2]  eta: 0:00:01  loss: 0.0253 (0.0316)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0253 (0.0316)  time: 1.0329  data: 0.8279  max mem: 32580
+[VAL] Epoch [5] Total time: 0:00:02 (1.0514 s / it)
+[VAL] Epoch 5 averaged stats: loss: 0.0253 (0.0316)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0253 (0.0316)
+[EarlyStopping] epoch 6 | val_loss=0.031587 | best=0.029300 (epoch 5) | no_improve=1/75
+[LR] epoch 7 | lr=5.00e-05
+[TRAIN] Epoch [6]  [ 0/25]  eta: 0:02:20  loss: 0.0287 (0.0287)  grad_norm: 0.9893 (0.9893)  train_yield_loss: 0.0287 (0.0287)  time: 5.6200  data: 4.9710  max mem: 32580
+[TRAIN] Epoch [6]  [10/25]  eta: 0:00:11  loss: 0.0247 (0.0235)  grad_norm: 0.9250 (0.9248)  train_yield_loss: 0.0247 (0.0235)  time: 0.7605  data: 0.4520  max mem: 32580
+[TRAIN] Epoch [6]  [20/25]  eta: 0:00:02  loss: 0.0226 (0.0232)  grad_norm: 0.8457 (0.8700)  train_yield_loss: 0.0226 (0.0232)  time: 0.2488  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [6]  [24/25]  eta: 0:00:00  loss: 0.0233 (0.0237)  grad_norm: 0.8454 (0.8591)  train_yield_loss: 0.0233 (0.0237)  time: 0.2234  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [6] Total time: 0:00:11 (0.4607 s / it)
+[TRAIN] Epoch 6 averaged stats: loss: 0.0233 (0.0237)  grad_norm: 0.8454 (0.8591)  train_yield_loss: 0.0233 (0.0237)
+[VAL] Epoch [6]  [0/2]  eta: 0:00:03  loss: 0.0245 (0.0245)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0245 (0.0245)  time: 1.9578  data: 1.6561  max mem: 32580
+[VAL] Epoch [6]  [1/2]  eta: 0:00:01  loss: 0.0245 (0.0310)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0245 (0.0310)  time: 1.0173  data: 0.8282  max mem: 32580
+[VAL] Epoch [6] Total time: 0:00:02 (1.0353 s / it)
+[VAL] Epoch 6 averaged stats: loss: 0.0245 (0.0310)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0245 (0.0310)
+[EarlyStopping] epoch 7 | val_loss=0.030977 | best=0.029300 (epoch 5) | no_improve=2/75
+[LR] epoch 8 | lr=5.00e-05
+[TRAIN] Epoch [7]  [ 0/25]  eta: 0:02:25  loss: 0.0253 (0.0253)  grad_norm: 0.9878 (0.9878)  train_yield_loss: 0.0253 (0.0253)  time: 5.8060  data: 5.1652  max mem: 32580
+[TRAIN] Epoch [7]  [10/25]  eta: 0:00:11  loss: 0.0242 (0.0246)  grad_norm: 0.8035 (0.8430)  train_yield_loss: 0.0242 (0.0246)  time: 0.7642  data: 0.4697  max mem: 32580
+[TRAIN] Epoch [7]  [20/25]  eta: 0:00:02  loss: 0.0222 (0.0234)  grad_norm: 0.7547 (0.7764)  train_yield_loss: 0.0222 (0.0234)  time: 0.2391  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [7]  [24/25]  eta: 0:00:00  loss: 0.0216 (0.0227)  grad_norm: 0.7046 (0.7689)  train_yield_loss: 0.0216 (0.0227)  time: 0.2200  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [7] Total time: 0:00:11 (0.4613 s / it)
+[TRAIN] Epoch 7 averaged stats: loss: 0.0216 (0.0227)  grad_norm: 0.7046 (0.7689)  train_yield_loss: 0.0216 (0.0227)
+[VAL] Epoch [7]  [0/2]  eta: 0:00:03  loss: 0.0220 (0.0220)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0220 (0.0220)  time: 1.9005  data: 1.5990  max mem: 32580
+[VAL] Epoch [7]  [1/2]  eta: 0:00:01  loss: 0.0220 (0.0275)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0220 (0.0275)  time: 1.0026  data: 0.7996  max mem: 32580
+[VAL] Epoch [7] Total time: 0:00:02 (1.0207 s / it)
+[VAL] Epoch 7 averaged stats: loss: 0.0220 (0.0275)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0220 (0.0275)
+Best model saved: /work/mech-ai-scratch/bgekim/project/MultiMAE_NEW/MultiMAE/output/finetune/yield_maskedloss_cdlfix/finetune_best_epoch8_valloss0.0275.pth (val_loss=0.0275)
+[EarlyStopping] epoch 8 | val_loss=0.027528 | best=0.027528 (epoch 8) | no_improve=0/75
+[LR] epoch 9 | lr=5.00e-05
+[TRAIN] Epoch [8]  [ 0/25]  eta: 0:02:30  loss: 0.0194 (0.0194)  grad_norm: 0.4934 (0.4934)  train_yield_loss: 0.0194 (0.0194)  time: 6.0384  data: 5.2110  max mem: 32580
+[TRAIN] Epoch [8]  [10/25]  eta: 0:00:11  loss: 0.0234 (0.0230)  grad_norm: 0.9083 (0.9141)  train_yield_loss: 0.0234 (0.0230)  time: 0.7715  data: 0.4738  max mem: 32580
+[TRAIN] Epoch [8]  [20/25]  eta: 0:00:02  loss: 0.0225 (0.0226)  grad_norm: 0.7697 (0.8224)  train_yield_loss: 0.0225 (0.0226)  time: 0.2332  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [8]  [24/25]  eta: 0:00:00  loss: 0.0218 (0.0222)  grad_norm: 0.7179 (0.7944)  train_yield_loss: 0.0218 (0.0222)  time: 0.2196  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [8] Total time: 0:00:11 (0.4649 s / it)
+[TRAIN] Epoch 8 averaged stats: loss: 0.0218 (0.0222)  grad_norm: 0.7179 (0.7944)  train_yield_loss: 0.0218 (0.0222)
+[VAL] Epoch [8]  [0/2]  eta: 0:00:03  loss: 0.0221 (0.0221)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0221 (0.0221)  time: 1.9174  data: 1.6179  max mem: 32580
+[VAL] Epoch [8]  [1/2]  eta: 0:00:01  loss: 0.0221 (0.0281)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0221 (0.0281)  time: 1.0110  data: 0.8091  max mem: 32580
+[VAL] Epoch [8] Total time: 0:00:02 (1.0301 s / it)
+[VAL] Epoch 8 averaged stats: loss: 0.0221 (0.0281)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0221 (0.0281)
+[EarlyStopping] epoch 9 | val_loss=0.028104 | best=0.027528 (epoch 8) | no_improve=1/75
+[LR] epoch 10 | lr=5.00e-05
+[TRAIN] Epoch [9]  [ 0/25]  eta: 0:02:22  loss: 0.0186 (0.0186)  grad_norm: 0.5877 (0.5877)  train_yield_loss: 0.0186 (0.0186)  time: 5.6981  data: 5.0461  max mem: 32580
+[TRAIN] Epoch [9]  [10/25]  eta: 0:00:11  loss: 0.0202 (0.0199)  grad_norm: 0.7036 (0.6950)  train_yield_loss: 0.0202 (0.0199)  time: 0.7616  data: 0.4588  max mem: 32580
+[TRAIN] Epoch [9]  [20/25]  eta: 0:00:02  loss: 0.0211 (0.0214)  grad_norm: 0.7075 (0.7689)  train_yield_loss: 0.0211 (0.0214)  time: 0.2443  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [9]  [24/25]  eta: 0:00:00  loss: 0.0211 (0.0212)  grad_norm: 0.7075 (0.7528)  train_yield_loss: 0.0211 (0.0212)  time: 0.2191  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [9] Total time: 0:00:11 (0.4603 s / it)
+[TRAIN] Epoch 9 averaged stats: loss: 0.0211 (0.0212)  grad_norm: 0.7075 (0.7528)  train_yield_loss: 0.0211 (0.0212)
+[VAL] Epoch [9]  [0/2]  eta: 0:00:03  loss: 0.0229 (0.0229)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0229 (0.0229)  time: 1.8789  data: 1.5766  max mem: 32580
+[VAL] Epoch [9]  [1/2]  eta: 0:00:00  loss: 0.0229 (0.0265)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0229 (0.0265)  time: 0.9905  data: 0.7884  max mem: 32580
+[VAL] Epoch [9] Total time: 0:00:02 (1.0095 s / it)
+[VAL] Epoch 9 averaged stats: loss: 0.0229 (0.0265)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0229 (0.0265)
+Best model saved: /work/mech-ai-scratch/bgekim/project/MultiMAE_NEW/MultiMAE/output/finetune/yield_maskedloss_cdlfix/finetune_best_epoch10_valloss0.0265.pth (val_loss=0.0265)
+[EarlyStopping] epoch 10 | val_loss=0.026497 | best=0.026497 (epoch 10) | no_improve=0/75
+[LR] epoch 11 | lr=5.00e-05
+[TRAIN] Epoch [10]  [ 0/25]  eta: 0:02:26  loss: 0.0177 (0.0177)  grad_norm: 0.5264 (0.5264)  train_yield_loss: 0.0177 (0.0177)  time: 5.8621  data: 4.9982  max mem: 32580
+[TRAIN] Epoch [10]  [10/25]  eta: 0:00:11  loss: 0.0206 (0.0202)  grad_norm: 0.7351 (0.7068)  train_yield_loss: 0.0206 (0.0202)  time: 0.7672  data: 0.4545  max mem: 32580
+[TRAIN] Epoch [10]  [20/25]  eta: 0:00:02  loss: 0.0198 (0.0201)  grad_norm: 0.7341 (0.7201)  train_yield_loss: 0.0198 (0.0201)  time: 0.2374  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [10]  [24/25]  eta: 0:00:00  loss: 0.0193 (0.0202)  grad_norm: 0.6539 (0.7032)  train_yield_loss: 0.0193 (0.0202)  time: 0.2195  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [10] Total time: 0:00:11 (0.4625 s / it)
+[TRAIN] Epoch 10 averaged stats: loss: 0.0193 (0.0202)  grad_norm: 0.6539 (0.7032)  train_yield_loss: 0.0193 (0.0202)
+[VAL] Epoch [10]  [0/2]  eta: 0:00:03  loss: 0.0222 (0.0222)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0222 (0.0222)  time: 1.9298  data: 1.6292  max mem: 32580
+[VAL] Epoch [10]  [1/2]  eta: 0:00:01  loss: 0.0222 (0.0257)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0222 (0.0257)  time: 1.0149  data: 0.8147  max mem: 32580
+[VAL] Epoch [10] Total time: 0:00:02 (1.0331 s / it)
+[VAL] Epoch 10 averaged stats: loss: 0.0222 (0.0257)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0222 (0.0257)
+Best model saved: /work/mech-ai-scratch/bgekim/project/MultiMAE_NEW/MultiMAE/output/finetune/yield_maskedloss_cdlfix/finetune_best_epoch11_valloss0.0257.pth (val_loss=0.0257)
+[EarlyStopping] epoch 11 | val_loss=0.025681 | best=0.025681 (epoch 11) | no_improve=0/75
+[LR] epoch 12 | lr=5.00e-05
+[TRAIN] Epoch [11]  [ 0/25]  eta: 0:02:21  loss: 0.0148 (0.0148)  grad_norm: 0.5457 (0.5457)  train_yield_loss: 0.0148 (0.0148)  time: 5.6793  data: 5.0169  max mem: 32580
+[TRAIN] Epoch [11]  [10/25]  eta: 0:00:11  loss: 0.0190 (0.0193)  grad_norm: 0.5523 (0.5702)  train_yield_loss: 0.0190 (0.0193)  time: 0.7578  data: 0.4562  max mem: 32580
+[TRAIN] Epoch [11]  [20/25]  eta: 0:00:02  loss: 0.0196 (0.0196)  grad_norm: 0.6688 (0.6974)  train_yield_loss: 0.0196 (0.0196)  time: 0.2428  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [11]  [24/25]  eta: 0:00:00  loss: 0.0196 (0.0195)  grad_norm: 0.7151 (0.6940)  train_yield_loss: 0.0196 (0.0195)  time: 0.2192  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [11] Total time: 0:00:11 (0.4589 s / it)
+[TRAIN] Epoch 11 averaged stats: loss: 0.0196 (0.0195)  grad_norm: 0.7151 (0.6940)  train_yield_loss: 0.0196 (0.0195)
+[VAL] Epoch [11]  [0/2]  eta: 0:00:03  loss: 0.0216 (0.0216)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0216 (0.0216)  time: 1.9414  data: 1.6370  max mem: 32580
+[VAL] Epoch [11]  [1/2]  eta: 0:00:01  loss: 0.0216 (0.0261)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0216 (0.0261)  time: 1.0220  data: 0.8187  max mem: 32580
+[VAL] Epoch [11] Total time: 0:00:02 (1.0407 s / it)
+[VAL] Epoch 11 averaged stats: loss: 0.0216 (0.0261)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0216 (0.0261)
+[EarlyStopping] epoch 12 | val_loss=0.026127 | best=0.025681 (epoch 11) | no_improve=1/75
+[LR] epoch 13 | lr=5.00e-05
+[TRAIN] Epoch [12]  [ 0/25]  eta: 0:02:33  loss: 0.0241 (0.0241)  grad_norm: 0.6342 (0.6342)  train_yield_loss: 0.0241 (0.0241)  time: 6.1265  data: 5.2485  max mem: 32580
+[TRAIN] Epoch [12]  [10/25]  eta: 0:00:11  loss: 0.0200 (0.0209)  grad_norm: 0.8728 (0.8522)  train_yield_loss: 0.0200 (0.0209)  time: 0.7854  data: 0.4772  max mem: 32580
+[TRAIN] Epoch [12]  [20/25]  eta: 0:00:02  loss: 0.0195 (0.0204)  grad_norm: 0.8430 (0.8283)  train_yield_loss: 0.0195 (0.0204)  time: 0.2342  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [12]  [24/25]  eta: 0:00:00  loss: 0.0192 (0.0198)  grad_norm: 0.8263 (0.8100)  train_yield_loss: 0.0192 (0.0198)  time: 0.2192  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [12] Total time: 0:00:11 (0.4702 s / it)
+[TRAIN] Epoch 12 averaged stats: loss: 0.0192 (0.0198)  grad_norm: 0.8263 (0.8100)  train_yield_loss: 0.0192 (0.0198)
+[VAL] Epoch [12]  [0/2]  eta: 0:00:03  loss: 0.0207 (0.0207)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0207 (0.0207)  time: 1.9451  data: 1.6425  max mem: 32580
+[VAL] Epoch [12]  [1/2]  eta: 0:00:01  loss: 0.0207 (0.0256)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0207 (0.0256)  time: 1.0234  data: 0.8214  max mem: 32580
+[VAL] Epoch [12] Total time: 0:00:02 (1.0420 s / it)
+[VAL] Epoch 12 averaged stats: loss: 0.0207 (0.0256)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0207 (0.0256)
+[EarlyStopping] epoch 13 | val_loss=0.025639 | best=0.025681 (epoch 11) | no_improve=2/75
+[LR] epoch 14 | lr=5.00e-05
+[TRAIN] Epoch [13]  [ 0/25]  eta: 0:02:29  loss: 0.0170 (0.0170)  grad_norm: 0.6582 (0.6582)  train_yield_loss: 0.0170 (0.0170)  time: 5.9717  data: 5.2954  max mem: 32580
+[TRAIN] Epoch [13]  [10/25]  eta: 0:00:11  loss: 0.0180 (0.0183)  grad_norm: 0.5770 (0.5989)  train_yield_loss: 0.0180 (0.0183)  time: 0.7814  data: 0.4815  max mem: 32580
+[TRAIN] Epoch [13]  [20/25]  eta: 0:00:02  loss: 0.0175 (0.0177)  grad_norm: 0.5586 (0.5870)  train_yield_loss: 0.0175 (0.0177)  time: 0.2404  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [13]  [24/25]  eta: 0:00:00  loss: 0.0164 (0.0179)  grad_norm: 0.5586 (0.5940)  train_yield_loss: 0.0164 (0.0179)  time: 0.2188  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [13] Total time: 0:00:11 (0.4685 s / it)
+[TRAIN] Epoch 13 averaged stats: loss: 0.0164 (0.0179)  grad_norm: 0.5586 (0.5940)  train_yield_loss: 0.0164 (0.0179)
+[VAL] Epoch [13]  [0/2]  eta: 0:00:03  loss: 0.0203 (0.0203)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0203 (0.0203)  time: 1.9054  data: 1.6043  max mem: 32580
+[VAL] Epoch [13]  [1/2]  eta: 0:00:01  loss: 0.0203 (0.0269)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0203 (0.0269)  time: 1.0032  data: 0.8023  max mem: 32580
+[VAL] Epoch [13] Total time: 0:00:02 (1.0222 s / it)
+[VAL] Epoch 13 averaged stats: loss: 0.0203 (0.0269)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0203 (0.0269)
+[EarlyStopping] epoch 14 | val_loss=0.026928 | best=0.025681 (epoch 11) | no_improve=3/75
+[LR] epoch 15 | lr=5.00e-05
+[TRAIN] Epoch [14]  [ 0/25]  eta: 0:02:30  loss: 0.0241 (0.0241)  grad_norm: 1.0503 (1.0503)  train_yield_loss: 0.0241 (0.0241)  time: 6.0026  data: 5.0901  max mem: 32580
+[TRAIN] Epoch [14]  [10/25]  eta: 0:00:11  loss: 0.0193 (0.0190)  grad_norm: 0.7772 (0.7888)  train_yield_loss: 0.0193 (0.0190)  time: 0.7833  data: 0.4629  max mem: 32580
+[TRAIN] Epoch [14]  [20/25]  eta: 0:00:02  loss: 0.0191 (0.0186)  grad_norm: 0.7510 (0.7540)  train_yield_loss: 0.0191 (0.0186)  time: 0.2390  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [14]  [24/25]  eta: 0:00:00  loss: 0.0191 (0.0182)  grad_norm: 0.7227 (0.7330)  train_yield_loss: 0.0191 (0.0182)  time: 0.2197  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [14] Total time: 0:00:11 (0.4693 s / it)
+[TRAIN] Epoch 14 averaged stats: loss: 0.0191 (0.0182)  grad_norm: 0.7227 (0.7330)  train_yield_loss: 0.0191 (0.0182)
+[VAL] Epoch [14]  [0/2]  eta: 0:00:03  loss: 0.0198 (0.0198)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0198 (0.0198)  time: 1.9729  data: 1.6697  max mem: 32580
+[VAL] Epoch [14]  [1/2]  eta: 0:00:01  loss: 0.0198 (0.0257)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0198 (0.0257)  time: 1.0680  data: 0.8350  max mem: 32580
+[VAL] Epoch [14] Total time: 0:00:02 (1.0864 s / it)
+[VAL] Epoch 14 averaged stats: loss: 0.0198 (0.0257)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0198 (0.0257)
+[EarlyStopping] epoch 15 | val_loss=0.025725 | best=0.025681 (epoch 11) | no_improve=4/75
+[LR] epoch 16 | lr=5.00e-05
+[TRAIN] Epoch [15]  [ 0/25]  eta: 0:02:35  loss: 0.0170 (0.0170)  grad_norm: 0.5919 (0.5919)  train_yield_loss: 0.0170 (0.0170)  time: 6.2218  data: 5.3359  max mem: 32580
+[TRAIN] Epoch [15]  [10/25]  eta: 0:00:12  loss: 0.0163 (0.0167)  grad_norm: 0.5550 (0.5577)  train_yield_loss: 0.0163 (0.0167)  time: 0.8108  data: 0.4852  max mem: 32580
+[TRAIN] Epoch [15]  [20/25]  eta: 0:00:02  loss: 0.0168 (0.0176)  grad_norm: 0.6112 (0.6693)  train_yield_loss: 0.0168 (0.0176)  time: 0.2430  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [15]  [24/25]  eta: 0:00:00  loss: 0.0171 (0.0175)  grad_norm: 0.6924 (0.6799)  train_yield_loss: 0.0171 (0.0175)  time: 0.2185  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [15] Total time: 0:00:12 (0.4802 s / it)
+[TRAIN] Epoch 15 averaged stats: loss: 0.0171 (0.0175)  grad_norm: 0.6924 (0.6799)  train_yield_loss: 0.0171 (0.0175)
+[VAL] Epoch [15]  [0/2]  eta: 0:00:03  loss: 0.0216 (0.0216)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0216 (0.0216)  time: 1.9769  data: 1.6760  max mem: 32580
+[VAL] Epoch [15]  [1/2]  eta: 0:00:01  loss: 0.0216 (0.0280)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0216 (0.0280)  time: 1.0392  data: 0.8381  max mem: 32580
+[VAL] Epoch [15] Total time: 0:00:02 (1.0583 s / it)
+[VAL] Epoch 15 averaged stats: loss: 0.0216 (0.0280)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0216 (0.0280)
+[EarlyStopping] epoch 16 | val_loss=0.027995 | best=0.025681 (epoch 11) | no_improve=5/75
+[LR] epoch 17 | lr=5.00e-05
+[TRAIN] Epoch [16]  [ 0/25]  eta: 0:02:34  loss: 0.0191 (0.0191)  grad_norm: 0.6712 (0.6712)  train_yield_loss: 0.0191 (0.0191)  time: 6.1721  data: 5.2677  max mem: 32580
+[TRAIN] Epoch [16]  [10/25]  eta: 0:00:11  loss: 0.0163 (0.0169)  grad_norm: 0.6067 (0.6132)  train_yield_loss: 0.0163 (0.0169)  time: 0.7856  data: 0.4790  max mem: 32580
+[TRAIN] Epoch [16]  [20/25]  eta: 0:00:02  loss: 0.0161 (0.0167)  grad_norm: 0.5741 (0.5840)  train_yield_loss: 0.0161 (0.0167)  time: 0.2321  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [16]  [24/25]  eta: 0:00:00  loss: 0.0163 (0.0168)  grad_norm: 0.5794 (0.6003)  train_yield_loss: 0.0163 (0.0168)  time: 0.2183  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [16] Total time: 0:00:11 (0.4704 s / it)
+[TRAIN] Epoch 16 averaged stats: loss: 0.0163 (0.0168)  grad_norm: 0.5794 (0.6003)  train_yield_loss: 0.0163 (0.0168)
+[VAL] Epoch [16]  [0/2]  eta: 0:00:03  loss: 0.0252 (0.0252)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0252 (0.0252)  time: 1.9165  data: 1.6772  max mem: 32580
+[VAL] Epoch [16]  [1/2]  eta: 0:00:01  loss: 0.0252 (0.0272)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0252 (0.0272)  time: 1.0090  data: 0.8387  max mem: 32580
+[VAL] Epoch [16] Total time: 0:00:02 (1.0288 s / it)
+[VAL] Epoch 16 averaged stats: loss: 0.0252 (0.0272)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0252 (0.0272)
+[EarlyStopping] epoch 17 | val_loss=0.027221 | best=0.025681 (epoch 11) | no_improve=6/75
+[LR] epoch 18 | lr=5.00e-05
+[TRAIN] Epoch [17]  [ 0/25]  eta: 0:02:33  loss: 0.0199 (0.0199)  grad_norm: 0.7497 (0.7497)  train_yield_loss: 0.0199 (0.0199)  time: 6.1366  data: 5.2946  max mem: 32580
+[TRAIN] Epoch [17]  [10/25]  eta: 0:00:11  loss: 0.0157 (0.0169)  grad_norm: 0.6717 (0.6737)  train_yield_loss: 0.0157 (0.0169)  time: 0.7841  data: 0.4814  max mem: 32580
+[TRAIN] Epoch [17]  [20/25]  eta: 0:00:02  loss: 0.0157 (0.0165)  grad_norm: 0.6013 (0.6210)  train_yield_loss: 0.0157 (0.0165)  time: 0.2340  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [17]  [24/25]  eta: 0:00:00  loss: 0.0157 (0.0165)  grad_norm: 0.5732 (0.6148)  train_yield_loss: 0.0157 (0.0165)  time: 0.2187  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [17] Total time: 0:00:11 (0.4696 s / it)
+[TRAIN] Epoch 17 averaged stats: loss: 0.0157 (0.0165)  grad_norm: 0.5732 (0.6148)  train_yield_loss: 0.0157 (0.0165)
+[VAL] Epoch [17]  [0/2]  eta: 0:00:03  loss: 0.0293 (0.0293)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0293 (0.0293)  time: 1.9855  data: 1.6828  max mem: 32580
+[VAL] Epoch [17]  [1/2]  eta: 0:00:01  loss: 0.0270 (0.0282)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0270 (0.0282)  time: 1.0435  data: 0.8416  max mem: 32580
+[VAL] Epoch [17] Total time: 0:00:02 (1.0622 s / it)
+[VAL] Epoch 17 averaged stats: loss: 0.0270 (0.0282)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0270 (0.0282)
+[EarlyStopping] epoch 18 | val_loss=0.028152 | best=0.025681 (epoch 11) | no_improve=7/75
+[LR] epoch 19 | lr=5.00e-05
+[TRAIN] Epoch [18]  [ 0/25]  eta: 0:02:30  loss: 0.0167 (0.0167)  grad_norm: 0.7577 (0.7577)  train_yield_loss: 0.0167 (0.0167)  time: 6.0019  data: 5.1122  max mem: 32580
+[TRAIN] Epoch [18]  [10/25]  eta: 0:00:11  loss: 0.0153 (0.0160)  grad_norm: 0.5704 (0.5827)  train_yield_loss: 0.0153 (0.0160)  time: 0.7916  data: 0.4648  max mem: 32580
+[TRAIN] Epoch [18]  [20/25]  eta: 0:00:02  loss: 0.0158 (0.0168)  grad_norm: 0.6016 (0.6645)  train_yield_loss: 0.0158 (0.0168)  time: 0.2448  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [18]  [24/25]  eta: 0:00:00  loss: 0.0170 (0.0169)  grad_norm: 0.6626 (0.6822)  train_yield_loss: 0.0170 (0.0169)  time: 0.2198  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [18] Total time: 0:00:11 (0.4737 s / it)
+[TRAIN] Epoch 18 averaged stats: loss: 0.0170 (0.0169)  grad_norm: 0.6626 (0.6822)  train_yield_loss: 0.0170 (0.0169)
+[VAL] Epoch [18]  [0/2]  eta: 0:00:03  loss: 0.0211 (0.0211)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0211 (0.0211)  time: 1.9876  data: 1.6820  max mem: 32580
+[VAL] Epoch [18]  [1/2]  eta: 0:00:01  loss: 0.0211 (0.0257)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0211 (0.0257)  time: 1.0447  data: 0.8411  max mem: 32580
+[VAL] Epoch [18] Total time: 0:00:02 (1.0634 s / it)
+[VAL] Epoch 18 averaged stats: loss: 0.0211 (0.0257)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0211 (0.0257)
+[EarlyStopping] epoch 19 | val_loss=0.025722 | best=0.025681 (epoch 11) | no_improve=8/75
+[LR] epoch 20 | lr=5.00e-05
+[TRAIN] Epoch [19]  [ 0/25]  eta: 0:02:30  loss: 0.0146 (0.0146)  grad_norm: 0.6529 (0.6529)  train_yield_loss: 0.0146 (0.0146)  time: 6.0089  data: 5.1149  max mem: 32580
+[TRAIN] Epoch [19]  [10/25]  eta: 0:00:11  loss: 0.0151 (0.0160)  grad_norm: 0.6529 (0.6285)  train_yield_loss: 0.0151 (0.0160)  time: 0.7909  data: 0.4651  max mem: 32580
+[TRAIN] Epoch [19]  [20/25]  eta: 0:00:02  loss: 0.0155 (0.0161)  grad_norm: 0.5463 (0.5978)  train_yield_loss: 0.0155 (0.0161)  time: 0.2439  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [19]  [24/25]  eta: 0:00:00  loss: 0.0155 (0.0162)  grad_norm: 0.5453 (0.6017)  train_yield_loss: 0.0155 (0.0162)  time: 0.2187  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [19] Total time: 0:00:11 (0.4723 s / it)
+[TRAIN] Epoch 19 averaged stats: loss: 0.0155 (0.0162)  grad_norm: 0.5453 (0.6017)  train_yield_loss: 0.0155 (0.0162)
+[VAL] Epoch [19]  [0/2]  eta: 0:00:03  loss: 0.0240 (0.0240)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0240 (0.0240)  time: 1.9774  data: 1.6725  max mem: 32580
+[VAL] Epoch [19]  [1/2]  eta: 0:00:01  loss: 0.0235 (0.0237)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0235 (0.0237)  time: 1.0407  data: 0.8364  max mem: 32580
+[VAL] Epoch [19] Total time: 0:00:02 (1.0594 s / it)
+[VAL] Epoch 19 averaged stats: loss: 0.0235 (0.0237)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0235 (0.0237)
+Best model saved: /work/mech-ai-scratch/bgekim/project/MultiMAE_NEW/MultiMAE/output/finetune/yield_maskedloss_cdlfix/finetune_best_epoch20_valloss0.0237.pth (val_loss=0.0237)
+[EarlyStopping] epoch 20 | val_loss=0.023749 | best=0.023749 (epoch 20) | no_improve=0/75
+[LR] epoch 21 | lr=5.00e-05
+[TRAIN] Epoch [20]  [ 0/25]  eta: 0:02:24  loss: 0.0185 (0.0185)  grad_norm: 0.5387 (0.5387)  train_yield_loss: 0.0185 (0.0185)  time: 5.7608  data: 5.0993  max mem: 32580
+[TRAIN] Epoch [20]  [10/25]  eta: 0:00:11  loss: 0.0162 (0.0168)  grad_norm: 0.5078 (0.5333)  train_yield_loss: 0.0162 (0.0168)  time: 0.7707  data: 0.4637  max mem: 32580
+[TRAIN] Epoch [20]  [20/25]  eta: 0:00:02  loss: 0.0154 (0.0159)  grad_norm: 0.4477 (0.4800)  train_yield_loss: 0.0154 (0.0159)  time: 0.2451  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [20]  [24/25]  eta: 0:00:00  loss: 0.0146 (0.0155)  grad_norm: 0.4364 (0.4744)  train_yield_loss: 0.0146 (0.0155)  time: 0.2206  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [20] Total time: 0:00:11 (0.4639 s / it)
+[TRAIN] Epoch 20 averaged stats: loss: 0.0146 (0.0155)  grad_norm: 0.4364 (0.4744)  train_yield_loss: 0.0146 (0.0155)
+[VAL] Epoch [20]  [0/2]  eta: 0:00:04  loss: 0.0197 (0.0197)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0197 (0.0197)  time: 2.0201  data: 1.6813  max mem: 32580
+[VAL] Epoch [20]  [1/2]  eta: 0:00:01  loss: 0.0197 (0.0228)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0197 (0.0228)  time: 1.0590  data: 0.8408  max mem: 32580
+[VAL] Epoch [20] Total time: 0:00:02 (1.0773 s / it)
+[VAL] Epoch 20 averaged stats: loss: 0.0197 (0.0228)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0197 (0.0228)
+Best model saved: /work/mech-ai-scratch/bgekim/project/MultiMAE_NEW/MultiMAE/output/finetune/yield_maskedloss_cdlfix/finetune_best_epoch21_valloss0.0228.pth (val_loss=0.0228)
+[EarlyStopping] epoch 21 | val_loss=0.022784 | best=0.022784 (epoch 21) | no_improve=0/75
+[LR] epoch 22 | lr=5.00e-05
+[TRAIN] Epoch [21]  [ 0/25]  eta: 0:02:30  loss: 0.0152 (0.0152)  grad_norm: 0.4813 (0.4813)  train_yield_loss: 0.0152 (0.0152)  time: 6.0103  data: 5.1178  max mem: 32580
+[TRAIN] Epoch [21]  [10/25]  eta: 0:00:11  loss: 0.0158 (0.0156)  grad_norm: 0.5843 (0.5790)  train_yield_loss: 0.0158 (0.0156)  time: 0.7857  data: 0.4654  max mem: 32580
+[TRAIN] Epoch [21]  [20/25]  eta: 0:00:02  loss: 0.0157 (0.0156)  grad_norm: 0.5342 (0.5447)  train_yield_loss: 0.0157 (0.0156)  time: 0.2406  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [21]  [24/25]  eta: 0:00:00  loss: 0.0153 (0.0155)  grad_norm: 0.5042 (0.5260)  train_yield_loss: 0.0153 (0.0155)  time: 0.2177  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [21] Total time: 0:00:11 (0.4698 s / it)
+[TRAIN] Epoch 21 averaged stats: loss: 0.0153 (0.0155)  grad_norm: 0.5042 (0.5260)  train_yield_loss: 0.0153 (0.0155)
+[VAL] Epoch [21]  [0/2]  eta: 0:00:03  loss: 0.0215 (0.0215)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0215 (0.0215)  time: 1.9158  data: 1.6131  max mem: 32580
+[VAL] Epoch [21]  [1/2]  eta: 0:00:01  loss: 0.0215 (0.0259)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0215 (0.0259)  time: 1.0081  data: 0.8066  max mem: 32580
+[VAL] Epoch [21] Total time: 0:00:02 (1.0272 s / it)
+[VAL] Epoch 21 averaged stats: loss: 0.0215 (0.0259)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0215 (0.0259)
+[EarlyStopping] epoch 22 | val_loss=0.025942 | best=0.022784 (epoch 21) | no_improve=1/75
+[LR] epoch 23 | lr=5.00e-05
+[TRAIN] Epoch [22]  [ 0/25]  eta: 0:02:26  loss: 0.0166 (0.0166)  grad_norm: 0.4023 (0.4023)  train_yield_loss: 0.0166 (0.0166)  time: 5.8531  data: 5.1731  max mem: 32580
+[TRAIN] Epoch [22]  [10/25]  eta: 0:00:11  loss: 0.0158 (0.0149)  grad_norm: 0.3930 (0.4077)  train_yield_loss: 0.0158 (0.0149)  time: 0.7781  data: 0.4704  max mem: 32580
+[TRAIN] Epoch [22]  [20/25]  eta: 0:00:02  loss: 0.0150 (0.0148)  grad_norm: 0.4114 (0.4338)  train_yield_loss: 0.0150 (0.0148)  time: 0.2452  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [22]  [24/25]  eta: 0:00:00  loss: 0.0150 (0.0148)  grad_norm: 0.4429 (0.4440)  train_yield_loss: 0.0150 (0.0148)  time: 0.2190  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [22] Total time: 0:00:11 (0.4672 s / it)
+[TRAIN] Epoch 22 averaged stats: loss: 0.0150 (0.0148)  grad_norm: 0.4429 (0.4440)  train_yield_loss: 0.0150 (0.0148)
+[VAL] Epoch [22]  [0/2]  eta: 0:00:03  loss: 0.0240 (0.0240)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0240 (0.0240)  time: 1.9710  data: 1.6701  max mem: 32580
+[VAL] Epoch [22]  [1/2]  eta: 0:00:01  loss: 0.0240 (0.0252)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0240 (0.0252)  time: 1.0361  data: 0.8352  max mem: 32580
+[VAL] Epoch [22] Total time: 0:00:02 (1.0552 s / it)
+[VAL] Epoch 22 averaged stats: loss: 0.0240 (0.0252)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0240 (0.0252)
+[EarlyStopping] epoch 23 | val_loss=0.025180 | best=0.022784 (epoch 21) | no_improve=2/75
+[LR] epoch 24 | lr=5.00e-05
+[TRAIN] Epoch [23]  [ 0/25]  eta: 0:02:30  loss: 0.0172 (0.0172)  grad_norm: 0.6406 (0.6406)  train_yield_loss: 0.0172 (0.0172)  time: 6.0346  data: 5.3686  max mem: 32580
+[TRAIN] Epoch [23]  [10/25]  eta: 0:00:11  loss: 0.0161 (0.0152)  grad_norm: 0.4707 (0.4834)  train_yield_loss: 0.0161 (0.0152)  time: 0.7915  data: 0.4882  max mem: 32580
+[TRAIN] Epoch [23]  [20/25]  eta: 0:00:02  loss: 0.0140 (0.0149)  grad_norm: 0.4508 (0.4442)  train_yield_loss: 0.0140 (0.0149)  time: 0.2430  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [23]  [24/25]  eta: 0:00:00  loss: 0.0138 (0.0147)  grad_norm: 0.4358 (0.4486)  train_yield_loss: 0.0138 (0.0147)  time: 0.2199  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [23] Total time: 0:00:11 (0.4728 s / it)
+[TRAIN] Epoch 23 averaged stats: loss: 0.0138 (0.0147)  grad_norm: 0.4358 (0.4486)  train_yield_loss: 0.0138 (0.0147)
+[VAL] Epoch [23]  [0/2]  eta: 0:00:03  loss: 0.0232 (0.0232)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0232 (0.0232)  time: 1.9983  data: 1.6962  max mem: 32580
+[VAL] Epoch [23]  [1/2]  eta: 0:00:01  loss: 0.0232 (0.0242)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0232 (0.0242)  time: 1.0493  data: 0.8482  max mem: 32580
+[VAL] Epoch [23] Total time: 0:00:02 (1.0684 s / it)
+[VAL] Epoch 23 averaged stats: loss: 0.0232 (0.0242)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0232 (0.0242)
+[EarlyStopping] epoch 24 | val_loss=0.024193 | best=0.022784 (epoch 21) | no_improve=3/75
+[LR] epoch 25 | lr=5.00e-05
+[TRAIN] Epoch [24]  [ 0/25]  eta: 0:02:34  loss: 0.0132 (0.0132)  grad_norm: 0.4240 (0.4240)  train_yield_loss: 0.0132 (0.0132)  time: 6.1967  data: 5.3406  max mem: 32580
+[TRAIN] Epoch [24]  [10/25]  eta: 0:00:11  loss: 0.0144 (0.0144)  grad_norm: 0.4240 (0.4110)  train_yield_loss: 0.0144 (0.0144)  time: 0.7898  data: 0.4856  max mem: 32580
+[TRAIN] Epoch [24]  [20/25]  eta: 0:00:02  loss: 0.0139 (0.0143)  grad_norm: 0.3998 (0.4087)  train_yield_loss: 0.0139 (0.0143)  time: 0.2331  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [24]  [24/25]  eta: 0:00:00  loss: 0.0147 (0.0144)  grad_norm: 0.4267 (0.4281)  train_yield_loss: 0.0147 (0.0144)  time: 0.2196  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [24] Total time: 0:00:11 (0.4723 s / it)
+[TRAIN] Epoch 24 averaged stats: loss: 0.0147 (0.0144)  grad_norm: 0.4267 (0.4281)  train_yield_loss: 0.0147 (0.0144)
+[VAL] Epoch [24]  [0/2]  eta: 0:00:04  loss: 0.0237 (0.0237)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0237 (0.0237)  time: 2.0132  data: 1.7098  max mem: 32580
+[VAL] Epoch [24]  [1/2]  eta: 0:00:01  loss: 0.0237 (0.0239)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0237 (0.0239)  time: 1.0571  data: 0.8550  max mem: 32580
+[VAL] Epoch [24] Total time: 0:00:02 (1.0759 s / it)
+[VAL] Epoch 24 averaged stats: loss: 0.0237 (0.0239)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0237 (0.0239)
+[EarlyStopping] epoch 25 | val_loss=0.023899 | best=0.022784 (epoch 21) | no_improve=4/75
+[LR] epoch 26 | lr=5.00e-05
+[TRAIN] Epoch [25]  [ 0/25]  eta: 0:01:32  loss: 0.0130 (0.0130)  grad_norm: 0.5581 (0.5581)  train_yield_loss: 0.0130 (0.0130)  time: 3.7172  data: 2.8001  max mem: 32580
+[TRAIN] Epoch [25]  [10/25]  eta: 0:00:10  loss: 0.0145 (0.0142)  grad_norm: 0.3776 (0.4055)  train_yield_loss: 0.0145 (0.0142)  time: 0.6843  data: 0.3420  max mem: 32580
+[TRAIN] Epoch [25]  [20/25]  eta: 0:00:02  loss: 0.0146 (0.0145)  grad_norm: 0.3881 (0.4097)  train_yield_loss: 0.0146 (0.0145)  time: 0.2989  data: 0.0482  max mem: 32580
+[TRAIN] Epoch [25]  [24/25]  eta: 0:00:00  loss: 0.0144 (0.0143)  grad_norm: 0.4024 (0.4173)  train_yield_loss: 0.0144 (0.0143)  time: 0.2436  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [25] Total time: 0:00:10 (0.4257 s / it)
+[TRAIN] Epoch 25 averaged stats: loss: 0.0144 (0.0143)  grad_norm: 0.4024 (0.4173)  train_yield_loss: 0.0144 (0.0143)
+[VAL] Epoch [25]  [0/2]  eta: 0:00:03  loss: 0.0212 (0.0212)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0212 (0.0212)  time: 1.9048  data: 1.6025  max mem: 32580
+[VAL] Epoch [25]  [1/2]  eta: 0:00:01  loss: 0.0212 (0.0252)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0212 (0.0252)  time: 1.0029  data: 0.8014  max mem: 32580
+[VAL] Epoch [25] Total time: 0:00:02 (1.0219 s / it)
+[VAL] Epoch 25 averaged stats: loss: 0.0212 (0.0252)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0212 (0.0252)
+[EarlyStopping] epoch 26 | val_loss=0.025223 | best=0.022784 (epoch 21) | no_improve=5/75
+[LR] epoch 27 | lr=5.00e-05
+[TRAIN] Epoch [26]  [ 0/25]  eta: 0:02:27  loss: 0.0164 (0.0164)  grad_norm: 0.4005 (0.4005)  train_yield_loss: 0.0164 (0.0164)  time: 5.8977  data: 5.2179  max mem: 32580
+[TRAIN] Epoch [26]  [10/25]  eta: 0:00:11  loss: 0.0155 (0.0149)  grad_norm: 0.4243 (0.4211)  train_yield_loss: 0.0155 (0.0149)  time: 0.7703  data: 0.4745  max mem: 32580
+[TRAIN] Epoch [26]  [20/25]  eta: 0:00:02  loss: 0.0138 (0.0145)  grad_norm: 0.4170 (0.4160)  train_yield_loss: 0.0138 (0.0145)  time: 0.2382  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [26]  [24/25]  eta: 0:00:00  loss: 0.0133 (0.0142)  grad_norm: 0.4046 (0.4108)  train_yield_loss: 0.0133 (0.0142)  time: 0.2202  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [26] Total time: 0:00:11 (0.4638 s / it)
+[TRAIN] Epoch 26 averaged stats: loss: 0.0133 (0.0142)  grad_norm: 0.4046 (0.4108)  train_yield_loss: 0.0133 (0.0142)
+[VAL] Epoch [26]  [0/2]  eta: 0:00:03  loss: 0.0205 (0.0205)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0205 (0.0205)  time: 1.9799  data: 1.6790  max mem: 32580
+[VAL] Epoch [26]  [1/2]  eta: 0:00:01  loss: 0.0205 (0.0244)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0205 (0.0244)  time: 1.0281  data: 0.8396  max mem: 32580
+[VAL] Epoch [26] Total time: 0:00:02 (1.0475 s / it)
+[VAL] Epoch 26 averaged stats: loss: 0.0205 (0.0244)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0205 (0.0244)
+[EarlyStopping] epoch 27 | val_loss=0.024416 | best=0.022784 (epoch 21) | no_improve=6/75
+[LR] epoch 28 | lr=5.00e-05
+[TRAIN] Epoch [27]  [ 0/25]  eta: 0:02:26  loss: 0.0145 (0.0145)  grad_norm: 0.4370 (0.4370)  train_yield_loss: 0.0145 (0.0145)  time: 5.8474  data: 5.1652  max mem: 32580
+[TRAIN] Epoch [27]  [10/25]  eta: 0:00:11  loss: 0.0140 (0.0139)  grad_norm: 0.4647 (0.4841)  train_yield_loss: 0.0140 (0.0139)  time: 0.7726  data: 0.4697  max mem: 32580
+[TRAIN] Epoch [27]  [20/25]  eta: 0:00:02  loss: 0.0140 (0.0141)  grad_norm: 0.4380 (0.4343)  train_yield_loss: 0.0140 (0.0141)  time: 0.2418  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [27]  [24/25]  eta: 0:00:00  loss: 0.0140 (0.0142)  grad_norm: 0.4227 (0.4272)  train_yield_loss: 0.0140 (0.0142)  time: 0.2234  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [27] Total time: 0:00:11 (0.4652 s / it)
+[TRAIN] Epoch 27 averaged stats: loss: 0.0140 (0.0142)  grad_norm: 0.4227 (0.4272)  train_yield_loss: 0.0140 (0.0142)
+[VAL] Epoch [27]  [0/2]  eta: 0:00:03  loss: 0.0226 (0.0226)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0226 (0.0226)  time: 1.9885  data: 1.6883  max mem: 32580
+[VAL] Epoch [27]  [1/2]  eta: 0:00:01  loss: 0.0226 (0.0240)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0226 (0.0240)  time: 1.0447  data: 0.8442  max mem: 32580
+[VAL] Epoch [27] Total time: 0:00:02 (1.0637 s / it)
+[VAL] Epoch 27 averaged stats: loss: 0.0226 (0.0240)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0226 (0.0240)
+[EarlyStopping] epoch 28 | val_loss=0.023951 | best=0.022784 (epoch 21) | no_improve=7/75
+[LR] epoch 29 | lr=5.00e-05
+[TRAIN] Epoch [28]  [ 0/25]  eta: 0:02:36  loss: 0.0130 (0.0130)  grad_norm: 0.3543 (0.3543)  train_yield_loss: 0.0130 (0.0130)  time: 6.2435  data: 5.3485  max mem: 32580
+[TRAIN] Epoch [28]  [10/25]  eta: 0:00:11  loss: 0.0144 (0.0141)  grad_norm: 0.3896 (0.3973)  train_yield_loss: 0.0144 (0.0141)  time: 0.7988  data: 0.4863  max mem: 32580
+[TRAIN] Epoch [28]  [20/25]  eta: 0:00:02  loss: 0.0141 (0.0137)  grad_norm: 0.3632 (0.3694)  train_yield_loss: 0.0141 (0.0137)  time: 0.2364  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [28]  [24/25]  eta: 0:00:00  loss: 0.0135 (0.0139)  grad_norm: 0.3582 (0.3696)  train_yield_loss: 0.0135 (0.0139)  time: 0.2188  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [28] Total time: 0:00:11 (0.4764 s / it)
+[TRAIN] Epoch 28 averaged stats: loss: 0.0135 (0.0139)  grad_norm: 0.3582 (0.3696)  train_yield_loss: 0.0135 (0.0139)
+[VAL] Epoch [28]  [0/2]  eta: 0:00:03  loss: 0.0204 (0.0204)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0204 (0.0204)  time: 1.9789  data: 1.6769  max mem: 32580
+[VAL] Epoch [28]  [1/2]  eta: 0:00:01  loss: 0.0204 (0.0234)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0204 (0.0234)  time: 1.0401  data: 0.8386  max mem: 32580
+[VAL] Epoch [28] Total time: 0:00:02 (1.0591 s / it)
+[VAL] Epoch 28 averaged stats: loss: 0.0204 (0.0234)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0204 (0.0234)
+[EarlyStopping] epoch 29 | val_loss=0.023354 | best=0.022784 (epoch 21) | no_improve=8/75
+[LR] epoch 30 | lr=5.00e-05
+[TRAIN] Epoch [29]  [ 0/25]  eta: 0:02:25  loss: 0.0152 (0.0152)  grad_norm: 0.3748 (0.3748)  train_yield_loss: 0.0152 (0.0152)  time: 5.8192  data: 5.1389  max mem: 32580
+[TRAIN] Epoch [29]  [10/25]  eta: 0:00:11  loss: 0.0137 (0.0141)  grad_norm: 0.3748 (0.4148)  train_yield_loss: 0.0137 (0.0141)  time: 0.7746  data: 0.4673  max mem: 32580
+[TRAIN] Epoch [29]  [20/25]  eta: 0:00:02  loss: 0.0139 (0.0147)  grad_norm: 0.4587 (0.5130)  train_yield_loss: 0.0139 (0.0147)  time: 0.2456  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [29]  [24/25]  eta: 0:00:00  loss: 0.0153 (0.0148)  grad_norm: 0.5321 (0.5207)  train_yield_loss: 0.0153 (0.0148)  time: 0.2239  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [29] Total time: 0:00:11 (0.4661 s / it)
+[TRAIN] Epoch 29 averaged stats: loss: 0.0153 (0.0148)  grad_norm: 0.5321 (0.5207)  train_yield_loss: 0.0153 (0.0148)
+[VAL] Epoch [29]  [0/2]  eta: 0:00:03  loss: 0.0230 (0.0230)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0230 (0.0230)  time: 1.9756  data: 1.6752  max mem: 32580
+[VAL] Epoch [29]  [1/2]  eta: 0:00:01  loss: 0.0230 (0.0242)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0230 (0.0242)  time: 1.0391  data: 0.8378  max mem: 32580
+[VAL] Epoch [29] Total time: 0:00:02 (1.0581 s / it)
+[VAL] Epoch 29 averaged stats: loss: 0.0230 (0.0242)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0230 (0.0242)
+[EarlyStopping] epoch 30 | val_loss=0.024203 | best=0.022784 (epoch 21) | no_improve=9/75
+[LR] epoch 31 | lr=5.00e-05
+[TRAIN] Epoch [30]  [ 0/25]  eta: 0:02:05  loss: 0.0128 (0.0128)  grad_norm: 0.4661 (0.4661)  train_yield_loss: 0.0128 (0.0128)  time: 5.0273  data: 4.3364  max mem: 32580
+[TRAIN] Epoch [30]  [10/25]  eta: 0:00:10  loss: 0.0135 (0.0143)  grad_norm: 0.3926 (0.4082)  train_yield_loss: 0.0135 (0.0143)  time: 0.7284  data: 0.3943  max mem: 32580
+[TRAIN] Epoch [30]  [20/25]  eta: 0:00:02  loss: 0.0141 (0.0146)  grad_norm: 0.4302 (0.4287)  train_yield_loss: 0.0141 (0.0146)  time: 0.2592  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [30]  [24/25]  eta: 0:00:00  loss: 0.0144 (0.0145)  grad_norm: 0.4310 (0.4363)  train_yield_loss: 0.0144 (0.0145)  time: 0.2374  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [30] Total time: 0:00:11 (0.4454 s / it)
+[TRAIN] Epoch 30 averaged stats: loss: 0.0144 (0.0145)  grad_norm: 0.4310 (0.4363)  train_yield_loss: 0.0144 (0.0145)
+[VAL] Epoch [30]  [0/2]  eta: 0:00:03  loss: 0.0226 (0.0226)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0226 (0.0226)  time: 1.9815  data: 1.6789  max mem: 32580
+[VAL] Epoch [30]  [1/2]  eta: 0:00:01  loss: 0.0226 (0.0243)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0226 (0.0243)  time: 1.0407  data: 0.8395  max mem: 32580
+[VAL] Epoch [30] Total time: 0:00:02 (1.0604 s / it)
+[VAL] Epoch 30 averaged stats: loss: 0.0226 (0.0243)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0226 (0.0243)
+[EarlyStopping] epoch 31 | val_loss=0.024347 | best=0.022784 (epoch 21) | no_improve=10/75
+[LR] epoch 32 | lr=5.00e-05
+[TRAIN] Epoch [31]  [ 0/25]  eta: 0:02:30  loss: 0.0141 (0.0141)  grad_norm: 0.3824 (0.3824)  train_yield_loss: 0.0141 (0.0141)  time: 6.0313  data: 5.3812  max mem: 32580
+[TRAIN] Epoch [31]  [10/25]  eta: 0:00:11  loss: 0.0141 (0.0137)  grad_norm: 0.3765 (0.3785)  train_yield_loss: 0.0141 (0.0137)  time: 0.7802  data: 0.4893  max mem: 32580
+[TRAIN] Epoch [31]  [20/25]  eta: 0:00:02  loss: 0.0141 (0.0142)  grad_norm: 0.3831 (0.3884)  train_yield_loss: 0.0141 (0.0142)  time: 0.2364  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [31]  [24/25]  eta: 0:00:00  loss: 0.0135 (0.0140)  grad_norm: 0.3727 (0.3827)  train_yield_loss: 0.0135 (0.0140)  time: 0.2177  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [31] Total time: 0:00:11 (0.4673 s / it)
+[TRAIN] Epoch 31 averaged stats: loss: 0.0135 (0.0140)  grad_norm: 0.3727 (0.3827)  train_yield_loss: 0.0135 (0.0140)
+[VAL] Epoch [31]  [0/2]  eta: 0:00:03  loss: 0.0192 (0.0192)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0192 (0.0192)  time: 1.9442  data: 1.6418  max mem: 32580
+[VAL] Epoch [31]  [1/2]  eta: 0:00:01  loss: 0.0192 (0.0241)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0192 (0.0241)  time: 1.0224  data: 0.8211  max mem: 32580
+[VAL] Epoch [31] Total time: 0:00:02 (1.0416 s / it)
+[VAL] Epoch 31 averaged stats: loss: 0.0192 (0.0241)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0192 (0.0241)
+[EarlyStopping] epoch 32 | val_loss=0.024121 | best=0.022784 (epoch 21) | no_improve=11/75
+[LR] epoch 33 | lr=5.00e-05
+[TRAIN] Epoch [32]  [ 0/25]  eta: 0:02:37  loss: 0.0162 (0.0162)  grad_norm: 0.4202 (0.4202)  train_yield_loss: 0.0162 (0.0162)  time: 6.2913  data: 5.4237  max mem: 32580
+[TRAIN] Epoch [32]  [10/25]  eta: 0:00:11  loss: 0.0139 (0.0136)  grad_norm: 0.3277 (0.3390)  train_yield_loss: 0.0139 (0.0136)  time: 0.7995  data: 0.4932  max mem: 32580
+[TRAIN] Epoch [32]  [20/25]  eta: 0:00:02  loss: 0.0134 (0.0138)  grad_norm: 0.3203 (0.3320)  train_yield_loss: 0.0134 (0.0138)  time: 0.2342  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [32]  [24/25]  eta: 0:00:00  loss: 0.0131 (0.0136)  grad_norm: 0.3170 (0.3316)  train_yield_loss: 0.0131 (0.0136)  time: 0.2188  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [32] Total time: 0:00:11 (0.4762 s / it)
+[TRAIN] Epoch 32 averaged stats: loss: 0.0131 (0.0136)  grad_norm: 0.3170 (0.3316)  train_yield_loss: 0.0131 (0.0136)
+[VAL] Epoch [32]  [0/2]  eta: 0:00:03  loss: 0.0204 (0.0204)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0204 (0.0204)  time: 1.9989  data: 1.6958  max mem: 32580
+[VAL] Epoch [32]  [1/2]  eta: 0:00:01  loss: 0.0204 (0.0232)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0204 (0.0232)  time: 1.0442  data: 0.8480  max mem: 32580
+[VAL] Epoch [32] Total time: 0:00:02 (1.0632 s / it)
+[VAL] Epoch 32 averaged stats: loss: 0.0204 (0.0232)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0204 (0.0232)
+[EarlyStopping] epoch 33 | val_loss=0.023178 | best=0.022784 (epoch 21) | no_improve=12/75
+[LR] epoch 34 | lr=5.00e-05
+[TRAIN] Epoch [33]  [ 0/25]  eta: 0:02:29  loss: 0.0148 (0.0148)  grad_norm: 0.3029 (0.3029)  train_yield_loss: 0.0148 (0.0148)  time: 5.9898  data: 5.3484  max mem: 32580
+[TRAIN] Epoch [33]  [10/25]  eta: 0:00:11  loss: 0.0138 (0.0138)  grad_norm: 0.3476 (0.3622)  train_yield_loss: 0.0138 (0.0138)  time: 0.7899  data: 0.4863  max mem: 32580
+[TRAIN] Epoch [33]  [20/25]  eta: 0:00:02  loss: 0.0131 (0.0134)  grad_norm: 0.3536 (0.3652)  train_yield_loss: 0.0131 (0.0134)  time: 0.2470  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [33]  [24/25]  eta: 0:00:00  loss: 0.0136 (0.0137)  grad_norm: 0.3489 (0.3553)  train_yield_loss: 0.0136 (0.0137)  time: 0.2230  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [33] Total time: 0:00:11 (0.4750 s / it)
+[TRAIN] Epoch 33 averaged stats: loss: 0.0136 (0.0137)  grad_norm: 0.3489 (0.3553)  train_yield_loss: 0.0136 (0.0137)
+[VAL] Epoch [33]  [0/2]  eta: 0:00:03  loss: 0.0196 (0.0196)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0196 (0.0196)  time: 1.9938  data: 1.6902  max mem: 32580
+[VAL] Epoch [33]  [1/2]  eta: 0:00:01  loss: 0.0196 (0.0244)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0196 (0.0244)  time: 1.0440  data: 0.8452  max mem: 32580
+[VAL] Epoch [33] Total time: 0:00:02 (1.0626 s / it)
+[VAL] Epoch 33 averaged stats: loss: 0.0196 (0.0244)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0196 (0.0244)
+[EarlyStopping] epoch 34 | val_loss=0.024433 | best=0.022784 (epoch 21) | no_improve=13/75
+[LR] epoch 35 | lr=5.00e-05
+[TRAIN] Epoch [34]  [ 0/25]  eta: 0:02:30  loss: 0.0112 (0.0112)  grad_norm: 0.2612 (0.2612)  train_yield_loss: 0.0112 (0.0112)  time: 6.0224  data: 5.3653  max mem: 32580
+[TRAIN] Epoch [34]  [10/25]  eta: 0:00:11  loss: 0.0146 (0.0142)  grad_norm: 0.3607 (0.3630)  train_yield_loss: 0.0146 (0.0142)  time: 0.7787  data: 0.4879  max mem: 32580
+[TRAIN] Epoch [34]  [20/25]  eta: 0:00:02  loss: 0.0146 (0.0144)  grad_norm: 0.4023 (0.4218)  train_yield_loss: 0.0146 (0.0144)  time: 0.2365  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [34]  [24/25]  eta: 0:00:00  loss: 0.0147 (0.0144)  grad_norm: 0.4225 (0.4224)  train_yield_loss: 0.0147 (0.0144)  time: 0.2195  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [34] Total time: 0:00:11 (0.4674 s / it)
+[TRAIN] Epoch 34 averaged stats: loss: 0.0147 (0.0144)  grad_norm: 0.4225 (0.4224)  train_yield_loss: 0.0147 (0.0144)
+[VAL] Epoch [34]  [0/2]  eta: 0:00:03  loss: 0.0213 (0.0213)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0213 (0.0213)  time: 1.9724  data: 1.7084  max mem: 32580
+[VAL] Epoch [34]  [1/2]  eta: 0:00:01  loss: 0.0213 (0.0254)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0213 (0.0254)  time: 1.0300  data: 0.8543  max mem: 32580
+[VAL] Epoch [34] Total time: 0:00:02 (1.0492 s / it)
+[VAL] Epoch 34 averaged stats: loss: 0.0213 (0.0254)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0213 (0.0254)
+[EarlyStopping] epoch 35 | val_loss=0.025373 | best=0.022784 (epoch 21) | no_improve=14/75
+[LR] epoch 36 | lr=5.00e-05
+[TRAIN] Epoch [35]  [ 0/25]  eta: 0:02:31  loss: 0.0120 (0.0120)  grad_norm: 0.3641 (0.3641)  train_yield_loss: 0.0120 (0.0120)  time: 6.0602  data: 5.1715  max mem: 32580
+[TRAIN] Epoch [35]  [10/25]  eta: 0:00:11  loss: 0.0138 (0.0141)  grad_norm: 0.5127 (0.5039)  train_yield_loss: 0.0138 (0.0141)  time: 0.7806  data: 0.4702  max mem: 32580
+[TRAIN] Epoch [35]  [20/25]  eta: 0:00:02  loss: 0.0145 (0.0146)  grad_norm: 0.4456 (0.4484)  train_yield_loss: 0.0145 (0.0146)  time: 0.2349  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [35]  [24/25]  eta: 0:00:00  loss: 0.0145 (0.0144)  grad_norm: 0.4171 (0.4307)  train_yield_loss: 0.0145 (0.0144)  time: 0.2173  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [35] Total time: 0:00:11 (0.4672 s / it)
+[TRAIN] Epoch 35 averaged stats: loss: 0.0145 (0.0144)  grad_norm: 0.4171 (0.4307)  train_yield_loss: 0.0145 (0.0144)
+[VAL] Epoch [35]  [0/2]  eta: 0:00:03  loss: 0.0204 (0.0204)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0204 (0.0204)  time: 1.9764  data: 1.7029  max mem: 32580
+[VAL] Epoch [35]  [1/2]  eta: 0:00:01  loss: 0.0204 (0.0248)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0204 (0.0248)  time: 1.0351  data: 0.8515  max mem: 32580
+[VAL] Epoch [35] Total time: 0:00:02 (1.0542 s / it)
+[VAL] Epoch 35 averaged stats: loss: 0.0204 (0.0248)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0204 (0.0248)
+[EarlyStopping] epoch 36 | val_loss=0.024822 | best=0.022784 (epoch 21) | no_improve=15/75
+[LR] epoch 37 | lr=5.00e-05
+[TRAIN] Epoch [36]  [ 0/25]  eta: 0:02:32  loss: 0.0131 (0.0131)  grad_norm: 0.2691 (0.2691)  train_yield_loss: 0.0131 (0.0131)  time: 6.0833  data: 5.1971  max mem: 32580
+[TRAIN] Epoch [36]  [10/25]  eta: 0:00:11  loss: 0.0133 (0.0136)  grad_norm: 0.3417 (0.3349)  train_yield_loss: 0.0133 (0.0136)  time: 0.7803  data: 0.4726  max mem: 32580
+[TRAIN] Epoch [36]  [20/25]  eta: 0:00:02  loss: 0.0133 (0.0137)  grad_norm: 0.2960 (0.3093)  train_yield_loss: 0.0133 (0.0137)  time: 0.2371  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [36]  [24/25]  eta: 0:00:00  loss: 0.0132 (0.0137)  grad_norm: 0.2847 (0.3123)  train_yield_loss: 0.0132 (0.0137)  time: 0.2217  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [36] Total time: 0:00:11 (0.4707 s / it)
+[TRAIN] Epoch 36 averaged stats: loss: 0.0132 (0.0137)  grad_norm: 0.2847 (0.3123)  train_yield_loss: 0.0132 (0.0137)
+[VAL] Epoch [36]  [0/2]  eta: 0:00:03  loss: 0.0226 (0.0226)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0226 (0.0226)  time: 1.9312  data: 1.6288  max mem: 32580
+[VAL] Epoch [36]  [1/2]  eta: 0:00:01  loss: 0.0226 (0.0242)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0226 (0.0242)  time: 1.0134  data: 0.8145  max mem: 32580
+[VAL] Epoch [36] Total time: 0:00:02 (1.0325 s / it)
+[VAL] Epoch 36 averaged stats: loss: 0.0226 (0.0242)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0226 (0.0242)
+[EarlyStopping] epoch 37 | val_loss=0.024172 | best=0.022784 (epoch 21) | no_improve=16/75
+[LR] epoch 38 | lr=5.00e-05
+[TRAIN] Epoch [37]  [ 0/25]  eta: 0:02:25  loss: 0.0109 (0.0109)  grad_norm: 0.4340 (0.4340)  train_yield_loss: 0.0109 (0.0109)  time: 5.8137  data: 5.1307  max mem: 32580
+[TRAIN] Epoch [37]  [10/25]  eta: 0:00:11  loss: 0.0133 (0.0138)  grad_norm: 0.3941 (0.4052)  train_yield_loss: 0.0133 (0.0138)  time: 0.7637  data: 0.4665  max mem: 32580
+[TRAIN] Epoch [37]  [20/25]  eta: 0:00:02  loss: 0.0133 (0.0138)  grad_norm: 0.3715 (0.3823)  train_yield_loss: 0.0133 (0.0138)  time: 0.2378  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [37]  [24/25]  eta: 0:00:00  loss: 0.0138 (0.0138)  grad_norm: 0.3692 (0.3811)  train_yield_loss: 0.0138 (0.0138)  time: 0.2207  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [37] Total time: 0:00:11 (0.4597 s / it)
+[TRAIN] Epoch 37 averaged stats: loss: 0.0138 (0.0138)  grad_norm: 0.3692 (0.3811)  train_yield_loss: 0.0138 (0.0138)
+[VAL] Epoch [37]  [0/2]  eta: 0:00:03  loss: 0.0205 (0.0205)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0205 (0.0205)  time: 1.9813  data: 1.6823  max mem: 32580
+[VAL] Epoch [37]  [1/2]  eta: 0:00:01  loss: 0.0205 (0.0252)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0205 (0.0252)  time: 1.0363  data: 0.8413  max mem: 32580
+[VAL] Epoch [37] Total time: 0:00:02 (1.0554 s / it)
+[VAL] Epoch 37 averaged stats: loss: 0.0205 (0.0252)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0205 (0.0252)
+[EarlyStopping] epoch 38 | val_loss=0.025202 | best=0.022784 (epoch 21) | no_improve=17/75
+[LR] epoch 39 | lr=5.00e-05
+[TRAIN] Epoch [38]  [ 0/25]  eta: 0:02:30  loss: 0.0121 (0.0121)  grad_norm: 0.4241 (0.4241)  train_yield_loss: 0.0121 (0.0121)  time: 6.0369  data: 5.1609  max mem: 32580
+[TRAIN] Epoch [38]  [10/25]  eta: 0:00:11  loss: 0.0140 (0.0137)  grad_norm: 0.3552 (0.3501)  train_yield_loss: 0.0140 (0.0137)  time: 0.7788  data: 0.4693  max mem: 32580
+[TRAIN] Epoch [38]  [20/25]  eta: 0:00:02  loss: 0.0136 (0.0134)  grad_norm: 0.3229 (0.3525)  train_yield_loss: 0.0136 (0.0134)  time: 0.2365  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [38]  [24/25]  eta: 0:00:00  loss: 0.0140 (0.0136)  grad_norm: 0.3315 (0.3534)  train_yield_loss: 0.0140 (0.0136)  time: 0.2186  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [38] Total time: 0:00:11 (0.4676 s / it)
+[TRAIN] Epoch 38 averaged stats: loss: 0.0140 (0.0136)  grad_norm: 0.3315 (0.3534)  train_yield_loss: 0.0140 (0.0136)
+[VAL] Epoch [38]  [0/2]  eta: 0:00:03  loss: 0.0216 (0.0216)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0216 (0.0216)  time: 1.8709  data: 1.6060  max mem: 32580
+[VAL] Epoch [38]  [1/2]  eta: 0:00:00  loss: 0.0216 (0.0237)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0216 (0.0237)  time: 0.9797  data: 0.8031  max mem: 32580
+[VAL] Epoch [38] Total time: 0:00:01 (0.9978 s / it)
+[VAL] Epoch 38 averaged stats: loss: 0.0216 (0.0237)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0216 (0.0237)
+[EarlyStopping] epoch 39 | val_loss=0.023726 | best=0.022784 (epoch 21) | no_improve=18/75
+[LR] epoch 40 | lr=5.00e-05
+[TRAIN] Epoch [39]  [ 0/25]  eta: 0:02:36  loss: 0.0131 (0.0131)  grad_norm: 0.4273 (0.4273)  train_yield_loss: 0.0131 (0.0131)  time: 6.2442  data: 5.3854  max mem: 32580
+[TRAIN] Epoch [39]  [10/25]  eta: 0:00:11  loss: 0.0133 (0.0134)  grad_norm: 0.3578 (0.3649)  train_yield_loss: 0.0133 (0.0134)  time: 0.7942  data: 0.4897  max mem: 32580
+[TRAIN] Epoch [39]  [20/25]  eta: 0:00:02  loss: 0.0135 (0.0138)  grad_norm: 0.3393 (0.3499)  train_yield_loss: 0.0135 (0.0138)  time: 0.2334  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [39]  [24/25]  eta: 0:00:00  loss: 0.0135 (0.0136)  grad_norm: 0.3393 (0.3500)  train_yield_loss: 0.0135 (0.0136)  time: 0.2192  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [39] Total time: 0:00:11 (0.4741 s / it)
+[TRAIN] Epoch 39 averaged stats: loss: 0.0135 (0.0136)  grad_norm: 0.3393 (0.3500)  train_yield_loss: 0.0135 (0.0136)
+[VAL] Epoch [39]  [0/2]  eta: 0:00:04  loss: 0.0195 (0.0195)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0195 (0.0195)  time: 2.0017  data: 1.6985  max mem: 32580
+[VAL] Epoch [39]  [1/2]  eta: 0:00:01  loss: 0.0195 (0.0241)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0195 (0.0241)  time: 1.0506  data: 0.8494  max mem: 32580
+[VAL] Epoch [39] Total time: 0:00:02 (1.0696 s / it)
+[VAL] Epoch 39 averaged stats: loss: 0.0195 (0.0241)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0195 (0.0241)
+[EarlyStopping] epoch 40 | val_loss=0.024101 | best=0.022784 (epoch 21) | no_improve=19/75
+[LR] epoch 41 | lr=5.00e-05
+[TRAIN] Epoch [40]  [ 0/25]  eta: 0:02:36  loss: 0.0139 (0.0139)  grad_norm: 0.3232 (0.3232)  train_yield_loss: 0.0139 (0.0139)  time: 6.2570  data: 5.3682  max mem: 32580
+[TRAIN] Epoch [40]  [10/25]  eta: 0:00:11  loss: 0.0144 (0.0143)  grad_norm: 0.2981 (0.3012)  train_yield_loss: 0.0144 (0.0143)  time: 0.7979  data: 0.4881  max mem: 32580
+[TRAIN] Epoch [40]  [20/25]  eta: 0:00:02  loss: 0.0135 (0.0135)  grad_norm: 0.2981 (0.3006)  train_yield_loss: 0.0135 (0.0135)  time: 0.2353  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [40]  [24/25]  eta: 0:00:00  loss: 0.0131 (0.0134)  grad_norm: 0.3007 (0.3023)  train_yield_loss: 0.0131 (0.0134)  time: 0.2184  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [40] Total time: 0:00:11 (0.4754 s / it)
+[TRAIN] Epoch 40 averaged stats: loss: 0.0131 (0.0134)  grad_norm: 0.3007 (0.3023)  train_yield_loss: 0.0131 (0.0134)
+[VAL] Epoch [40]  [0/2]  eta: 0:00:03  loss: 0.0196 (0.0196)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0196 (0.0196)  time: 1.9989  data: 1.6945  max mem: 32580
+[VAL] Epoch [40]  [1/2]  eta: 0:00:01  loss: 0.0196 (0.0232)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0196 (0.0232)  time: 1.0503  data: 0.8474  max mem: 32580
+[VAL] Epoch [40] Total time: 0:00:02 (1.0695 s / it)
+[VAL] Epoch 40 averaged stats: loss: 0.0196 (0.0232)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0196 (0.0232)
+[EarlyStopping] epoch 41 | val_loss=0.023160 | best=0.022784 (epoch 21) | no_improve=20/75
+[LR] epoch 42 | lr=5.00e-05
+[TRAIN] Epoch [41]  [ 0/25]  eta: 0:02:31  loss: 0.0125 (0.0125)  grad_norm: 0.2983 (0.2983)  train_yield_loss: 0.0125 (0.0125)  time: 6.0485  data: 5.3821  max mem: 32580
+[TRAIN] Epoch [41]  [10/25]  eta: 0:00:11  loss: 0.0126 (0.0140)  grad_norm: 0.3130 (0.3157)  train_yield_loss: 0.0126 (0.0140)  time: 0.7815  data: 0.4894  max mem: 32580
+[TRAIN] Epoch [41]  [20/25]  eta: 0:00:02  loss: 0.0126 (0.0135)  grad_norm: 0.3149 (0.3185)  train_yield_loss: 0.0126 (0.0135)  time: 0.2365  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [41]  [24/25]  eta: 0:00:00  loss: 0.0126 (0.0134)  grad_norm: 0.3151 (0.3226)  train_yield_loss: 0.0126 (0.0134)  time: 0.2202  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [41] Total time: 0:00:11 (0.4689 s / it)
+[TRAIN] Epoch 41 averaged stats: loss: 0.0126 (0.0134)  grad_norm: 0.3151 (0.3226)  train_yield_loss: 0.0126 (0.0134)
+[VAL] Epoch [41]  [0/2]  eta: 0:00:04  loss: 0.0231 (0.0231)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0231 (0.0231)  time: 2.0105  data: 1.7066  max mem: 32580
+[VAL] Epoch [41]  [1/2]  eta: 0:00:01  loss: 0.0231 (0.0246)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0231 (0.0246)  time: 1.0556  data: 0.8534  max mem: 32580
+[VAL] Epoch [41] Total time: 0:00:02 (1.0747 s / it)
+[VAL] Epoch 41 averaged stats: loss: 0.0231 (0.0246)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0231 (0.0246)
+[EarlyStopping] epoch 42 | val_loss=0.024626 | best=0.022784 (epoch 21) | no_improve=21/75
+[LR] epoch 43 | lr=5.00e-05
+[TRAIN] Epoch [42]  [ 0/25]  eta: 0:02:29  loss: 0.0142 (0.0142)  grad_norm: 0.3912 (0.3912)  train_yield_loss: 0.0142 (0.0142)  time: 5.9987  data: 5.3386  max mem: 32580
+[TRAIN] Epoch [42]  [10/25]  eta: 0:00:11  loss: 0.0126 (0.0137)  grad_norm: 0.3130 (0.3259)  train_yield_loss: 0.0126 (0.0137)  time: 0.7863  data: 0.4854  max mem: 32580
+[TRAIN] Epoch [42]  [20/25]  eta: 0:00:02  loss: 0.0135 (0.0136)  grad_norm: 0.3452 (0.3532)  train_yield_loss: 0.0135 (0.0136)  time: 0.2424  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [42]  [24/25]  eta: 0:00:00  loss: 0.0136 (0.0136)  grad_norm: 0.3445 (0.3433)  train_yield_loss: 0.0136 (0.0136)  time: 0.2187  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [42] Total time: 0:00:11 (0.4707 s / it)
+[TRAIN] Epoch 42 averaged stats: loss: 0.0136 (0.0136)  grad_norm: 0.3445 (0.3433)  train_yield_loss: 0.0136 (0.0136)
+[VAL] Epoch [42]  [0/2]  eta: 0:00:03  loss: 0.0210 (0.0210)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0210 (0.0210)  time: 1.9472  data: 1.6422  max mem: 32580
+[VAL] Epoch [42]  [1/2]  eta: 0:00:01  loss: 0.0210 (0.0236)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0210 (0.0236)  time: 1.0548  data: 0.8212  max mem: 32580
+[VAL] Epoch [42] Total time: 0:00:02 (1.0743 s / it)
+[VAL] Epoch 42 averaged stats: loss: 0.0210 (0.0236)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0210 (0.0236)
+[EarlyStopping] epoch 43 | val_loss=0.023592 | best=0.022784 (epoch 21) | no_improve=22/75
+[LR] epoch 44 | lr=5.00e-05
+[TRAIN] Epoch [43]  [ 0/25]  eta: 0:02:35  loss: 0.0146 (0.0146)  grad_norm: 0.3737 (0.3737)  train_yield_loss: 0.0146 (0.0146)  time: 6.2305  data: 5.3794  max mem: 32580
+[TRAIN] Epoch [43]  [10/25]  eta: 0:00:11  loss: 0.0141 (0.0142)  grad_norm: 0.3072 (0.3161)  train_yield_loss: 0.0141 (0.0142)  time: 0.7971  data: 0.4891  max mem: 32580
+[TRAIN] Epoch [43]  [20/25]  eta: 0:00:02  loss: 0.0132 (0.0136)  grad_norm: 0.2938 (0.3091)  train_yield_loss: 0.0132 (0.0136)  time: 0.2365  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [43]  [24/25]  eta: 0:00:00  loss: 0.0130 (0.0136)  grad_norm: 0.2963 (0.3121)  train_yield_loss: 0.0130 (0.0136)  time: 0.2203  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [43] Total time: 0:00:11 (0.4766 s / it)
+[TRAIN] Epoch 43 averaged stats: loss: 0.0130 (0.0136)  grad_norm: 0.2963 (0.3121)  train_yield_loss: 0.0130 (0.0136)
+[VAL] Epoch [43]  [0/2]  eta: 0:00:03  loss: 0.0213 (0.0213)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0213 (0.0213)  time: 1.9973  data: 1.6936  max mem: 32580
+[VAL] Epoch [43]  [1/2]  eta: 0:00:01  loss: 0.0213 (0.0241)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0213 (0.0241)  time: 1.0489  data: 0.8469  max mem: 32580
+[VAL] Epoch [43] Total time: 0:00:02 (1.0684 s / it)
+[VAL] Epoch 43 averaged stats: loss: 0.0213 (0.0241)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0213 (0.0241)
+[EarlyStopping] epoch 44 | val_loss=0.024122 | best=0.022784 (epoch 21) | no_improve=23/75
+[LR] epoch 45 | lr=5.00e-05
+[TRAIN] Epoch [44]  [ 0/25]  eta: 0:02:32  loss: 0.0140 (0.0140)  grad_norm: 0.3461 (0.3461)  train_yield_loss: 0.0140 (0.0140)  time: 6.1144  data: 5.4311  max mem: 32580
+[TRAIN] Epoch [44]  [10/25]  eta: 0:00:11  loss: 0.0134 (0.0136)  grad_norm: 0.3043 (0.3046)  train_yield_loss: 0.0134 (0.0136)  time: 0.7837  data: 0.4938  max mem: 32580
+[TRAIN] Epoch [44]  [20/25]  eta: 0:00:02  loss: 0.0129 (0.0132)  grad_norm: 0.3001 (0.2990)  train_yield_loss: 0.0129 (0.0132)  time: 0.2336  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [44]  [24/25]  eta: 0:00:00  loss: 0.0131 (0.0134)  grad_norm: 0.3004 (0.2969)  train_yield_loss: 0.0131 (0.0134)  time: 0.2188  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [44] Total time: 0:00:11 (0.4695 s / it)
+[TRAIN] Epoch 44 averaged stats: loss: 0.0131 (0.0134)  grad_norm: 0.3004 (0.2969)  train_yield_loss: 0.0131 (0.0134)
+[VAL] Epoch [44]  [0/2]  eta: 0:00:04  loss: 0.0230 (0.0230)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0230 (0.0230)  time: 2.0566  data: 1.7521  max mem: 32580
+[VAL] Epoch [44]  [1/2]  eta: 0:00:01  loss: 0.0230 (0.0246)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0230 (0.0246)  time: 1.0796  data: 0.8762  max mem: 32580
+[VAL] Epoch [44] Total time: 0:00:02 (1.0983 s / it)
+[VAL] Epoch 44 averaged stats: loss: 0.0230 (0.0246)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0230 (0.0246)
+[EarlyStopping] epoch 45 | val_loss=0.024606 | best=0.022784 (epoch 21) | no_improve=24/75
+[LR] epoch 46 | lr=5.00e-05
+[TRAIN] Epoch [45]  [ 0/25]  eta: 0:02:38  loss: 0.0123 (0.0123)  grad_norm: 0.3066 (0.3066)  train_yield_loss: 0.0123 (0.0123)  time: 6.3247  data: 5.4546  max mem: 32580
+[TRAIN] Epoch [45]  [10/25]  eta: 0:00:12  loss: 0.0138 (0.0133)  grad_norm: 0.3283 (0.3246)  train_yield_loss: 0.0138 (0.0133)  time: 0.8015  data: 0.4960  max mem: 32580
+[TRAIN] Epoch [45]  [20/25]  eta: 0:00:02  loss: 0.0135 (0.0135)  grad_norm: 0.3366 (0.3439)  train_yield_loss: 0.0135 (0.0135)  time: 0.2359  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [45]  [24/25]  eta: 0:00:00  loss: 0.0135 (0.0135)  grad_norm: 0.3386 (0.3403)  train_yield_loss: 0.0135 (0.0135)  time: 0.2200  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [45] Total time: 0:00:11 (0.4786 s / it)
+[TRAIN] Epoch 45 averaged stats: loss: 0.0135 (0.0135)  grad_norm: 0.3386 (0.3403)  train_yield_loss: 0.0135 (0.0135)
+[VAL] Epoch [45]  [0/2]  eta: 0:00:04  loss: 0.0233 (0.0233)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0233 (0.0233)  time: 2.0096  data: 1.7611  max mem: 32580
+[VAL] Epoch [45]  [1/2]  eta: 0:00:01  loss: 0.0233 (0.0253)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0233 (0.0253)  time: 1.0515  data: 0.8806  max mem: 32580
+[VAL] Epoch [45] Total time: 0:00:02 (1.0705 s / it)
+[VAL] Epoch 45 averaged stats: loss: 0.0233 (0.0253)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0233 (0.0253)
+[EarlyStopping] epoch 46 | val_loss=0.025295 | best=0.022784 (epoch 21) | no_improve=25/75
+[LR] epoch 47 | lr=5.00e-05
+[TRAIN] Epoch [46]  [ 0/25]  eta: 0:02:31  loss: 0.0152 (0.0152)  grad_norm: 0.3535 (0.3535)  train_yield_loss: 0.0152 (0.0152)  time: 6.0632  data: 5.4015  max mem: 32580
+[TRAIN] Epoch [46]  [10/25]  eta: 0:00:11  loss: 0.0152 (0.0144)  grad_norm: 0.2953 (0.3080)  train_yield_loss: 0.0152 (0.0144)  time: 0.7945  data: 0.4912  max mem: 32580
+[TRAIN] Epoch [46]  [20/25]  eta: 0:00:02  loss: 0.0129 (0.0135)  grad_norm: 0.2953 (0.3108)  train_yield_loss: 0.0129 (0.0135)  time: 0.2436  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [46]  [24/25]  eta: 0:00:00  loss: 0.0128 (0.0134)  grad_norm: 0.2904 (0.3074)  train_yield_loss: 0.0128 (0.0134)  time: 0.2203  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [46] Total time: 0:00:11 (0.4748 s / it)
+[TRAIN] Epoch 46 averaged stats: loss: 0.0128 (0.0134)  grad_norm: 0.2904 (0.3074)  train_yield_loss: 0.0128 (0.0134)
+[VAL] Epoch [46]  [0/2]  eta: 0:00:03  loss: 0.0227 (0.0227)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0227 (0.0227)  time: 1.9901  data: 1.6885  max mem: 32580
+[VAL] Epoch [46]  [1/2]  eta: 0:00:01  loss: 0.0227 (0.0242)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0227 (0.0242)  time: 1.0451  data: 0.8444  max mem: 32580
+[VAL] Epoch [46] Total time: 0:00:02 (1.4691 s / it)
+[VAL] Epoch 46 averaged stats: loss: 0.0227 (0.0242)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0227 (0.0242)
+[EarlyStopping] epoch 47 | val_loss=0.024184 | best=0.022784 (epoch 21) | no_improve=26/75
+[LR] epoch 48 | lr=5.00e-05
+[TRAIN] Epoch [47]  [ 0/25]  eta: 0:02:32  loss: 0.0116 (0.0116)  grad_norm: 0.2659 (0.2659)  train_yield_loss: 0.0116 (0.0116)  time: 6.0891  data: 5.4160  max mem: 32580
+[TRAIN] Epoch [47]  [10/25]  eta: 0:00:11  loss: 0.0137 (0.0136)  grad_norm: 0.2779 (0.3141)  train_yield_loss: 0.0137 (0.0136)  time: 0.7966  data: 0.4925  max mem: 32580
+[TRAIN] Epoch [47]  [20/25]  eta: 0:00:02  loss: 0.0136 (0.0136)  grad_norm: 0.3239 (0.3213)  train_yield_loss: 0.0136 (0.0136)  time: 0.2421  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [47]  [24/25]  eta: 0:00:00  loss: 0.0135 (0.0135)  grad_norm: 0.3338 (0.3238)  train_yield_loss: 0.0135 (0.0135)  time: 0.2175  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [47] Total time: 0:00:11 (0.4741 s / it)
+[TRAIN] Epoch 47 averaged stats: loss: 0.0135 (0.0135)  grad_norm: 0.3338 (0.3238)  train_yield_loss: 0.0135 (0.0135)
+[VAL] Epoch [47]  [0/2]  eta: 0:00:03  loss: 0.0214 (0.0214)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0214 (0.0214)  time: 1.9937  data: 1.6902  max mem: 32580
+[VAL] Epoch [47]  [1/2]  eta: 0:00:01  loss: 0.0214 (0.0244)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0214 (0.0244)  time: 1.0469  data: 0.8453  max mem: 32580
+[VAL] Epoch [47] Total time: 0:00:02 (1.0655 s / it)
+[VAL] Epoch 47 averaged stats: loss: 0.0214 (0.0244)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0214 (0.0244)
+[EarlyStopping] epoch 48 | val_loss=0.024400 | best=0.022784 (epoch 21) | no_improve=27/75
+[LR] epoch 49 | lr=5.00e-05
+[TRAIN] Epoch [48]  [ 0/25]  eta: 0:02:36  loss: 0.0137 (0.0137)  grad_norm: 0.3242 (0.3242)  train_yield_loss: 0.0137 (0.0137)  time: 6.2711  data: 5.4095  max mem: 32580
+[TRAIN] Epoch [48]  [10/25]  eta: 0:00:11  loss: 0.0125 (0.0125)  grad_norm: 0.3083 (0.3016)  train_yield_loss: 0.0125 (0.0125)  time: 0.7955  data: 0.4919  max mem: 32580
+[TRAIN] Epoch [48]  [20/25]  eta: 0:00:02  loss: 0.0129 (0.0132)  grad_norm: 0.2997 (0.3008)  train_yield_loss: 0.0129 (0.0132)  time: 0.2327  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [48]  [24/25]  eta: 0:00:00  loss: 0.0133 (0.0134)  grad_norm: 0.2903 (0.2978)  train_yield_loss: 0.0133 (0.0134)  time: 0.2180  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [48] Total time: 0:00:11 (0.4742 s / it)
+[TRAIN] Epoch 48 averaged stats: loss: 0.0133 (0.0134)  grad_norm: 0.2903 (0.2978)  train_yield_loss: 0.0133 (0.0134)
+[VAL] Epoch [48]  [0/2]  eta: 0:00:04  loss: 0.0221 (0.0221)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0221 (0.0221)  time: 2.0215  data: 1.7184  max mem: 32580
+[VAL] Epoch [48]  [1/2]  eta: 0:00:01  loss: 0.0221 (0.0234)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0221 (0.0234)  time: 1.0606  data: 0.8593  max mem: 32580
+[VAL] Epoch [48] Total time: 0:00:02 (1.0803 s / it)
+[VAL] Epoch 48 averaged stats: loss: 0.0221 (0.0234)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0221 (0.0234)
+[EarlyStopping] epoch 49 | val_loss=0.023421 | best=0.022784 (epoch 21) | no_improve=28/75
+[LR] epoch 50 | lr=5.00e-05
+[TRAIN] Epoch [49]  [ 0/25]  eta: 0:02:32  loss: 0.0124 (0.0124)  grad_norm: 0.3319 (0.3319)  train_yield_loss: 0.0124 (0.0124)  time: 6.1018  data: 5.1884  max mem: 32580
+[TRAIN] Epoch [49]  [10/25]  eta: 0:00:11  loss: 0.0124 (0.0130)  grad_norm: 0.2879 (0.2734)  train_yield_loss: 0.0124 (0.0130)  time: 0.7974  data: 0.4718  max mem: 32580
+[TRAIN] Epoch [49]  [20/25]  eta: 0:00:02  loss: 0.0134 (0.0134)  grad_norm: 0.2984 (0.2995)  train_yield_loss: 0.0134 (0.0134)  time: 0.2420  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [49]  [24/25]  eta: 0:00:00  loss: 0.0131 (0.0134)  grad_norm: 0.3138 (0.3156)  train_yield_loss: 0.0131 (0.0134)  time: 0.2172  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [49] Total time: 0:00:11 (0.4746 s / it)
+[TRAIN] Epoch 49 averaged stats: loss: 0.0131 (0.0134)  grad_norm: 0.3138 (0.3156)  train_yield_loss: 0.0131 (0.0134)
+[VAL] Epoch [49]  [0/2]  eta: 0:00:03  loss: 0.0224 (0.0224)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0224 (0.0224)  time: 1.9948  data: 1.6887  max mem: 32580
+[VAL] Epoch [49]  [1/2]  eta: 0:00:01  loss: 0.0224 (0.0240)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0224 (0.0240)  time: 1.0476  data: 0.8445  max mem: 32580
+[VAL] Epoch [49] Total time: 0:00:02 (1.0668 s / it)
+[VAL] Epoch 49 averaged stats: loss: 0.0224 (0.0240)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0224 (0.0240)
+[EarlyStopping] epoch 50 | val_loss=0.024019 | best=0.022784 (epoch 21) | no_improve=29/75
+[LR] epoch 51 | lr=5.00e-05
+[TRAIN] Epoch [50]  [ 0/25]  eta: 0:02:32  loss: 0.0140 (0.0140)  grad_norm: 0.4126 (0.4126)  train_yield_loss: 0.0140 (0.0140)  time: 6.0893  data: 5.4112  max mem: 32580
+[TRAIN] Epoch [50]  [10/25]  eta: 0:00:11  loss: 0.0133 (0.0135)  grad_norm: 0.3962 (0.3914)  train_yield_loss: 0.0133 (0.0135)  time: 0.7943  data: 0.4920  max mem: 32580
+[TRAIN] Epoch [50]  [20/25]  eta: 0:00:02  loss: 0.0133 (0.0133)  grad_norm: 0.3393 (0.3443)  train_yield_loss: 0.0133 (0.0133)  time: 0.2418  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [50]  [24/25]  eta: 0:00:00  loss: 0.0135 (0.0137)  grad_norm: 0.3193 (0.3440)  train_yield_loss: 0.0135 (0.0137)  time: 0.2186  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [50] Total time: 0:00:11 (0.4742 s / it)
+[TRAIN] Epoch 50 averaged stats: loss: 0.0135 (0.0137)  grad_norm: 0.3193 (0.3440)  train_yield_loss: 0.0135 (0.0137)
+[VAL] Epoch [50]  [0/2]  eta: 0:00:03  loss: 0.0200 (0.0200)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0200 (0.0200)  time: 1.9598  data: 1.6548  max mem: 32580
+[VAL] Epoch [50]  [1/2]  eta: 0:00:01  loss: 0.0200 (0.0233)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0200 (0.0233)  time: 1.0299  data: 0.8276  max mem: 32580
+[VAL] Epoch [50] Total time: 0:00:02 (1.0486 s / it)
+[VAL] Epoch 50 averaged stats: loss: 0.0200 (0.0233)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0200 (0.0233)
+[EarlyStopping] epoch 51 | val_loss=0.023326 | best=0.022784 (epoch 21) | no_improve=30/75
+[LR] epoch 52 | lr=5.00e-05
+[TRAIN] Epoch [51]  [ 0/25]  eta: 0:01:21  loss: 0.0152 (0.0152)  grad_norm: 0.2979 (0.2979)  train_yield_loss: 0.0152 (0.0152)  time: 3.2673  data: 2.5054  max mem: 32580
+[TRAIN] Epoch [51]  [10/25]  eta: 0:00:09  loss: 0.0138 (0.0131)  grad_norm: 0.2729 (0.2797)  train_yield_loss: 0.0138 (0.0131)  time: 0.6144  data: 0.2581  max mem: 32580
+[TRAIN] Epoch [51]  [20/25]  eta: 0:00:02  loss: 0.0131 (0.0132)  grad_norm: 0.2673 (0.2652)  train_yield_loss: 0.0131 (0.0132)  time: 0.2937  data: 0.0167  max mem: 32580
+[TRAIN] Epoch [51]  [24/25]  eta: 0:00:00  loss: 0.0131 (0.0132)  grad_norm: 0.2403 (0.2618)  train_yield_loss: 0.0131 (0.0132)  time: 0.2591  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [51] Total time: 0:00:10 (0.4026 s / it)
+[TRAIN] Epoch 51 averaged stats: loss: 0.0131 (0.0132)  grad_norm: 0.2403 (0.2618)  train_yield_loss: 0.0131 (0.0132)
+[VAL] Epoch [51]  [0/2]  eta: 0:00:03  loss: 0.0207 (0.0207)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0207 (0.0207)  time: 1.9916  data: 1.6907  max mem: 32580
+[VAL] Epoch [51]  [1/2]  eta: 0:00:01  loss: 0.0207 (0.0239)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0207 (0.0239)  time: 1.0460  data: 0.8454  max mem: 32580
+[VAL] Epoch [51] Total time: 0:00:02 (1.0649 s / it)
+[VAL] Epoch 51 averaged stats: loss: 0.0207 (0.0239)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0207 (0.0239)
+[EarlyStopping] epoch 52 | val_loss=0.023884 | best=0.022784 (epoch 21) | no_improve=31/75
+[LR] epoch 53 | lr=5.00e-05
+[TRAIN] Epoch [52]  [ 0/25]  eta: 0:02:31  loss: 0.0109 (0.0109)  grad_norm: 0.2314 (0.2314)  train_yield_loss: 0.0109 (0.0109)  time: 6.0647  data: 5.3914  max mem: 32580
+[TRAIN] Epoch [52]  [10/25]  eta: 0:00:11  loss: 0.0126 (0.0126)  grad_norm: 0.2706 (0.2665)  train_yield_loss: 0.0126 (0.0126)  time: 0.7800  data: 0.4902  max mem: 32580
+[TRAIN] Epoch [52]  [20/25]  eta: 0:00:02  loss: 0.0129 (0.0129)  grad_norm: 0.2856 (0.2814)  train_yield_loss: 0.0129 (0.0129)  time: 0.2338  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [52]  [24/25]  eta: 0:00:00  loss: 0.0131 (0.0132)  grad_norm: 0.2723 (0.2734)  train_yield_loss: 0.0131 (0.0132)  time: 0.2167  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [52] Total time: 0:00:11 (0.4664 s / it)
+[TRAIN] Epoch 52 averaged stats: loss: 0.0131 (0.0132)  grad_norm: 0.2723 (0.2734)  train_yield_loss: 0.0131 (0.0132)
+[VAL] Epoch [52]  [0/2]  eta: 0:00:04  loss: 0.0196 (0.0196)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0196 (0.0196)  time: 2.0042  data: 1.7009  max mem: 32580
+[VAL] Epoch [52]  [1/2]  eta: 0:00:01  loss: 0.0196 (0.0257)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0196 (0.0257)  time: 1.0518  data: 0.8505  max mem: 32580
+[VAL] Epoch [52] Total time: 0:00:02 (1.0710 s / it)
+[VAL] Epoch 52 averaged stats: loss: 0.0196 (0.0257)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0196 (0.0257)
+[EarlyStopping] epoch 53 | val_loss=0.025666 | best=0.022784 (epoch 21) | no_improve=32/75
+[LR] epoch 54 | lr=5.00e-05
+[TRAIN] Epoch [53]  [ 0/25]  eta: 0:02:32  loss: 0.0113 (0.0113)  grad_norm: 0.2402 (0.2402)  train_yield_loss: 0.0113 (0.0113)  time: 6.0987  data: 5.2080  max mem: 32580
+[TRAIN] Epoch [53]  [10/25]  eta: 0:00:11  loss: 0.0137 (0.0137)  grad_norm: 0.2993 (0.2793)  train_yield_loss: 0.0137 (0.0137)  time: 0.7898  data: 0.4736  max mem: 32580
+[TRAIN] Epoch [53]  [20/25]  eta: 0:00:02  loss: 0.0132 (0.0133)  grad_norm: 0.3025 (0.2956)  train_yield_loss: 0.0132 (0.0133)  time: 0.2388  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [53]  [24/25]  eta: 0:00:00  loss: 0.0131 (0.0133)  grad_norm: 0.2971 (0.2934)  train_yield_loss: 0.0131 (0.0133)  time: 0.2181  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [53] Total time: 0:00:11 (0.4722 s / it)
+[TRAIN] Epoch 53 averaged stats: loss: 0.0131 (0.0133)  grad_norm: 0.2971 (0.2934)  train_yield_loss: 0.0131 (0.0133)
+[VAL] Epoch [53]  [0/2]  eta: 0:00:03  loss: 0.0193 (0.0193)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0193 (0.0193)  time: 1.9824  data: 1.6805  max mem: 32580
+[VAL] Epoch [53]  [1/2]  eta: 0:00:01  loss: 0.0193 (0.0237)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0193 (0.0237)  time: 1.0413  data: 0.8404  max mem: 32580
+[VAL] Epoch [53] Total time: 0:00:02 (1.0603 s / it)
+[VAL] Epoch 53 averaged stats: loss: 0.0193 (0.0237)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0193 (0.0237)
+[EarlyStopping] epoch 54 | val_loss=0.023654 | best=0.022784 (epoch 21) | no_improve=33/75
+[LR] epoch 55 | lr=5.00e-05
+[TRAIN] Epoch [54]  [ 0/25]  eta: 0:02:37  loss: 0.0100 (0.0100)  grad_norm: 0.3050 (0.3050)  train_yield_loss: 0.0100 (0.0100)  time: 6.2915  data: 5.3811  max mem: 32580
+[TRAIN] Epoch [54]  [10/25]  eta: 0:00:12  loss: 0.0132 (0.0132)  grad_norm: 0.3219 (0.3265)  train_yield_loss: 0.0132 (0.0132)  time: 0.8003  data: 0.4893  max mem: 32580
+[TRAIN] Epoch [54]  [20/25]  eta: 0:00:02  loss: 0.0136 (0.0134)  grad_norm: 0.2913 (0.2970)  train_yield_loss: 0.0136 (0.0134)  time: 0.2343  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [54]  [24/25]  eta: 0:00:00  loss: 0.0136 (0.0133)  grad_norm: 0.2786 (0.2993)  train_yield_loss: 0.0136 (0.0133)  time: 0.2179  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [54] Total time: 0:00:11 (0.4765 s / it)
+[TRAIN] Epoch 54 averaged stats: loss: 0.0136 (0.0133)  grad_norm: 0.2786 (0.2993)  train_yield_loss: 0.0136 (0.0133)
+[VAL] Epoch [54]  [0/2]  eta: 0:00:04  loss: 0.0213 (0.0213)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0213 (0.0213)  time: 2.0267  data: 1.6911  max mem: 32580
+[VAL] Epoch [54]  [1/2]  eta: 0:00:01  loss: 0.0213 (0.0240)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0213 (0.0240)  time: 1.0634  data: 0.8457  max mem: 32580
+[VAL] Epoch [54] Total time: 0:00:02 (1.0825 s / it)
+[VAL] Epoch 54 averaged stats: loss: 0.0213 (0.0240)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0213 (0.0240)
+[EarlyStopping] epoch 55 | val_loss=0.023976 | best=0.022784 (epoch 21) | no_improve=34/75
+[LR] epoch 56 | lr=5.00e-05
+[TRAIN] Epoch [55]  [ 0/25]  eta: 0:02:35  loss: 0.0152 (0.0152)  grad_norm: 0.2451 (0.2451)  train_yield_loss: 0.0152 (0.0152)  time: 6.2105  data: 5.3613  max mem: 32580
+[TRAIN] Epoch [55]  [10/25]  eta: 0:00:11  loss: 0.0136 (0.0139)  grad_norm: 0.2451 (0.2443)  train_yield_loss: 0.0136 (0.0139)  time: 0.7936  data: 0.4875  max mem: 32580
+[TRAIN] Epoch [55]  [20/25]  eta: 0:00:02  loss: 0.0133 (0.0134)  grad_norm: 0.2685 (0.2664)  train_yield_loss: 0.0133 (0.0134)  time: 0.2353  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [55]  [24/25]  eta: 0:00:00  loss: 0.0129 (0.0132)  grad_norm: 0.2809 (0.2698)  train_yield_loss: 0.0129 (0.0132)  time: 0.2194  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [55] Total time: 0:00:11 (0.4736 s / it)
+[TRAIN] Epoch 55 averaged stats: loss: 0.0129 (0.0132)  grad_norm: 0.2809 (0.2698)  train_yield_loss: 0.0129 (0.0132)
+[VAL] Epoch [55]  [0/2]  eta: 0:00:03  loss: 0.0203 (0.0203)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0203 (0.0203)  time: 1.9970  data: 1.6875  max mem: 32580
+[VAL] Epoch [55]  [1/2]  eta: 0:00:01  loss: 0.0203 (0.0233)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0203 (0.0233)  time: 1.0491  data: 0.8439  max mem: 32580
+[VAL] Epoch [55] Total time: 0:00:02 (1.0682 s / it)
+[VAL] Epoch 55 averaged stats: loss: 0.0203 (0.0233)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0203 (0.0233)
+[EarlyStopping] epoch 56 | val_loss=0.023258 | best=0.022784 (epoch 21) | no_improve=35/75
+[LR] epoch 57 | lr=5.00e-05
+[TRAIN] Epoch [56]  [ 0/25]  eta: 0:01:32  loss: 0.0165 (0.0165)  grad_norm: 0.2862 (0.2862)  train_yield_loss: 0.0165 (0.0165)  time: 3.7142  data: 3.0420  max mem: 32580
+[TRAIN] Epoch [56]  [10/25]  eta: 0:00:10  loss: 0.0141 (0.0139)  grad_norm: 0.2474 (0.2516)  train_yield_loss: 0.0141 (0.0139)  time: 0.6737  data: 0.3334  max mem: 32580
+[TRAIN] Epoch [56]  [20/25]  eta: 0:00:02  loss: 0.0140 (0.0139)  grad_norm: 0.2686 (0.3353)  train_yield_loss: 0.0140 (0.0139)  time: 0.2933  data: 0.0313  max mem: 32580
+[TRAIN] Epoch [56]  [24/25]  eta: 0:00:00  loss: 0.0140 (0.0137)  grad_norm: 0.3295 (0.3360)  train_yield_loss: 0.0140 (0.0137)  time: 0.2453  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [56] Total time: 0:00:10 (0.4201 s / it)
+[TRAIN] Epoch 56 averaged stats: loss: 0.0140 (0.0137)  grad_norm: 0.3295 (0.3360)  train_yield_loss: 0.0140 (0.0137)
+[VAL] Epoch [56]  [0/2]  eta: 0:00:03  loss: 0.0194 (0.0194)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0194 (0.0194)  time: 1.9384  data: 1.6672  max mem: 32580
+[VAL] Epoch [56]  [1/2]  eta: 0:00:01  loss: 0.0194 (0.0242)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0194 (0.0242)  time: 1.0161  data: 0.8337  max mem: 32580
+[VAL] Epoch [56] Total time: 0:00:02 (1.0348 s / it)
+[VAL] Epoch 56 averaged stats: loss: 0.0194 (0.0242)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0194 (0.0242)
+[EarlyStopping] epoch 57 | val_loss=0.024244 | best=0.022784 (epoch 21) | no_improve=36/75
+[LR] epoch 58 | lr=5.00e-05
+[TRAIN] Epoch [57]  [ 0/25]  eta: 0:02:27  loss: 0.0137 (0.0137)  grad_norm: 0.3618 (0.3618)  train_yield_loss: 0.0137 (0.0137)  time: 5.8907  data: 5.1943  max mem: 32580
+[TRAIN] Epoch [57]  [10/25]  eta: 0:00:11  loss: 0.0133 (0.0134)  grad_norm: 0.3077 (0.3051)  train_yield_loss: 0.0133 (0.0134)  time: 0.7661  data: 0.4723  max mem: 32580
+[TRAIN] Epoch [57]  [20/25]  eta: 0:00:02  loss: 0.0131 (0.0134)  grad_norm: 0.2786 (0.2869)  train_yield_loss: 0.0131 (0.0134)  time: 0.2356  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [57]  [24/25]  eta: 0:00:00  loss: 0.0129 (0.0133)  grad_norm: 0.2713 (0.2816)  train_yield_loss: 0.0129 (0.0133)  time: 0.2200  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [57] Total time: 0:00:11 (0.4617 s / it)
+[TRAIN] Epoch 57 averaged stats: loss: 0.0129 (0.0133)  grad_norm: 0.2713 (0.2816)  train_yield_loss: 0.0129 (0.0133)
+[VAL] Epoch [57]  [0/2]  eta: 0:00:04  loss: 0.0205 (0.0205)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0205 (0.0205)  time: 2.0155  data: 1.7131  max mem: 32580
+[VAL] Epoch [57]  [1/2]  eta: 0:00:01  loss: 0.0205 (0.0233)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0205 (0.0233)  time: 1.0585  data: 0.8567  max mem: 32580
+[VAL] Epoch [57] Total time: 0:00:02 (1.0776 s / it)
+[VAL] Epoch 57 averaged stats: loss: 0.0205 (0.0233)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0205 (0.0233)
+[EarlyStopping] epoch 58 | val_loss=0.023298 | best=0.022784 (epoch 21) | no_improve=37/75
+[LR] epoch 59 | lr=5.00e-05
+[TRAIN] Epoch [58]  [ 0/25]  eta: 0:02:37  loss: 0.0103 (0.0103)  grad_norm: 0.2051 (0.2051)  train_yield_loss: 0.0103 (0.0103)  time: 6.2850  data: 5.4041  max mem: 32580
+[TRAIN] Epoch [58]  [10/25]  eta: 0:00:12  loss: 0.0136 (0.0137)  grad_norm: 0.2370 (0.2424)  train_yield_loss: 0.0136 (0.0137)  time: 0.8034  data: 0.4914  max mem: 32580
+[TRAIN] Epoch [58]  [20/25]  eta: 0:00:02  loss: 0.0136 (0.0134)  grad_norm: 0.2528 (0.2787)  train_yield_loss: 0.0136 (0.0134)  time: 0.2366  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [58]  [24/25]  eta: 0:00:00  loss: 0.0128 (0.0134)  grad_norm: 0.2839 (0.2862)  train_yield_loss: 0.0128 (0.0134)  time: 0.2211  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [58] Total time: 0:00:11 (0.4793 s / it)
+[TRAIN] Epoch 58 averaged stats: loss: 0.0128 (0.0134)  grad_norm: 0.2839 (0.2862)  train_yield_loss: 0.0128 (0.0134)
+[VAL] Epoch [58]  [0/2]  eta: 0:00:03  loss: 0.0224 (0.0224)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0224 (0.0224)  time: 1.9921  data: 1.6980  max mem: 32580
+[VAL] Epoch [58]  [1/2]  eta: 0:00:01  loss: 0.0224 (0.0241)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0224 (0.0241)  time: 1.0385  data: 0.8491  max mem: 32580
+[VAL] Epoch [58] Total time: 0:00:02 (1.0574 s / it)
+[VAL] Epoch 58 averaged stats: loss: 0.0224 (0.0241)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0224 (0.0241)
+[EarlyStopping] epoch 59 | val_loss=0.024056 | best=0.022784 (epoch 21) | no_improve=38/75
+[LR] epoch 60 | lr=5.00e-05
+[TRAIN] Epoch [59]  [ 0/25]  eta: 0:02:23  loss: 0.0126 (0.0126)  grad_norm: 0.3303 (0.3303)  train_yield_loss: 0.0126 (0.0126)  time: 5.7203  data: 5.1796  max mem: 32580
+[TRAIN] Epoch [59]  [10/25]  eta: 0:00:11  loss: 0.0126 (0.0124)  grad_norm: 0.2969 (0.2959)  train_yield_loss: 0.0126 (0.0124)  time: 0.7619  data: 0.4710  max mem: 32580
+[TRAIN] Epoch [59]  [20/25]  eta: 0:00:02  loss: 0.0133 (0.0133)  grad_norm: 0.2814 (0.2863)  train_yield_loss: 0.0133 (0.0133)  time: 0.2420  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [59]  [24/25]  eta: 0:00:00  loss: 0.0135 (0.0133)  grad_norm: 0.2881 (0.2933)  train_yield_loss: 0.0135 (0.0133)  time: 0.2193  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [59] Total time: 0:00:11 (0.4597 s / it)
+[TRAIN] Epoch 59 averaged stats: loss: 0.0135 (0.0133)  grad_norm: 0.2881 (0.2933)  train_yield_loss: 0.0135 (0.0133)
+[VAL] Epoch [59]  [0/2]  eta: 0:00:03  loss: 0.0232 (0.0232)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0232 (0.0232)  time: 1.9637  data: 1.6600  max mem: 32580
+[VAL] Epoch [59]  [1/2]  eta: 0:00:01  loss: 0.0232 (0.0241)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0232 (0.0241)  time: 1.0313  data: 0.8301  max mem: 32580
+[VAL] Epoch [59] Total time: 0:00:02 (1.0528 s / it)
+[VAL] Epoch 59 averaged stats: loss: 0.0232 (0.0241)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0232 (0.0241)
+[EarlyStopping] epoch 60 | val_loss=0.024097 | best=0.022784 (epoch 21) | no_improve=39/75
+[LR] epoch 61 | lr=5.00e-05
+[TRAIN] Epoch [60]  [ 0/25]  eta: 0:02:25  loss: 0.0122 (0.0122)  grad_norm: 0.2970 (0.2970)  train_yield_loss: 0.0122 (0.0122)  time: 5.8361  data: 5.1519  max mem: 32580
+[TRAIN] Epoch [60]  [10/25]  eta: 0:00:11  loss: 0.0131 (0.0130)  grad_norm: 0.2550 (0.2653)  train_yield_loss: 0.0131 (0.0130)  time: 0.7693  data: 0.4685  max mem: 32580
+[TRAIN] Epoch [60]  [20/25]  eta: 0:00:02  loss: 0.0135 (0.0134)  grad_norm: 0.2507 (0.2656)  train_yield_loss: 0.0135 (0.0134)  time: 0.2403  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [60]  [24/25]  eta: 0:00:00  loss: 0.0128 (0.0131)  grad_norm: 0.2496 (0.2618)  train_yield_loss: 0.0128 (0.0131)  time: 0.2225  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [60] Total time: 0:00:11 (0.4629 s / it)
+[TRAIN] Epoch 60 averaged stats: loss: 0.0128 (0.0131)  grad_norm: 0.2496 (0.2618)  train_yield_loss: 0.0128 (0.0131)
+[VAL] Epoch [60]  [0/2]  eta: 0:00:03  loss: 0.0208 (0.0208)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0208 (0.0208)  time: 1.9988  data: 1.6791  max mem: 32580
+[VAL] Epoch [60]  [1/2]  eta: 0:00:01  loss: 0.0208 (0.0238)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0208 (0.0238)  time: 1.0470  data: 0.8396  max mem: 32580
+[VAL] Epoch [60] Total time: 0:00:02 (1.0659 s / it)
+[VAL] Epoch 60 averaged stats: loss: 0.0208 (0.0238)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0208 (0.0238)
+[EarlyStopping] epoch 61 | val_loss=0.023836 | best=0.022784 (epoch 21) | no_improve=40/75
+[LR] epoch 62 | lr=5.00e-05
+[TRAIN] Epoch [61]  [ 0/25]  eta: 0:02:35  loss: 0.0137 (0.0137)  grad_norm: 0.2535 (0.2535)  train_yield_loss: 0.0137 (0.0137)  time: 6.2389  data: 5.3873  max mem: 32580
+[TRAIN] Epoch [61]  [10/25]  eta: 0:00:11  loss: 0.0137 (0.0142)  grad_norm: 0.2260 (0.2457)  train_yield_loss: 0.0137 (0.0142)  time: 0.7987  data: 0.4899  max mem: 32580
+[TRAIN] Epoch [61]  [20/25]  eta: 0:00:02  loss: 0.0128 (0.0135)  grad_norm: 0.2369 (0.2478)  train_yield_loss: 0.0128 (0.0135)  time: 0.2358  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [61]  [24/25]  eta: 0:00:00  loss: 0.0127 (0.0132)  grad_norm: 0.2486 (0.2488)  train_yield_loss: 0.0127 (0.0132)  time: 0.2174  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [61] Total time: 0:00:11 (0.4755 s / it)
+[TRAIN] Epoch 61 averaged stats: loss: 0.0127 (0.0132)  grad_norm: 0.2486 (0.2488)  train_yield_loss: 0.0127 (0.0132)
+[VAL] Epoch [61]  [0/2]  eta: 0:00:03  loss: 0.0191 (0.0191)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0191 (0.0191)  time: 1.9814  data: 1.6787  max mem: 32580
+[VAL] Epoch [61]  [1/2]  eta: 0:00:01  loss: 0.0191 (0.0229)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0191 (0.0229)  time: 1.0394  data: 0.8395  max mem: 32580
+[VAL] Epoch [61] Total time: 0:00:02 (1.0578 s / it)
+[VAL] Epoch 61 averaged stats: loss: 0.0191 (0.0229)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0191 (0.0229)
+[EarlyStopping] epoch 62 | val_loss=0.022937 | best=0.022784 (epoch 21) | no_improve=41/75
+[LR] epoch 63 | lr=5.00e-05
+[TRAIN] Epoch [62]  [ 0/25]  eta: 0:02:30  loss: 0.0107 (0.0107)  grad_norm: 0.2388 (0.2388)  train_yield_loss: 0.0107 (0.0107)  time: 6.0191  data: 5.3536  max mem: 32580
+[TRAIN] Epoch [62]  [10/25]  eta: 0:00:11  loss: 0.0133 (0.0130)  grad_norm: 0.2545 (0.2532)  train_yield_loss: 0.0133 (0.0130)  time: 0.7933  data: 0.4868  max mem: 32580
+[TRAIN] Epoch [62]  [20/25]  eta: 0:00:02  loss: 0.0135 (0.0134)  grad_norm: 0.2798 (0.2845)  train_yield_loss: 0.0135 (0.0134)  time: 0.2446  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [62]  [24/25]  eta: 0:00:00  loss: 0.0133 (0.0133)  grad_norm: 0.2882 (0.2932)  train_yield_loss: 0.0133 (0.0133)  time: 0.2172  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [62] Total time: 0:00:11 (0.4733 s / it)
+[TRAIN] Epoch 62 averaged stats: loss: 0.0133 (0.0133)  grad_norm: 0.2882 (0.2932)  train_yield_loss: 0.0133 (0.0133)
+[VAL] Epoch [62]  [0/2]  eta: 0:00:03  loss: 0.0212 (0.0212)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0212 (0.0212)  time: 1.9717  data: 1.6632  max mem: 32580
+[VAL] Epoch [62]  [1/2]  eta: 0:00:01  loss: 0.0212 (0.0240)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0212 (0.0240)  time: 1.0346  data: 0.8317  max mem: 32580
+[VAL] Epoch [62] Total time: 0:00:02 (1.0543 s / it)
+[VAL] Epoch 62 averaged stats: loss: 0.0212 (0.0240)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0212 (0.0240)
+[EarlyStopping] epoch 63 | val_loss=0.023987 | best=0.022784 (epoch 21) | no_improve=42/75
+[LR] epoch 64 | lr=5.00e-05
+[TRAIN] Epoch [63]  [ 0/25]  eta: 0:02:30  loss: 0.0138 (0.0138)  grad_norm: 0.3033 (0.3033)  train_yield_loss: 0.0138 (0.0138)  time: 6.0343  data: 5.1555  max mem: 32580
+[TRAIN] Epoch [63]  [10/25]  eta: 0:00:11  loss: 0.0128 (0.0132)  grad_norm: 0.2584 (0.2768)  train_yield_loss: 0.0128 (0.0132)  time: 0.7829  data: 0.4688  max mem: 32580
+[TRAIN] Epoch [63]  [20/25]  eta: 0:00:02  loss: 0.0129 (0.0132)  grad_norm: 0.2629 (0.2691)  train_yield_loss: 0.0129 (0.0132)  time: 0.2368  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [63]  [24/25]  eta: 0:00:00  loss: 0.0130 (0.0133)  grad_norm: 0.2584 (0.2682)  train_yield_loss: 0.0130 (0.0133)  time: 0.2162  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [63] Total time: 0:00:11 (0.4676 s / it)
+[TRAIN] Epoch 63 averaged stats: loss: 0.0130 (0.0133)  grad_norm: 0.2584 (0.2682)  train_yield_loss: 0.0130 (0.0133)
+[VAL] Epoch [63]  [0/2]  eta: 0:00:03  loss: 0.0194 (0.0194)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0194 (0.0194)  time: 1.9996  data: 1.6961  max mem: 32580
+[VAL] Epoch [63]  [1/2]  eta: 0:00:01  loss: 0.0194 (0.0235)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0194 (0.0235)  time: 1.0476  data: 0.8482  max mem: 32580
+[VAL] Epoch [63] Total time: 0:00:02 (1.1141 s / it)
+[VAL] Epoch 63 averaged stats: loss: 0.0194 (0.0235)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0194 (0.0235)
+[EarlyStopping] epoch 64 | val_loss=0.023455 | best=0.022784 (epoch 21) | no_improve=43/75
+[LR] epoch 65 | lr=5.00e-05
+[TRAIN] Epoch [64]  [ 0/25]  eta: 0:01:37  loss: 0.0110 (0.0110)  grad_norm: 0.2320 (0.2320)  train_yield_loss: 0.0110 (0.0110)  time: 3.9165  data: 2.9958  max mem: 32580
+[TRAIN] Epoch [64]  [10/25]  eta: 0:00:09  loss: 0.0124 (0.0121)  grad_norm: 0.2262 (0.2271)  train_yield_loss: 0.0124 (0.0121)  time: 0.6491  data: 0.2725  max mem: 32580
+[TRAIN] Epoch [64]  [20/25]  eta: 0:00:02  loss: 0.0129 (0.0130)  grad_norm: 0.2269 (0.2379)  train_yield_loss: 0.0129 (0.0130)  time: 0.2744  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [64]  [24/25]  eta: 0:00:00  loss: 0.0131 (0.0130)  grad_norm: 0.2341 (0.2391)  train_yield_loss: 0.0131 (0.0130)  time: 0.2525  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [64] Total time: 0:00:10 (0.4131 s / it)
+[TRAIN] Epoch 64 averaged stats: loss: 0.0131 (0.0130)  grad_norm: 0.2341 (0.2391)  train_yield_loss: 0.0131 (0.0130)
+[VAL] Epoch [64]  [0/2]  eta: 0:00:03  loss: 0.0202 (0.0202)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0202 (0.0202)  time: 1.9420  data: 1.6404  max mem: 32580
+[VAL] Epoch [64]  [1/2]  eta: 0:00:01  loss: 0.0202 (0.0238)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0202 (0.0238)  time: 1.0191  data: 0.8203  max mem: 32580
+[VAL] Epoch [64] Total time: 0:00:02 (1.0382 s / it)
+[VAL] Epoch 64 averaged stats: loss: 0.0202 (0.0238)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0202 (0.0238)
+[EarlyStopping] epoch 65 | val_loss=0.023839 | best=0.022784 (epoch 21) | no_improve=44/75
+[LR] epoch 66 | lr=5.00e-05
+[TRAIN] Epoch [65]  [ 0/25]  eta: 0:02:37  loss: 0.0106 (0.0106)  grad_norm: 0.2480 (0.2480)  train_yield_loss: 0.0106 (0.0106)  time: 6.2932  data: 5.4080  max mem: 32580
+[TRAIN] Epoch [65]  [10/25]  eta: 0:00:12  loss: 0.0129 (0.0132)  grad_norm: 0.2334 (0.2447)  train_yield_loss: 0.0129 (0.0132)  time: 0.8019  data: 0.4917  max mem: 32580
+[TRAIN] Epoch [65]  [20/25]  eta: 0:00:02  loss: 0.0129 (0.0129)  grad_norm: 0.2226 (0.2301)  train_yield_loss: 0.0129 (0.0129)  time: 0.2342  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [65]  [24/25]  eta: 0:00:00  loss: 0.0126 (0.0130)  grad_norm: 0.2193 (0.2292)  train_yield_loss: 0.0126 (0.0130)  time: 0.2165  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [65] Total time: 0:00:11 (0.4757 s / it)
+[TRAIN] Epoch 65 averaged stats: loss: 0.0126 (0.0130)  grad_norm: 0.2193 (0.2292)  train_yield_loss: 0.0126 (0.0130)
+[VAL] Epoch [65]  [0/2]  eta: 0:00:03  loss: 0.0197 (0.0197)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0197 (0.0197)  time: 1.9958  data: 1.6924  max mem: 32580
+[VAL] Epoch [65]  [1/2]  eta: 0:00:01  loss: 0.0197 (0.0241)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0197 (0.0241)  time: 1.0485  data: 0.8463  max mem: 32580
+[VAL] Epoch [65] Total time: 0:00:02 (1.0668 s / it)
+[VAL] Epoch 65 averaged stats: loss: 0.0197 (0.0241)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0197 (0.0241)
+[EarlyStopping] epoch 66 | val_loss=0.024136 | best=0.022784 (epoch 21) | no_improve=45/75
+[LR] epoch 67 | lr=5.00e-05
+[TRAIN] Epoch [66]  [ 0/25]  eta: 0:02:35  loss: 0.0141 (0.0141)  grad_norm: 0.2268 (0.2268)  train_yield_loss: 0.0141 (0.0141)  time: 6.2168  data: 5.3619  max mem: 32580
+[TRAIN] Epoch [66]  [10/25]  eta: 0:00:11  loss: 0.0135 (0.0134)  grad_norm: 0.2135 (0.2172)  train_yield_loss: 0.0135 (0.0134)  time: 0.7955  data: 0.4875  max mem: 32580
+[TRAIN] Epoch [66]  [20/25]  eta: 0:00:02  loss: 0.0132 (0.0133)  grad_norm: 0.2278 (0.2437)  train_yield_loss: 0.0132 (0.0133)  time: 0.2344  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [66]  [24/25]  eta: 0:00:00  loss: 0.0132 (0.0132)  grad_norm: 0.2479 (0.2426)  train_yield_loss: 0.0132 (0.0132)  time: 0.2158  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [66] Total time: 0:00:11 (0.4731 s / it)
+[TRAIN] Epoch 66 averaged stats: loss: 0.0132 (0.0132)  grad_norm: 0.2479 (0.2426)  train_yield_loss: 0.0132 (0.0132)
+[VAL] Epoch [66]  [0/2]  eta: 0:00:03  loss: 0.0203 (0.0203)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0203 (0.0203)  time: 1.9367  data: 1.6315  max mem: 32580
+[VAL] Epoch [66]  [1/2]  eta: 0:00:01  loss: 0.0203 (0.0237)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0203 (0.0237)  time: 1.0186  data: 0.8159  max mem: 32580
+[VAL] Epoch [66] Total time: 0:00:02 (1.0373 s / it)
+[VAL] Epoch 66 averaged stats: loss: 0.0203 (0.0237)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0203 (0.0237)
+[EarlyStopping] epoch 67 | val_loss=0.023667 | best=0.022784 (epoch 21) | no_improve=46/75
+[LR] epoch 68 | lr=5.00e-05
+[TRAIN] Epoch [67]  [ 0/25]  eta: 0:02:35  loss: 0.0113 (0.0113)  grad_norm: 0.2317 (0.2317)  train_yield_loss: 0.0113 (0.0113)  time: 6.2204  data: 5.3730  max mem: 32580
+[TRAIN] Epoch [67]  [10/25]  eta: 0:00:11  loss: 0.0128 (0.0131)  grad_norm: 0.2419 (0.2526)  train_yield_loss: 0.0128 (0.0131)  time: 0.7960  data: 0.4886  max mem: 32580
+[TRAIN] Epoch [67]  [20/25]  eta: 0:00:02  loss: 0.0131 (0.0133)  grad_norm: 0.2403 (0.2622)  train_yield_loss: 0.0131 (0.0133)  time: 0.2348  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [67]  [24/25]  eta: 0:00:00  loss: 0.0128 (0.0132)  grad_norm: 0.2419 (0.2743)  train_yield_loss: 0.0128 (0.0132)  time: 0.2165  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [67] Total time: 0:00:11 (0.4736 s / it)
+[TRAIN] Epoch 67 averaged stats: loss: 0.0128 (0.0132)  grad_norm: 0.2419 (0.2743)  train_yield_loss: 0.0128 (0.0132)
+[VAL] Epoch [67]  [0/2]  eta: 0:00:04  loss: 0.0232 (0.0232)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0232 (0.0232)  time: 2.0118  data: 1.7084  max mem: 32580
+[VAL] Epoch [67]  [1/2]  eta: 0:00:01  loss: 0.0232 (0.0238)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0232 (0.0238)  time: 1.0563  data: 0.8543  max mem: 32580
+[VAL] Epoch [67] Total time: 0:00:02 (1.0751 s / it)
+[VAL] Epoch 67 averaged stats: loss: 0.0232 (0.0238)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0232 (0.0238)
+[EarlyStopping] epoch 68 | val_loss=0.023788 | best=0.022784 (epoch 21) | no_improve=47/75
+[LR] epoch 69 | lr=5.00e-05
+[TRAIN] Epoch [68]  [ 0/25]  eta: 0:02:32  loss: 0.0142 (0.0142)  grad_norm: 0.3906 (0.3906)  train_yield_loss: 0.0142 (0.0142)  time: 6.1001  data: 5.1773  max mem: 32580
+[TRAIN] Epoch [68]  [10/25]  eta: 0:00:11  loss: 0.0135 (0.0137)  grad_norm: 0.2931 (0.2994)  train_yield_loss: 0.0135 (0.0137)  time: 0.7864  data: 0.4708  max mem: 32580
+[TRAIN] Epoch [68]  [20/25]  eta: 0:00:02  loss: 0.0126 (0.0132)  grad_norm: 0.2565 (0.2662)  train_yield_loss: 0.0126 (0.0132)  time: 0.2355  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [68]  [24/25]  eta: 0:00:00  loss: 0.0124 (0.0132)  grad_norm: 0.2501 (0.2616)  train_yield_loss: 0.0124 (0.0132)  time: 0.2170  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [68] Total time: 0:00:11 (0.4694 s / it)
+[TRAIN] Epoch 68 averaged stats: loss: 0.0124 (0.0132)  grad_norm: 0.2501 (0.2616)  train_yield_loss: 0.0124 (0.0132)
+[VAL] Epoch [68]  [0/2]  eta: 0:00:04  loss: 0.0204 (0.0204)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0204 (0.0204)  time: 2.0371  data: 1.6782  max mem: 32580
+[VAL] Epoch [68]  [1/2]  eta: 0:00:01  loss: 0.0204 (0.0235)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0204 (0.0235)  time: 1.0692  data: 0.8392  max mem: 32580
+[VAL] Epoch [68] Total time: 0:00:02 (1.0884 s / it)
+[VAL] Epoch 68 averaged stats: loss: 0.0204 (0.0235)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0204 (0.0235)
+[EarlyStopping] epoch 69 | val_loss=0.023463 | best=0.022784 (epoch 21) | no_improve=48/75
+[LR] epoch 70 | lr=5.00e-05
+[TRAIN] Epoch [69]  [ 0/25]  eta: 0:02:35  loss: 0.0141 (0.0141)  grad_norm: 0.2282 (0.2282)  train_yield_loss: 0.0141 (0.0141)  time: 6.2139  data: 5.3580  max mem: 32580
+[TRAIN] Epoch [69]  [10/25]  eta: 0:00:11  loss: 0.0130 (0.0136)  grad_norm: 0.2377 (0.2369)  train_yield_loss: 0.0130 (0.0136)  time: 0.7981  data: 0.4872  max mem: 32580
+[TRAIN] Epoch [69]  [20/25]  eta: 0:00:02  loss: 0.0128 (0.0132)  grad_norm: 0.2343 (0.2350)  train_yield_loss: 0.0128 (0.0132)  time: 0.2371  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [69]  [24/25]  eta: 0:00:00  loss: 0.0128 (0.0131)  grad_norm: 0.2436 (0.2347)  train_yield_loss: 0.0128 (0.0131)  time: 0.2188  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [69] Total time: 0:00:11 (0.4752 s / it)
+[TRAIN] Epoch 69 averaged stats: loss: 0.0128 (0.0131)  grad_norm: 0.2436 (0.2347)  train_yield_loss: 0.0128 (0.0131)
+[VAL] Epoch [69]  [0/2]  eta: 0:00:03  loss: 0.0208 (0.0208)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0208 (0.0208)  time: 1.9568  data: 1.6521  max mem: 32580
+[VAL] Epoch [69]  [1/2]  eta: 0:00:01  loss: 0.0208 (0.0244)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0208 (0.0244)  time: 1.0301  data: 0.8262  max mem: 32580
+[VAL] Epoch [69] Total time: 0:00:02 (1.0495 s / it)
+[VAL] Epoch 69 averaged stats: loss: 0.0208 (0.0244)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0208 (0.0244)
+[EarlyStopping] epoch 70 | val_loss=0.024441 | best=0.022784 (epoch 21) | no_improve=49/75
+[LR] epoch 71 | lr=5.00e-05
+[TRAIN] Epoch [70]  [ 0/25]  eta: 0:02:37  loss: 0.0125 (0.0125)  grad_norm: 0.2396 (0.2396)  train_yield_loss: 0.0125 (0.0125)  time: 6.3090  data: 5.4154  max mem: 32580
+[TRAIN] Epoch [70]  [10/25]  eta: 0:00:12  loss: 0.0128 (0.0129)  grad_norm: 0.2799 (0.2773)  train_yield_loss: 0.0128 (0.0129)  time: 0.8036  data: 0.4924  max mem: 32580
+[TRAIN] Epoch [70]  [20/25]  eta: 0:00:02  loss: 0.0129 (0.0132)  grad_norm: 0.2762 (0.2713)  train_yield_loss: 0.0129 (0.0132)  time: 0.2348  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [70]  [24/25]  eta: 0:00:00  loss: 0.0129 (0.0132)  grad_norm: 0.2711 (0.2701)  train_yield_loss: 0.0129 (0.0132)  time: 0.2182  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [70] Total time: 0:00:11 (0.4771 s / it)
+[TRAIN] Epoch 70 averaged stats: loss: 0.0129 (0.0132)  grad_norm: 0.2711 (0.2701)  train_yield_loss: 0.0129 (0.0132)
+[VAL] Epoch [70]  [0/2]  eta: 0:00:03  loss: 0.0203 (0.0203)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0203 (0.0203)  time: 1.9673  data: 1.6638  max mem: 32580
+[VAL] Epoch [70]  [1/2]  eta: 0:00:01  loss: 0.0203 (0.0257)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0203 (0.0257)  time: 1.0346  data: 0.8320  max mem: 32580
+[VAL] Epoch [70] Total time: 0:00:02 (1.0530 s / it)
+[VAL] Epoch 70 averaged stats: loss: 0.0203 (0.0257)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0203 (0.0257)
+[EarlyStopping] epoch 71 | val_loss=0.025728 | best=0.022784 (epoch 21) | no_improve=50/75
+[LR] epoch 72 | lr=5.00e-05
+[TRAIN] Epoch [71]  [ 0/25]  eta: 0:02:36  loss: 0.0127 (0.0127)  grad_norm: 0.4220 (0.4220)  train_yield_loss: 0.0127 (0.0127)  time: 6.2438  data: 5.3431  max mem: 32580
+[TRAIN] Epoch [71]  [10/25]  eta: 0:00:11  loss: 0.0127 (0.0130)  grad_norm: 0.2818 (0.2952)  train_yield_loss: 0.0127 (0.0130)  time: 0.7984  data: 0.4858  max mem: 32580
+[TRAIN] Epoch [71]  [20/25]  eta: 0:00:02  loss: 0.0133 (0.0134)  grad_norm: 0.2520 (0.2607)  train_yield_loss: 0.0133 (0.0134)  time: 0.2352  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [71]  [24/25]  eta: 0:00:00  loss: 0.0126 (0.0131)  grad_norm: 0.2208 (0.2528)  train_yield_loss: 0.0126 (0.0131)  time: 0.2183  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [71] Total time: 0:00:11 (0.4749 s / it)
+[TRAIN] Epoch 71 averaged stats: loss: 0.0126 (0.0131)  grad_norm: 0.2208 (0.2528)  train_yield_loss: 0.0126 (0.0131)
+[VAL] Epoch [71]  [0/2]  eta: 0:00:04  loss: 0.0205 (0.0205)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0205 (0.0205)  time: 2.0114  data: 1.6770  max mem: 32580
+[VAL] Epoch [71]  [1/2]  eta: 0:00:01  loss: 0.0205 (0.0250)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0205 (0.0250)  time: 1.0534  data: 0.8386  max mem: 32580
+[VAL] Epoch [71] Total time: 0:00:02 (1.0758 s / it)
+[VAL] Epoch 71 averaged stats: loss: 0.0205 (0.0250)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0205 (0.0250)
+[EarlyStopping] epoch 72 | val_loss=0.024994 | best=0.022784 (epoch 21) | no_improve=51/75
+[LR] epoch 73 | lr=5.00e-05
+[TRAIN] Epoch [72]  [ 0/25]  eta: 0:02:25  loss: 0.0137 (0.0137)  grad_norm: 0.2297 (0.2297)  train_yield_loss: 0.0137 (0.0137)  time: 5.8383  data: 5.1614  max mem: 32580
+[TRAIN] Epoch [72]  [10/25]  eta: 0:00:11  loss: 0.0134 (0.0133)  grad_norm: 0.2348 (0.2500)  train_yield_loss: 0.0134 (0.0133)  time: 0.7629  data: 0.4693  max mem: 32580
+[TRAIN] Epoch [72]  [20/25]  eta: 0:00:02  loss: 0.0125 (0.0128)  grad_norm: 0.2375 (0.2458)  train_yield_loss: 0.0125 (0.0128)  time: 0.2359  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [72]  [24/25]  eta: 0:00:00  loss: 0.0134 (0.0130)  grad_norm: 0.2447 (0.2471)  train_yield_loss: 0.0134 (0.0130)  time: 0.2192  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [72] Total time: 0:00:11 (0.4594 s / it)
+[TRAIN] Epoch 72 averaged stats: loss: 0.0134 (0.0130)  grad_norm: 0.2447 (0.2471)  train_yield_loss: 0.0134 (0.0130)
+[VAL] Epoch [72]  [0/2]  eta: 0:00:03  loss: 0.0214 (0.0214)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0214 (0.0214)  time: 1.9811  data: 1.6764  max mem: 32580
+[VAL] Epoch [72]  [1/2]  eta: 0:00:01  loss: 0.0214 (0.0250)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0214 (0.0250)  time: 1.0378  data: 0.8384  max mem: 32580
+[VAL] Epoch [72] Total time: 0:00:02 (1.0593 s / it)
+[VAL] Epoch 72 averaged stats: loss: 0.0214 (0.0250)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0214 (0.0250)
+[EarlyStopping] epoch 73 | val_loss=0.025029 | best=0.022784 (epoch 21) | no_improve=52/75
+[LR] epoch 74 | lr=5.00e-05
+[TRAIN] Epoch [73]  [ 0/25]  eta: 0:02:34  loss: 0.0140 (0.0140)  grad_norm: 0.2309 (0.2309)  train_yield_loss: 0.0140 (0.0140)  time: 6.1800  data: 5.3354  max mem: 32580
+[TRAIN] Epoch [73]  [10/25]  eta: 0:00:11  loss: 0.0137 (0.0134)  grad_norm: 0.3340 (0.3101)  train_yield_loss: 0.0137 (0.0134)  time: 0.7889  data: 0.4851  max mem: 32580
+[TRAIN] Epoch [73]  [20/25]  eta: 0:00:02  loss: 0.0134 (0.0133)  grad_norm: 0.2372 (0.2674)  train_yield_loss: 0.0134 (0.0133)  time: 0.2329  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [73]  [24/25]  eta: 0:00:00  loss: 0.0133 (0.0132)  grad_norm: 0.2275 (0.2569)  train_yield_loss: 0.0133 (0.0132)  time: 0.2165  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [73] Total time: 0:00:11 (0.4704 s / it)
+[TRAIN] Epoch 73 averaged stats: loss: 0.0133 (0.0132)  grad_norm: 0.2275 (0.2569)  train_yield_loss: 0.0133 (0.0132)
+[VAL] Epoch [73]  [0/2]  eta: 0:00:03  loss: 0.0215 (0.0215)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0215 (0.0215)  time: 1.9904  data: 1.6848  max mem: 32580
+[VAL] Epoch [73]  [1/2]  eta: 0:00:01  loss: 0.0215 (0.0238)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0215 (0.0238)  time: 1.0426  data: 0.8425  max mem: 32580
+[VAL] Epoch [73] Total time: 0:00:02 (1.0614 s / it)
+[VAL] Epoch 73 averaged stats: loss: 0.0215 (0.0238)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0215 (0.0238)
+[EarlyStopping] epoch 74 | val_loss=0.023767 | best=0.022784 (epoch 21) | no_improve=53/75
+[LR] epoch 75 | lr=5.00e-05
+[TRAIN] Epoch [74]  [ 0/25]  eta: 0:02:26  loss: 0.0115 (0.0115)  grad_norm: 0.1967 (0.1967)  train_yield_loss: 0.0115 (0.0115)  time: 5.8662  data: 5.1815  max mem: 32580
+[TRAIN] Epoch [74]  [10/25]  eta: 0:00:11  loss: 0.0135 (0.0134)  grad_norm: 0.2273 (0.2386)  train_yield_loss: 0.0135 (0.0134)  time: 0.7679  data: 0.4716  max mem: 32580
+[TRAIN] Epoch [74]  [20/25]  eta: 0:00:02  loss: 0.0131 (0.0131)  grad_norm: 0.2327 (0.2364)  train_yield_loss: 0.0131 (0.0131)  time: 0.2375  data: 0.0003  max mem: 32580
+[TRAIN] Epoch [74]  [24/25]  eta: 0:00:00  loss: 0.0129 (0.0131)  grad_norm: 0.2284 (0.2332)  train_yield_loss: 0.0129 (0.0131)  time: 0.2197  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [74] Total time: 0:00:11 (0.4616 s / it)
+[TRAIN] Epoch 74 averaged stats: loss: 0.0129 (0.0131)  grad_norm: 0.2284 (0.2332)  train_yield_loss: 0.0129 (0.0131)
+[VAL] Epoch [74]  [0/2]  eta: 0:00:03  loss: 0.0198 (0.0198)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0198 (0.0198)  time: 1.9525  data: 1.6485  max mem: 32580
+[VAL] Epoch [74]  [1/2]  eta: 0:00:01  loss: 0.0198 (0.0239)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0198 (0.0239)  time: 1.0218  data: 0.8243  max mem: 32580
+[VAL] Epoch [74] Total time: 0:00:02 (1.0444 s / it)
+[VAL] Epoch 74 averaged stats: loss: 0.0198 (0.0239)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0198 (0.0239)
+[EarlyStopping] epoch 75 | val_loss=0.023886 | best=0.022784 (epoch 21) | no_improve=54/75
+[LR] epoch 76 | lr=5.00e-05
+[TRAIN] Epoch [75]  [ 0/25]  eta: 0:02:36  loss: 0.0098 (0.0098)  grad_norm: 0.2217 (0.2217)  train_yield_loss: 0.0098 (0.0098)  time: 6.2673  data: 5.3889  max mem: 32580
+[TRAIN] Epoch [75]  [10/25]  eta: 0:00:11  loss: 0.0127 (0.0131)  grad_norm: 0.2343 (0.2332)  train_yield_loss: 0.0127 (0.0131)  time: 0.7992  data: 0.4900  max mem: 32580
+[TRAIN] Epoch [75]  [20/25]  eta: 0:00:02  loss: 0.0127 (0.0128)  grad_norm: 0.2343 (0.2302)  train_yield_loss: 0.0127 (0.0128)  time: 0.2345  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [75]  [24/25]  eta: 0:00:00  loss: 0.0131 (0.0129)  grad_norm: 0.2359 (0.2335)  train_yield_loss: 0.0131 (0.0129)  time: 0.2178  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [75] Total time: 0:00:11 (0.4751 s / it)
+[TRAIN] Epoch 75 averaged stats: loss: 0.0131 (0.0129)  grad_norm: 0.2359 (0.2335)  train_yield_loss: 0.0131 (0.0129)
+[VAL] Epoch [75]  [0/2]  eta: 0:00:04  loss: 0.0204 (0.0204)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0204 (0.0204)  time: 2.0127  data: 1.7075  max mem: 32580
+[VAL] Epoch [75]  [1/2]  eta: 0:00:01  loss: 0.0204 (0.0244)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0204 (0.0244)  time: 1.0523  data: 0.8539  max mem: 32580
+[VAL] Epoch [75] Total time: 0:00:02 (1.0716 s / it)
+[VAL] Epoch 75 averaged stats: loss: 0.0204 (0.0244)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0204 (0.0244)
+[EarlyStopping] epoch 76 | val_loss=0.024387 | best=0.022784 (epoch 21) | no_improve=55/75
+[LR] epoch 77 | lr=5.00e-05
+[TRAIN] Epoch [76]  [ 0/25]  eta: 0:02:35  loss: 0.0139 (0.0139)  grad_norm: 0.2558 (0.2558)  train_yield_loss: 0.0139 (0.0139)  time: 6.2273  data: 5.3602  max mem: 32580
+[TRAIN] Epoch [76]  [10/25]  eta: 0:00:11  loss: 0.0139 (0.0135)  grad_norm: 0.2222 (0.2208)  train_yield_loss: 0.0139 (0.0135)  time: 0.7985  data: 0.4874  max mem: 32580
+[TRAIN] Epoch [76]  [20/25]  eta: 0:00:02  loss: 0.0123 (0.0132)  grad_norm: 0.2231 (0.2318)  train_yield_loss: 0.0123 (0.0132)  time: 0.2361  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [76]  [24/25]  eta: 0:00:00  loss: 0.0120 (0.0130)  grad_norm: 0.2308 (0.2343)  train_yield_loss: 0.0120 (0.0130)  time: 0.2177  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [76] Total time: 0:00:11 (0.4749 s / it)
+[TRAIN] Epoch 76 averaged stats: loss: 0.0120 (0.0130)  grad_norm: 0.2308 (0.2343)  train_yield_loss: 0.0120 (0.0130)
+[VAL] Epoch [76]  [0/2]  eta: 0:00:03  loss: 0.0205 (0.0205)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0205 (0.0205)  time: 1.9899  data: 1.6858  max mem: 32580
+[VAL] Epoch [76]  [1/2]  eta: 0:00:01  loss: 0.0205 (0.0236)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0205 (0.0236)  time: 1.0421  data: 0.8430  max mem: 32580
+[VAL] Epoch [76] Total time: 0:00:02 (1.0612 s / it)
+[VAL] Epoch 76 averaged stats: loss: 0.0205 (0.0236)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0205 (0.0236)
+[EarlyStopping] epoch 77 | val_loss=0.023589 | best=0.022784 (epoch 21) | no_improve=56/75
+[LR] epoch 78 | lr=5.00e-05
+[TRAIN] Epoch [77]  [ 0/25]  eta: 0:01:38  loss: 0.0121 (0.0121)  grad_norm: 0.2113 (0.2113)  train_yield_loss: 0.0121 (0.0121)  time: 3.9285  data: 3.0194  max mem: 32580
+[TRAIN] Epoch [77]  [10/25]  eta: 0:00:10  loss: 0.0121 (0.0125)  grad_norm: 0.2361 (0.2334)  train_yield_loss: 0.0121 (0.0125)  time: 0.6880  data: 0.3294  max mem: 32580
+[TRAIN] Epoch [77]  [20/25]  eta: 0:00:02  loss: 0.0127 (0.0130)  grad_norm: 0.2382 (0.2363)  train_yield_loss: 0.0127 (0.0130)  time: 0.2909  data: 0.0303  max mem: 32580
+[TRAIN] Epoch [77]  [24/25]  eta: 0:00:00  loss: 0.0127 (0.0129)  grad_norm: 0.2369 (0.2351)  train_yield_loss: 0.0127 (0.0129)  time: 0.2375  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [77] Total time: 0:00:10 (0.4270 s / it)
+[TRAIN] Epoch 77 averaged stats: loss: 0.0127 (0.0129)  grad_norm: 0.2369 (0.2351)  train_yield_loss: 0.0127 (0.0129)
+[VAL] Epoch [77]  [0/2]  eta: 0:00:03  loss: 0.0189 (0.0189)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0189 (0.0189)  time: 1.8300  data: 1.6676  max mem: 32580
+[VAL] Epoch [77]  [1/2]  eta: 0:00:00  loss: 0.0189 (0.0240)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0189 (0.0240)  time: 0.9508  data: 0.8339  max mem: 32580
+[VAL] Epoch [77] Total time: 0:00:01 (0.9692 s / it)
+[VAL] Epoch 77 averaged stats: loss: 0.0189 (0.0240)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0189 (0.0240)
+[EarlyStopping] epoch 78 | val_loss=0.024005 | best=0.022784 (epoch 21) | no_improve=57/75
+[LR] epoch 79 | lr=5.00e-05
+[TRAIN] Epoch [78]  [ 0/25]  eta: 0:02:25  loss: 0.0119 (0.0119)  grad_norm: 0.2409 (0.2409)  train_yield_loss: 0.0119 (0.0119)  time: 5.8070  data: 5.1457  max mem: 32580
+[TRAIN] Epoch [78]  [10/25]  eta: 0:00:11  loss: 0.0125 (0.0128)  grad_norm: 0.2409 (0.2525)  train_yield_loss: 0.0125 (0.0128)  time: 0.7727  data: 0.4679  max mem: 32580
+[TRAIN] Epoch [78]  [20/25]  eta: 0:00:02  loss: 0.0135 (0.0133)  grad_norm: 0.2561 (0.2609)  train_yield_loss: 0.0135 (0.0133)  time: 0.2430  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [78]  [24/25]  eta: 0:00:00  loss: 0.0128 (0.0131)  grad_norm: 0.2458 (0.2570)  train_yield_loss: 0.0128 (0.0131)  time: 0.2179  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [78] Total time: 0:00:11 (0.4643 s / it)
+[TRAIN] Epoch 78 averaged stats: loss: 0.0128 (0.0131)  grad_norm: 0.2458 (0.2570)  train_yield_loss: 0.0128 (0.0131)
+[VAL] Epoch [78]  [0/2]  eta: 0:00:03  loss: 0.0202 (0.0202)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0202 (0.0202)  time: 1.9963  data: 1.6929  max mem: 32580
+[VAL] Epoch [78]  [1/2]  eta: 0:00:01  loss: 0.0202 (0.0250)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0202 (0.0250)  time: 1.0479  data: 0.8466  max mem: 32580
+[VAL] Epoch [78] Total time: 0:00:02 (1.0669 s / it)
+[VAL] Epoch 78 averaged stats: loss: 0.0202 (0.0250)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0202 (0.0250)
+[EarlyStopping] epoch 79 | val_loss=0.024986 | best=0.022784 (epoch 21) | no_improve=58/75
+[LR] epoch 80 | lr=5.00e-05
+[TRAIN] Epoch [79]  [ 0/25]  eta: 0:02:32  loss: 0.0104 (0.0104)  grad_norm: 0.2160 (0.2160)  train_yield_loss: 0.0104 (0.0104)  time: 6.0844  data: 5.1814  max mem: 32580
+[TRAIN] Epoch [79]  [10/25]  eta: 0:00:11  loss: 0.0126 (0.0126)  grad_norm: 0.2156 (0.2111)  train_yield_loss: 0.0126 (0.0126)  time: 0.7897  data: 0.4711  max mem: 32580
+[TRAIN] Epoch [79]  [20/25]  eta: 0:00:02  loss: 0.0127 (0.0129)  grad_norm: 0.2156 (0.2185)  train_yield_loss: 0.0127 (0.0129)  time: 0.2396  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [79]  [24/25]  eta: 0:00:00  loss: 0.0129 (0.0129)  grad_norm: 0.2156 (0.2194)  train_yield_loss: 0.0129 (0.0129)  time: 0.2185  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [79] Total time: 0:00:11 (0.4720 s / it)
+[TRAIN] Epoch 79 averaged stats: loss: 0.0129 (0.0129)  grad_norm: 0.2156 (0.2194)  train_yield_loss: 0.0129 (0.0129)
+[VAL] Epoch [79]  [0/2]  eta: 0:00:03  loss: 0.0190 (0.0190)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0190 (0.0190)  time: 1.9940  data: 1.6828  max mem: 32580
+[VAL] Epoch [79]  [1/2]  eta: 0:00:01  loss: 0.0190 (0.0247)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0190 (0.0247)  time: 1.0489  data: 0.8416  max mem: 32580
+[VAL] Epoch [79] Total time: 0:00:02 (1.0681 s / it)
+[VAL] Epoch 79 averaged stats: loss: 0.0190 (0.0247)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0190 (0.0247)
+[EarlyStopping] epoch 80 | val_loss=0.024709 | best=0.022784 (epoch 21) | no_improve=59/75
+[LR] epoch 81 | lr=5.00e-05
+[TRAIN] Epoch [80]  [ 0/25]  eta: 0:02:30  loss: 0.0116 (0.0116)  grad_norm: 0.2320 (0.2320)  train_yield_loss: 0.0116 (0.0116)  time: 6.0355  data: 5.3714  max mem: 32580
+[TRAIN] Epoch [80]  [10/25]  eta: 0:00:11  loss: 0.0131 (0.0130)  grad_norm: 0.2310 (0.2323)  train_yield_loss: 0.0131 (0.0130)  time: 0.7900  data: 0.4884  max mem: 32580
+[TRAIN] Epoch [80]  [20/25]  eta: 0:00:02  loss: 0.0126 (0.0128)  grad_norm: 0.2262 (0.2248)  train_yield_loss: 0.0126 (0.0128)  time: 0.2414  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [80]  [24/25]  eta: 0:00:00  loss: 0.0124 (0.0130)  grad_norm: 0.2267 (0.2255)  train_yield_loss: 0.0124 (0.0130)  time: 0.2188  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [80] Total time: 0:00:11 (0.4725 s / it)
+[TRAIN] Epoch 80 averaged stats: loss: 0.0124 (0.0130)  grad_norm: 0.2267 (0.2255)  train_yield_loss: 0.0124 (0.0130)
+[VAL] Epoch [80]  [0/2]  eta: 0:00:03  loss: 0.0192 (0.0192)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0192 (0.0192)  time: 1.9968  data: 1.6908  max mem: 32580
+[VAL] Epoch [80]  [1/2]  eta: 0:00:01  loss: 0.0192 (0.0237)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0192 (0.0237)  time: 1.0488  data: 0.8455  max mem: 32580
+[VAL] Epoch [80] Total time: 0:00:02 (1.0717 s / it)
+[VAL] Epoch 80 averaged stats: loss: 0.0192 (0.0237)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0192 (0.0237)
+[EarlyStopping] epoch 81 | val_loss=0.023670 | best=0.022784 (epoch 21) | no_improve=60/75
+[LR] epoch 82 | lr=5.00e-05
+[TRAIN] Epoch [81]  [ 0/25]  eta: 0:02:32  loss: 0.0126 (0.0126)  grad_norm: 0.2158 (0.2158)  train_yield_loss: 0.0126 (0.0126)  time: 6.0868  data: 5.4032  max mem: 32580
+[TRAIN] Epoch [81]  [10/25]  eta: 0:00:11  loss: 0.0129 (0.0133)  grad_norm: 0.2342 (0.2387)  train_yield_loss: 0.0129 (0.0133)  time: 0.7874  data: 0.4913  max mem: 32580
+[TRAIN] Epoch [81]  [20/25]  eta: 0:00:02  loss: 0.0125 (0.0129)  grad_norm: 0.2309 (0.2295)  train_yield_loss: 0.0125 (0.0129)  time: 0.2385  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [81]  [24/25]  eta: 0:00:00  loss: 0.0127 (0.0131)  grad_norm: 0.2309 (0.2438)  train_yield_loss: 0.0127 (0.0131)  time: 0.2187  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [81] Total time: 0:00:11 (0.4712 s / it)
+[TRAIN] Epoch 81 averaged stats: loss: 0.0127 (0.0131)  grad_norm: 0.2309 (0.2438)  train_yield_loss: 0.0127 (0.0131)
+[VAL] Epoch [81]  [0/2]  eta: 0:00:03  loss: 0.0220 (0.0220)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0220 (0.0220)  time: 1.9671  data: 1.6324  max mem: 32580
+[VAL] Epoch [81]  [1/2]  eta: 0:00:01  loss: 0.0220 (0.0236)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0220 (0.0236)  time: 1.0337  data: 0.8163  max mem: 32580
+[VAL] Epoch [81] Total time: 0:00:02 (1.1224 s / it)
+[VAL] Epoch 81 averaged stats: loss: 0.0220 (0.0236)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0220 (0.0236)
+[EarlyStopping] epoch 82 | val_loss=0.023637 | best=0.022784 (epoch 21) | no_improve=61/75
+[LR] epoch 83 | lr=5.00e-05
+[TRAIN] Epoch [82]  [ 0/25]  eta: 0:02:36  loss: 0.0116 (0.0116)  grad_norm: 0.3731 (0.3731)  train_yield_loss: 0.0116 (0.0116)  time: 6.2764  data: 5.4100  max mem: 32580
+[TRAIN] Epoch [82]  [10/25]  eta: 0:00:11  loss: 0.0137 (0.0134)  grad_norm: 0.3041 (0.3181)  train_yield_loss: 0.0137 (0.0134)  time: 0.7913  data: 0.4919  max mem: 32580
+[TRAIN] Epoch [82]  [20/25]  eta: 0:00:02  loss: 0.0136 (0.0136)  grad_norm: 0.2856 (0.2976)  train_yield_loss: 0.0136 (0.0136)  time: 0.2306  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [82]  [24/25]  eta: 0:00:00  loss: 0.0134 (0.0133)  grad_norm: 0.2841 (0.2972)  train_yield_loss: 0.0134 (0.0133)  time: 0.2185  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [82] Total time: 0:00:11 (0.4724 s / it)
+[TRAIN] Epoch 82 averaged stats: loss: 0.0134 (0.0133)  grad_norm: 0.2841 (0.2972)  train_yield_loss: 0.0134 (0.0133)
+[VAL] Epoch [82]  [0/2]  eta: 0:00:04  loss: 0.0201 (0.0201)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0201 (0.0201)  time: 2.0059  data: 1.7016  max mem: 32580
+[VAL] Epoch [82]  [1/2]  eta: 0:00:01  loss: 0.0201 (0.0259)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0201 (0.0259)  time: 1.0530  data: 0.8509  max mem: 32580
+[VAL] Epoch [82] Total time: 0:00:02 (1.0723 s / it)
+[VAL] Epoch 82 averaged stats: loss: 0.0201 (0.0259)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0201 (0.0259)
+[EarlyStopping] epoch 83 | val_loss=0.025868 | best=0.022784 (epoch 21) | no_improve=62/75
+[LR] epoch 84 | lr=5.00e-05
+[TRAIN] Epoch [83]  [ 0/25]  eta: 0:01:30  loss: 0.0128 (0.0128)  grad_norm: 0.2372 (0.2372)  train_yield_loss: 0.0128 (0.0128)  time: 3.6121  data: 2.6645  max mem: 32580
+[TRAIN] Epoch [83]  [10/25]  eta: 0:00:10  loss: 0.0129 (0.0130)  grad_norm: 0.2315 (0.2224)  train_yield_loss: 0.0129 (0.0130)  time: 0.6749  data: 0.2954  max mem: 32580
+[TRAIN] Epoch [83]  [20/25]  eta: 0:00:02  loss: 0.0124 (0.0130)  grad_norm: 0.2031 (0.2100)  train_yield_loss: 0.0124 (0.0130)  time: 0.3017  data: 0.0293  max mem: 32580
+[TRAIN] Epoch [83]  [24/25]  eta: 0:00:00  loss: 0.0122 (0.0130)  grad_norm: 0.2031 (0.2160)  train_yield_loss: 0.0122 (0.0130)  time: 0.2481  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [83] Total time: 0:00:10 (0.4229 s / it)
+[TRAIN] Epoch 83 averaged stats: loss: 0.0122 (0.0130)  grad_norm: 0.2031 (0.2160)  train_yield_loss: 0.0122 (0.0130)
+[VAL] Epoch [83]  [0/2]  eta: 0:00:04  loss: 0.0207 (0.0207)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0207 (0.0207)  time: 2.0017  data: 1.6777  max mem: 32580
+[VAL] Epoch [83]  [1/2]  eta: 0:00:01  loss: 0.0207 (0.0230)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0207 (0.0230)  time: 1.0506  data: 0.8390  max mem: 32580
+[VAL] Epoch [83] Total time: 0:00:02 (1.0689 s / it)
+[VAL] Epoch 83 averaged stats: loss: 0.0207 (0.0230)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0207 (0.0230)
+[EarlyStopping] epoch 84 | val_loss=0.022990 | best=0.022784 (epoch 21) | no_improve=63/75
+[LR] epoch 85 | lr=5.00e-05
+[TRAIN] Epoch [84]  [ 0/25]  eta: 0:02:16  loss: 0.0098 (0.0098)  grad_norm: 0.2385 (0.2385)  train_yield_loss: 0.0098 (0.0098)  time: 5.4430  data: 4.7552  max mem: 32580
+[TRAIN] Epoch [84]  [10/25]  eta: 0:00:11  loss: 0.0126 (0.0128)  grad_norm: 0.2300 (0.2215)  train_yield_loss: 0.0126 (0.0128)  time: 0.7496  data: 0.4324  max mem: 32580
+[TRAIN] Epoch [84]  [20/25]  eta: 0:00:02  loss: 0.0131 (0.0130)  grad_norm: 0.2180 (0.2198)  train_yield_loss: 0.0131 (0.0130)  time: 0.2498  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [84]  [24/25]  eta: 0:00:00  loss: 0.0133 (0.0130)  grad_norm: 0.2052 (0.2148)  train_yield_loss: 0.0133 (0.0130)  time: 0.2285  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [84] Total time: 0:00:11 (0.4558 s / it)
+[TRAIN] Epoch 84 averaged stats: loss: 0.0133 (0.0130)  grad_norm: 0.2052 (0.2148)  train_yield_loss: 0.0133 (0.0130)
+[VAL] Epoch [84]  [0/2]  eta: 0:00:03  loss: 0.0197 (0.0197)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0197 (0.0197)  time: 1.9864  data: 1.6825  max mem: 32580
+[VAL] Epoch [84]  [1/2]  eta: 0:00:01  loss: 0.0197 (0.0237)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0197 (0.0237)  time: 1.0427  data: 0.8414  max mem: 32580
+[VAL] Epoch [84] Total time: 0:00:02 (1.0612 s / it)
+[VAL] Epoch 84 averaged stats: loss: 0.0197 (0.0237)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0197 (0.0237)
+[EarlyStopping] epoch 85 | val_loss=0.023666 | best=0.022784 (epoch 21) | no_improve=64/75
+[LR] epoch 86 | lr=5.00e-05
+[TRAIN] Epoch [85]  [ 0/25]  eta: 0:02:35  loss: 0.0122 (0.0122)  grad_norm: 0.1826 (0.1826)  train_yield_loss: 0.0122 (0.0122)  time: 6.2397  data: 5.3853  max mem: 32580
+[TRAIN] Epoch [85]  [10/25]  eta: 0:00:11  loss: 0.0121 (0.0124)  grad_norm: 0.2235 (0.2119)  train_yield_loss: 0.0121 (0.0124)  time: 0.7920  data: 0.4897  max mem: 32580
+[TRAIN] Epoch [85]  [20/25]  eta: 0:00:02  loss: 0.0126 (0.0129)  grad_norm: 0.2154 (0.2108)  train_yield_loss: 0.0126 (0.0129)  time: 0.2322  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [85]  [24/25]  eta: 0:00:00  loss: 0.0128 (0.0129)  grad_norm: 0.2187 (0.2137)  train_yield_loss: 0.0128 (0.0129)  time: 0.2175  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [85] Total time: 0:00:11 (0.4722 s / it)
+[TRAIN] Epoch 85 averaged stats: loss: 0.0128 (0.0129)  grad_norm: 0.2187 (0.2137)  train_yield_loss: 0.0128 (0.0129)
+[VAL] Epoch [85]  [0/2]  eta: 0:00:03  loss: 0.0198 (0.0198)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0198 (0.0198)  time: 1.9904  data: 1.6856  max mem: 32580
+[VAL] Epoch [85]  [1/2]  eta: 0:00:01  loss: 0.0198 (0.0235)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0198 (0.0235)  time: 1.0464  data: 0.8430  max mem: 32580
+[VAL] Epoch [85] Total time: 0:00:02 (1.0653 s / it)
+[VAL] Epoch 85 averaged stats: loss: 0.0198 (0.0235)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0198 (0.0235)
+[EarlyStopping] epoch 86 | val_loss=0.023537 | best=0.022784 (epoch 21) | no_improve=65/75
+[LR] epoch 87 | lr=5.00e-05
+[TRAIN] Epoch [86]  [ 0/25]  eta: 0:02:32  loss: 0.0115 (0.0115)  grad_norm: 0.1806 (0.1806)  train_yield_loss: 0.0115 (0.0115)  time: 6.0928  data: 5.1798  max mem: 32580
+[TRAIN] Epoch [86]  [10/25]  eta: 0:00:11  loss: 0.0129 (0.0131)  grad_norm: 0.2258 (0.2293)  train_yield_loss: 0.0129 (0.0131)  time: 0.7957  data: 0.4710  max mem: 32580
+[TRAIN] Epoch [86]  [20/25]  eta: 0:00:02  loss: 0.0129 (0.0130)  grad_norm: 0.2488 (0.2658)  train_yield_loss: 0.0129 (0.0130)  time: 0.2414  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [86]  [24/25]  eta: 0:00:00  loss: 0.0126 (0.0131)  grad_norm: 0.2542 (0.2646)  train_yield_loss: 0.0126 (0.0131)  time: 0.2198  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [86] Total time: 0:00:11 (0.4748 s / it)
+[TRAIN] Epoch 86 averaged stats: loss: 0.0126 (0.0131)  grad_norm: 0.2542 (0.2646)  train_yield_loss: 0.0126 (0.0131)
+[VAL] Epoch [86]  [0/2]  eta: 0:00:03  loss: 0.0203 (0.0203)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0203 (0.0203)  time: 1.9089  data: 1.6028  max mem: 32580
+[VAL] Epoch [86]  [1/2]  eta: 0:00:01  loss: 0.0203 (0.0250)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0203 (0.0250)  time: 1.0058  data: 0.8015  max mem: 32580
+[VAL] Epoch [86] Total time: 0:00:02 (1.0241 s / it)
+[VAL] Epoch 86 averaged stats: loss: 0.0203 (0.0250)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0203 (0.0250)
+[EarlyStopping] epoch 87 | val_loss=0.024961 | best=0.022784 (epoch 21) | no_improve=66/75
+[LR] epoch 88 | lr=5.00e-05
+[TRAIN] Epoch [87]  [ 0/25]  eta: 0:02:28  loss: 0.0100 (0.0100)  grad_norm: 0.2545 (0.2545)  train_yield_loss: 0.0100 (0.0100)  time: 5.9319  data: 5.4012  max mem: 32580
+[TRAIN] Epoch [87]  [10/25]  eta: 0:00:11  loss: 0.0122 (0.0124)  grad_norm: 0.2115 (0.2149)  train_yield_loss: 0.0122 (0.0124)  time: 0.7755  data: 0.4911  max mem: 32580
+[TRAIN] Epoch [87]  [20/25]  eta: 0:00:02  loss: 0.0131 (0.0131)  grad_norm: 0.2178 (0.2239)  train_yield_loss: 0.0131 (0.0131)  time: 0.2385  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [87]  [24/25]  eta: 0:00:00  loss: 0.0131 (0.0130)  grad_norm: 0.2230 (0.2219)  train_yield_loss: 0.0131 (0.0130)  time: 0.2222  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [87] Total time: 0:00:11 (0.4657 s / it)
+[TRAIN] Epoch 87 averaged stats: loss: 0.0131 (0.0130)  grad_norm: 0.2230 (0.2219)  train_yield_loss: 0.0131 (0.0130)
+[VAL] Epoch [87]  [0/2]  eta: 0:00:03  loss: 0.0196 (0.0196)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0196 (0.0196)  time: 1.9897  data: 1.6851  max mem: 32580
+[VAL] Epoch [87]  [1/2]  eta: 0:00:01  loss: 0.0196 (0.0233)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0196 (0.0233)  time: 1.0449  data: 0.8427  max mem: 32580
+[VAL] Epoch [87] Total time: 0:00:02 (1.0652 s / it)
+[VAL] Epoch 87 averaged stats: loss: 0.0196 (0.0233)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0196 (0.0233)
+[EarlyStopping] epoch 88 | val_loss=0.023321 | best=0.022784 (epoch 21) | no_improve=67/75
+[LR] epoch 89 | lr=5.00e-05
+[TRAIN] Epoch [88]  [ 0/25]  eta: 0:02:36  loss: 0.0111 (0.0111)  grad_norm: 0.2042 (0.2042)  train_yield_loss: 0.0111 (0.0111)  time: 6.2580  data: 5.3962  max mem: 32580
+[TRAIN] Epoch [88]  [10/25]  eta: 0:00:11  loss: 0.0127 (0.0137)  grad_norm: 0.2121 (0.2186)  train_yield_loss: 0.0127 (0.0137)  time: 0.7969  data: 0.4907  max mem: 32580
+[TRAIN] Epoch [88]  [20/25]  eta: 0:00:02  loss: 0.0125 (0.0130)  grad_norm: 0.1965 (0.2034)  train_yield_loss: 0.0125 (0.0130)  time: 0.2345  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [88]  [24/25]  eta: 0:00:00  loss: 0.0122 (0.0129)  grad_norm: 0.1912 (0.2004)  train_yield_loss: 0.0122 (0.0129)  time: 0.2196  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [88] Total time: 0:00:11 (0.4755 s / it)
+[TRAIN] Epoch 88 averaged stats: loss: 0.0122 (0.0129)  grad_norm: 0.1912 (0.2004)  train_yield_loss: 0.0122 (0.0129)
+[VAL] Epoch [88]  [0/2]  eta: 0:00:04  loss: 0.0206 (0.0206)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0206 (0.0206)  time: 2.0229  data: 1.7170  max mem: 32580
+[VAL] Epoch [88]  [1/2]  eta: 0:00:01  loss: 0.0206 (0.0253)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0206 (0.0253)  time: 1.0630  data: 0.8586  max mem: 32580
+[VAL] Epoch [88] Total time: 0:00:02 (1.0835 s / it)
+[VAL] Epoch 88 averaged stats: loss: 0.0206 (0.0253)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0206 (0.0253)
+[EarlyStopping] epoch 89 | val_loss=0.025281 | best=0.022784 (epoch 21) | no_improve=68/75
+[LR] epoch 90 | lr=5.00e-05
+[TRAIN] Epoch [89]  [ 0/25]  eta: 0:02:31  loss: 0.0118 (0.0118)  grad_norm: 0.1894 (0.1894)  train_yield_loss: 0.0118 (0.0118)  time: 6.0672  data: 5.1585  max mem: 32580
+[TRAIN] Epoch [89]  [10/25]  eta: 0:00:11  loss: 0.0125 (0.0127)  grad_norm: 0.2081 (0.2081)  train_yield_loss: 0.0125 (0.0127)  time: 0.7823  data: 0.4691  max mem: 32580
+[TRAIN] Epoch [89]  [20/25]  eta: 0:00:02  loss: 0.0125 (0.0128)  grad_norm: 0.2133 (0.2136)  train_yield_loss: 0.0125 (0.0128)  time: 0.2352  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [89]  [24/25]  eta: 0:00:00  loss: 0.0128 (0.0129)  grad_norm: 0.2175 (0.2152)  train_yield_loss: 0.0128 (0.0129)  time: 0.2186  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [89] Total time: 0:00:11 (0.4682 s / it)
+[TRAIN] Epoch 89 averaged stats: loss: 0.0128 (0.0129)  grad_norm: 0.2175 (0.2152)  train_yield_loss: 0.0128 (0.0129)
+[VAL] Epoch [89]  [0/2]  eta: 0:00:04  loss: 0.0188 (0.0188)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0188 (0.0188)  time: 2.0191  data: 1.6955  max mem: 32580
+[VAL] Epoch [89]  [1/2]  eta: 0:00:01  loss: 0.0188 (0.0237)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0188 (0.0237)  time: 1.0597  data: 0.8479  max mem: 32580
+[VAL] Epoch [89] Total time: 0:00:02 (1.0788 s / it)
+[VAL] Epoch 89 averaged stats: loss: 0.0188 (0.0237)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0188 (0.0237)
+[EarlyStopping] epoch 90 | val_loss=0.023684 | best=0.022784 (epoch 21) | no_improve=69/75
+[LR] epoch 91 | lr=5.00e-05
+[TRAIN] Epoch [90]  [ 0/25]  eta: 0:02:32  loss: 0.0125 (0.0125)  grad_norm: 0.2409 (0.2409)  train_yield_loss: 0.0125 (0.0125)  time: 6.1172  data: 5.2002  max mem: 32580
+[TRAIN] Epoch [90]  [10/25]  eta: 0:00:11  loss: 0.0123 (0.0122)  grad_norm: 0.2254 (0.2227)  train_yield_loss: 0.0123 (0.0122)  time: 0.7895  data: 0.4729  max mem: 32580
+[TRAIN] Epoch [90]  [20/25]  eta: 0:00:02  loss: 0.0126 (0.0131)  grad_norm: 0.2277 (0.2332)  train_yield_loss: 0.0126 (0.0131)  time: 0.2375  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [90]  [24/25]  eta: 0:00:00  loss: 0.0136 (0.0131)  grad_norm: 0.2384 (0.2371)  train_yield_loss: 0.0136 (0.0131)  time: 0.2180  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [90] Total time: 0:00:11 (0.4718 s / it)
+[TRAIN] Epoch 90 averaged stats: loss: 0.0136 (0.0131)  grad_norm: 0.2384 (0.2371)  train_yield_loss: 0.0136 (0.0131)
+[VAL] Epoch [90]  [0/2]  eta: 0:00:04  loss: 0.0197 (0.0197)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0197 (0.0197)  time: 2.0607  data: 1.7589  max mem: 32580
+[VAL] Epoch [90]  [1/2]  eta: 0:00:01  loss: 0.0197 (0.0246)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0197 (0.0246)  time: 1.0681  data: 0.8795  max mem: 32580
+[VAL] Epoch [90] Total time: 0:00:02 (1.0874 s / it)
+[VAL] Epoch 90 averaged stats: loss: 0.0197 (0.0246)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0197 (0.0246)
+[EarlyStopping] epoch 91 | val_loss=0.024614 | best=0.022784 (epoch 21) | no_improve=70/75
+[LR] epoch 92 | lr=5.00e-05
+[TRAIN] Epoch [91]  [ 0/25]  eta: 0:02:37  loss: 0.0118 (0.0118)  grad_norm: 0.2739 (0.2739)  train_yield_loss: 0.0118 (0.0118)  time: 6.3031  data: 5.4225  max mem: 32580
+[TRAIN] Epoch [91]  [10/25]  eta: 0:00:12  loss: 0.0133 (0.0133)  grad_norm: 0.2261 (0.2322)  train_yield_loss: 0.0133 (0.0133)  time: 0.8024  data: 0.4931  max mem: 32580
+[TRAIN] Epoch [91]  [20/25]  eta: 0:00:02  loss: 0.0133 (0.0132)  grad_norm: 0.2116 (0.2204)  train_yield_loss: 0.0133 (0.0132)  time: 0.2355  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [91]  [24/25]  eta: 0:00:00  loss: 0.0129 (0.0130)  grad_norm: 0.2066 (0.2177)  train_yield_loss: 0.0129 (0.0130)  time: 0.2182  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [91] Total time: 0:00:11 (0.4778 s / it)
+[TRAIN] Epoch 91 averaged stats: loss: 0.0129 (0.0130)  grad_norm: 0.2066 (0.2177)  train_yield_loss: 0.0129 (0.0130)
+[VAL] Epoch [91]  [0/2]  eta: 0:00:03  loss: 0.0195 (0.0195)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0195 (0.0195)  time: 1.9481  data: 1.6439  max mem: 32580
+[VAL] Epoch [91]  [1/2]  eta: 0:00:01  loss: 0.0195 (0.0232)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0195 (0.0232)  time: 1.0120  data: 0.8221  max mem: 32580
+[VAL] Epoch [91] Total time: 0:00:02 (1.0310 s / it)
+[VAL] Epoch 91 averaged stats: loss: 0.0195 (0.0232)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0195 (0.0232)
+[EarlyStopping] epoch 92 | val_loss=0.023182 | best=0.022784 (epoch 21) | no_improve=71/75
+[LR] epoch 93 | lr=5.00e-05
+[TRAIN] Epoch [92]  [ 0/25]  eta: 0:02:28  loss: 0.0134 (0.0134)  grad_norm: 0.2148 (0.2148)  train_yield_loss: 0.0134 (0.0134)  time: 5.9425  data: 5.4000  max mem: 32580
+[TRAIN] Epoch [92]  [10/25]  eta: 0:00:11  loss: 0.0134 (0.0131)  grad_norm: 0.2148 (0.2176)  train_yield_loss: 0.0134 (0.0131)  time: 0.7844  data: 0.4910  max mem: 32580
+[TRAIN] Epoch [92]  [20/25]  eta: 0:00:02  loss: 0.0126 (0.0129)  grad_norm: 0.2169 (0.2203)  train_yield_loss: 0.0126 (0.0129)  time: 0.2427  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [92]  [24/25]  eta: 0:00:00  loss: 0.0126 (0.0129)  grad_norm: 0.2196 (0.2197)  train_yield_loss: 0.0126 (0.0129)  time: 0.2175  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [92] Total time: 0:00:11 (0.4689 s / it)
+[TRAIN] Epoch 92 averaged stats: loss: 0.0126 (0.0129)  grad_norm: 0.2196 (0.2197)  train_yield_loss: 0.0126 (0.0129)
+[VAL] Epoch [92]  [0/2]  eta: 0:00:04  loss: 0.0220 (0.0220)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0220 (0.0220)  time: 2.0053  data: 1.7016  max mem: 32580
+[VAL] Epoch [92]  [1/2]  eta: 0:00:01  loss: 0.0220 (0.0240)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0220 (0.0240)  time: 1.0535  data: 0.8510  max mem: 32580
+[VAL] Epoch [92] Total time: 0:00:02 (1.0726 s / it)
+[VAL] Epoch 92 averaged stats: loss: 0.0220 (0.0240)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0220 (0.0240)
+[EarlyStopping] epoch 93 | val_loss=0.024046 | best=0.022784 (epoch 21) | no_improve=72/75
+[LR] epoch 94 | lr=5.00e-05
+[TRAIN] Epoch [93]  [ 0/25]  eta: 0:02:32  loss: 0.0110 (0.0110)  grad_norm: 0.2137 (0.2137)  train_yield_loss: 0.0110 (0.0110)  time: 6.1018  data: 5.1780  max mem: 32580
+[TRAIN] Epoch [93]  [10/25]  eta: 0:00:11  loss: 0.0112 (0.0120)  grad_norm: 0.2232 (0.2269)  train_yield_loss: 0.0112 (0.0120)  time: 0.7912  data: 0.4708  max mem: 32580
+[TRAIN] Epoch [93]  [20/25]  eta: 0:00:02  loss: 0.0123 (0.0131)  grad_norm: 0.2364 (0.2398)  train_yield_loss: 0.0123 (0.0131)  time: 0.2393  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [93]  [24/25]  eta: 0:00:00  loss: 0.0140 (0.0135)  grad_norm: 0.2447 (0.2443)  train_yield_loss: 0.0140 (0.0135)  time: 0.2184  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [93] Total time: 0:00:11 (0.4725 s / it)
+[TRAIN] Epoch 93 averaged stats: loss: 0.0140 (0.0135)  grad_norm: 0.2447 (0.2443)  train_yield_loss: 0.0140 (0.0135)
+[VAL] Epoch [93]  [0/2]  eta: 0:00:03  loss: 0.0199 (0.0199)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0199 (0.0199)  time: 1.9782  data: 1.6787  max mem: 32580
+[VAL] Epoch [93]  [1/2]  eta: 0:00:01  loss: 0.0199 (0.0239)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0199 (0.0239)  time: 1.0381  data: 0.8394  max mem: 32580
+[VAL] Epoch [93] Total time: 0:00:02 (1.0574 s / it)
+[VAL] Epoch 93 averaged stats: loss: 0.0199 (0.0239)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0199 (0.0239)
+[EarlyStopping] epoch 94 | val_loss=0.023880 | best=0.022784 (epoch 21) | no_improve=73/75
+[LR] epoch 95 | lr=5.00e-05
+[TRAIN] Epoch [94]  [ 0/25]  eta: 0:02:33  loss: 0.0118 (0.0118)  grad_norm: 0.2348 (0.2348)  train_yield_loss: 0.0118 (0.0118)  time: 6.1205  data: 5.1756  max mem: 32580
+[TRAIN] Epoch [94]  [10/25]  eta: 0:00:11  loss: 0.0123 (0.0128)  grad_norm: 0.2348 (0.2294)  train_yield_loss: 0.0123 (0.0128)  time: 0.7933  data: 0.4706  max mem: 32580
+[TRAIN] Epoch [94]  [20/25]  eta: 0:00:02  loss: 0.0134 (0.0131)  grad_norm: 0.2543 (0.2594)  train_yield_loss: 0.0134 (0.0131)  time: 0.2395  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [94]  [24/25]  eta: 0:00:00  loss: 0.0134 (0.0132)  grad_norm: 0.2596 (0.2580)  train_yield_loss: 0.0134 (0.0132)  time: 0.2184  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [94] Total time: 0:00:11 (0.4732 s / it)
+[TRAIN] Epoch 94 averaged stats: loss: 0.0134 (0.0132)  grad_norm: 0.2596 (0.2580)  train_yield_loss: 0.0134 (0.0132)
+[VAL] Epoch [94]  [0/2]  eta: 0:00:03  loss: 0.0198 (0.0198)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0198 (0.0198)  time: 1.9535  data: 1.6523  max mem: 32580
+[VAL] Epoch [94]  [1/2]  eta: 0:00:01  loss: 0.0198 (0.0245)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0198 (0.0245)  time: 1.0272  data: 0.8263  max mem: 32580
+[VAL] Epoch [94] Total time: 0:00:02 (1.0462 s / it)
+[VAL] Epoch 94 averaged stats: loss: 0.0198 (0.0245)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0198 (0.0245)
+[EarlyStopping] epoch 95 | val_loss=0.024543 | best=0.022784 (epoch 21) | no_improve=74/75
+[LR] epoch 96 | lr=5.00e-05
+[TRAIN] Epoch [95]  [ 0/25]  eta: 0:02:32  loss: 0.0116 (0.0116)  grad_norm: 0.2189 (0.2189)  train_yield_loss: 0.0116 (0.0116)  time: 6.0933  data: 5.1705  max mem: 32580
+[TRAIN] Epoch [95]  [10/25]  eta: 0:00:11  loss: 0.0137 (0.0131)  grad_norm: 0.2128 (0.2166)  train_yield_loss: 0.0137 (0.0131)  time: 0.7979  data: 0.4701  max mem: 32580
+[TRAIN] Epoch [95]  [20/25]  eta: 0:00:02  loss: 0.0137 (0.0132)  grad_norm: 0.2262 (0.2315)  train_yield_loss: 0.0137 (0.0132)  time: 0.2425  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [95]  [24/25]  eta: 0:00:00  loss: 0.0135 (0.0131)  grad_norm: 0.2217 (0.2244)  train_yield_loss: 0.0135 (0.0131)  time: 0.2174  data: 0.0001  max mem: 32580
+[TRAIN] Epoch [95] Total time: 0:00:11 (0.4750 s / it)
+[TRAIN] Epoch 95 averaged stats: loss: 0.0135 (0.0131)  grad_norm: 0.2217 (0.2244)  train_yield_loss: 0.0135 (0.0131)
+[VAL] Epoch [95]  [0/2]  eta: 0:00:03  loss: 0.0193 (0.0193)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0193 (0.0193)  time: 1.9225  data: 1.6184  max mem: 32580
+[VAL] Epoch [95]  [1/2]  eta: 0:00:01  loss: 0.0193 (0.0245)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0193 (0.0245)  time: 1.0119  data: 0.8094  max mem: 32580
+[VAL] Epoch [95] Total time: 0:00:02 (1.0334 s / it)
+[VAL] Epoch 95 averaged stats: loss: 0.0193 (0.0245)  grad_norm: 0.0000 (0.0000)  val_yield_loss: 0.0193 (0.0245)
+[EarlyStopping] epoch 96 | val_loss=0.024460 | best=0.022784 (epoch 21) | no_improve=75/75
+
+Early stopping at epoch 96 (no val_loss improvement for 75 epochs)
+
+Running test with best model (epoch 21) ...
+[TEST] 16/31 samples; 614679 retained pixels
+Field aggregation: target > 0; filename means; corn x*320+50.
+Field R2: 0.369043; RMSE: 23.4011 bu/acre; MAE: 19.6092 bu/acre
+Predictions: /work/mech-ai-scratch/bgekim/project/MultiMAE_NEW/MultiMAE/output/finetune/yield_maskedloss_cdlfix/terramind_style_eval/Corn_field_predictions_20260912_101521_752889.csv
+Test performance: {'test_r2': 0.07884997342364441, 'test_rmse': 0.16157459599768756, 'test_mae': 0.1229682364772682, 'test_rmse_bu_acre': 51.70387071926002, 'test_mae_bu_acre': 39.349835672725824, 'test_field_r2': 0.369042598344719, 'test_field_rmse': 0.07312831657538842, 'test_field_mae': 0.06127890587549083, 'test_field_rmse_bu_acre': 23.401061304124294, 'test_field_mae_bu_acre': 19.609249880157066, 'test_n_valid_pixels': 1201357, 'test_n_filename_groups': 31, 'test_n_samples': 31, 'test_n_empty_samples': 0, 'test_yield_loss_original': 0.02613455567869448}

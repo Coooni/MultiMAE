@@ -1,0 +1,81 @@
+# ------------------------------------------------------------------ #
+# MultiMAE CDL Segmentation Finetuning Config
+# task: binary segmentation (corn/soybean=0, others=1)
+# temporal_steps: 1 (single timestep, same as pretraining)
+# ------------------------------------------------------------------ #
+
+# Task
+task_type: segmentation
+in_domains: s1-s2-elevation-soil-weather
+out_domains: cdl
+all_domains: s1-s2-elevation-weather-soil-cdl
+num_classes: 2
+temporal_steps: 1
+
+# Dataset
+stats_dir: /work/mech-ai-scratch/bgekim/project/MultiMAE_NEW/MultiMAE/valid_list/stats
+states: IA-IL
+
+# IA txt paths
+s1_txt_IA:        /work/mech-ai-scratch/bgekim/project/MultiMAE_NEW/MultiMAE/valid_list/nova/IA/pair_S1.txt
+s2_txt_IA:        /work/mech-ai-scratch/bgekim/project/MultiMAE_NEW/MultiMAE/valid_list/nova/IA/pair_S2.txt
+cdl_txt_IA:       /work/mech-ai-scratch/bgekim/project/MultiMAE_NEW/MultiMAE/valid_list/nova/IA/pair_CDL.txt
+elevation_txt_IA: /work/mech-ai-scratch/bgekim/project/MultiMAE_NEW/MultiMAE/valid_list/nova/IA/pair_Elevation.txt
+soil_txt_IA:      /work/mech-ai-scratch/bgekim/project/MultiMAE_NEW/MultiMAE/valid_list/nova/IA/pair_Soil.txt
+weather_txt_IA:   /work/mech-ai-scratch/bgekim/project/MultiMAE_NEW/MultiMAE/valid_list/nova/IA/pair_Weather.txt
+
+# IL txt paths
+s1_txt_IL:        /work/mech-ai-scratch/bgekim/project/MultiMAE_NEW/MultiMAE/valid_list/nova/IL/pair_S1.txt
+s2_txt_IL:        /work/mech-ai-scratch/bgekim/project/MultiMAE_NEW/MultiMAE/valid_list/nova/IL/pair_S2.txt
+cdl_txt_IL:       /work/mech-ai-scratch/bgekim/project/MultiMAE_NEW/MultiMAE/valid_list/nova/IL/pair_CDL.txt
+elevation_txt_IL: /work/mech-ai-scratch/bgekim/project/MultiMAE_NEW/MultiMAE/valid_list/nova/IL/pair_Elevation.txt
+soil_txt_IL:      /work/mech-ai-scratch/bgekim/project/MultiMAE_NEW/MultiMAE/valid_list/nova/IL/pair_Soil.txt
+weather_txt_IL:   /work/mech-ai-scratch/bgekim/project/MultiMAE_NEW/MultiMAE/valid_list/nova/IL/pair_Weather.txt
+
+# Model
+model: pretrain_multimae_base
+patch_size: 16
+input_size: 224
+num_encoded_tokens: 784
+num_global_tokens: 1
+decoder_dim: 256
+decoder_depth: 2
+decoder_num_heads: 8
+drop_path: 0.0
+
+# Pretrained weights
+pretrained_weights: /work/mech-ai-scratch/bgekim/project/MultiMAE_NEW/MultiMAE/output/pretrain/pretrain_best_epoch99.pth
+load_input_adapters: false
+
+# Training
+epochs: 50
+batch_size: 32
+start_epoch: 0
+
+# Optimizer
+blr: 5.0e-5
+weight_decay: 0.05
+clip_grad: 1.0
+opt_eps: 1.0e-8
+opt_betas: [0.9, 0.95]
+warmup_epochs: 5
+warmup_lr: 5.0e-6
+min_lr: 0.0
+
+# Augmentation
+hflip: 0.5
+train_interpolation: bicubic
+
+# Output
+output_dir: /work/mech-ai-scratch/bgekim/project/MultiMAE_NEW/MultiMAE/output/finetune/cdl
+
+# Misc
+seed: 0
+num_workers: 72
+pin_mem: true
+find_unused_params: false
+
+# W&B
+wandb_project: MultiMAE-finetune
+wandb_entity: goeulkim
+wandb_run_name: finetune-cdl-T1
